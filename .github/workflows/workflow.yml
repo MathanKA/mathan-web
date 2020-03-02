@@ -7,20 +7,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     # checkout the repo
-    - name: 'Mathan K A' 
+    - name: 'Checkout Github Action' 
       uses: actions/checkout@master
     
-    - name: Setup Node 12.x
+    - name: Setup Node 10.x
       uses: actions/setup-node@v1
       with:
-        node-version: '12.x'
+        node-version: '10.x'
     - name: 'npm install, build, and test'
       run: |
         npm install
         npm run build --if-present
         npm run test --if-present
     - name: 'Run Azure webapp deploy action using publish profile credentials'
-          uses: azure/webapps-deploy@v1
-          with: 
-            app-name: node-rn
-            publish-profile: ${{ secrets.azureWebAppPublishProfile }}
+      uses: azure/webapps-deploy@v2
+      with: 
+        app-name: node-rn
+        publish-profile: ${{ secrets.azure_key }}
