@@ -1,0 +1,14 @@
+{
+  "name": "mathan-ka",
+  "version": "1.0.0",
+  "description": "Mathan Web profile",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MathanKA/mathan-web.git"
+  },
+  "author": "mathanka",
+}
