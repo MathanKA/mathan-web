@@ -1,6 +1,12 @@
 const http = require('http');
-const port=process.env.PORT || 3000
+const port = 3000;
 const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/html');
+  console.log(req.url);
 });
+
+server.listen(port, err => {
+  if (err) {
+    return console.log('something bad happened', err)
+  }
+  console.log(`server is listening on ${port}`)
+})
