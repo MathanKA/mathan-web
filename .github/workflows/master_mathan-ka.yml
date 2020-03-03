@@ -13,7 +13,7 @@ on:
 env:
   AZURE_WEBAPP_NAME: mathan-ka  # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
-  NODE_VERSION: '10.x'                # set this to the node version to use
+  NODE_VERSION: '12.x'                # set this to the node version to use
 
 jobs:
   build-and-deploy:
@@ -30,7 +30,7 @@ jobs:
         # Build and test the project, then
         # deploy to Azure Web App.
         npm install
-        npm run start --if-present
+        npm run start
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
       with: 
