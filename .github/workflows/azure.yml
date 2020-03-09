@@ -29,5 +29,5 @@ jobs:
       with:
         app-name: 'mathan-ka'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_e3a2dc92ed764e1bb89de7fb9dcbb63e }}
+        publish-profile: ${{ secrets.azurepublishprofile }}
         package: .
