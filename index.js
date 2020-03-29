@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/blog', (req, res) => {
-  res.render('blog')
+  res.render('blog.html')
 })
 
 app.listen(port);
