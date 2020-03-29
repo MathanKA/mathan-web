@@ -5,11 +5,10 @@ const app = express();
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-  res.rendex('index')
 });
 
 app.get('/blog', (req, res) => {
-  res.render('blog.html')
+  res.write('Redirecting to blog. Please wait...'); 
 })
 
 app.listen(port);
