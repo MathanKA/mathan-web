@@ -8,7 +8,6 @@ app.get('/', (req, res) => {
 });
 
 app.get('/blog', (req, res) => {
-  res.write('Redirecting to blog. Please wait...'); 
 })
 
 app.listen(port);
