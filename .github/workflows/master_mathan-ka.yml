@@ -27,7 +27,7 @@ jobs:
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v1
       with:
-        app-name: 'mathanka'
+        app-name: 'mathan'
         slot-name: 'production'
         publish-profile: ${{ secrets.azurekey }}
         package: .
