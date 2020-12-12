@@ -1,23 +1,18 @@
 @tailwind base;
-
-/* Start purging... */
 @tailwind components;
-
-/* Stop purging. */
+@tailwind utilities;
 
 html,
 body {
   @apply bg-gray-50 dark:bg-gray-900;
 }
 
-/* Write your own custom component styles here */
-.btn-blue {
-  @apply px-4 py-2 font-bold text-white bg-blue-500 rounded;
+/* Light theme */
+.light-mode body {
+  @apply bg-white text-black;
 }
 
-/* Start purging... */
-@tailwind utilities;
-
-/* Stop purging. */
-
-/* Your own custom utilities */
+/* Dark Theme */
+.dark-mode body {
+  @apply bg-gray-900 text-white;
+}

@@ -1,15 +1,37 @@
 module.exports = {
-  purge: ["./components/**/*.{js,ts,jsx,tsx}", "./pages/**/*.{js,ts,jsx,tsx}"],
-  darkMode: "media", // 'media' or 'class'
+  purge: [
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/tailwindcss-dark-mode/prefers-dark.js",
+  ],
+  // experimental: {
+  //   darkModeVariant: true,
+  // },
+  // dark: "class",
   theme: {
-    extend: {
-      colors: {
-        "accent-1": "#333",
-      },
-    },
+    darkSelector: ".dark-mode",
   },
   variants: {
-    extend: {},
+    backgroundColor: [
+      "dark",
+      "dark-hover",
+      "dark-group-hover",
+      "dark-even",
+      "dark-odd",
+      "hover",
+      "responsive",
+    ],
+    borderColor: [
+      "dark",
+      "dark-focus",
+      "dark-focus-within",
+      "hover",
+      "responsive",
+    ],
+    textColor: ["dark", "dark-hover", "dark-active", "hover", "responsive"],
   },
-  plugins: [],
+  plugins: [require("tailwindcss-dark-mode")()],
+  purgeCSS: {
+    whitelist: ["dark-mode"],
+  },
 };
