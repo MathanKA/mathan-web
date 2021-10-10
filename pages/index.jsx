@@ -20,7 +20,7 @@ export default function Home() {
               <p className="text-base">Hello World!</p>
               <h1 className="text-6xl font-extrabold">
                 I'm Mathan K A <br />
-                <span>Interactive Front-end developer</span>
+                <span>Frontend developer - I stand on sweet spot where design and code intersects. </span>
               </h1>
             </div>
             <div className="flex w-full md:w-2/5 items-center justify-center">
