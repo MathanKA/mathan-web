@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 
 export default function Home() {
   return (
@@ -13,7 +13,9 @@ export default function Home() {
       </section>
 
       <section className="p-6 border border-dashed border-gray-400 rounded-lg w-full">
-        <h3 className="text-sm font-uppercase text-gray-500 mb-2">Detailed View Stub</h3>
+        <h3 className="text-sm font-uppercase text-gray-500 mb-2">
+          Detailed View Stub
+        </h3>
         <p>[ Viewer Mode Switcher Placeholder ]</p>
       </section>
     </div>

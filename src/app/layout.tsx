@@ -33,9 +33,7 @@ export default function RootLayout({
           </div>
         </header>
 
-        <main className="grow container mx-auto p-4">
-          {children}
-        </main>
+        <main className="grow container mx-auto p-4">{children}</main>
 
         <footer className="p-4 border-t border-gray-200 dark:border-gray-800 text-center text-sm text-gray-500">
           <p>© 2024 Portfolio Product. Work in Progress.</p>
