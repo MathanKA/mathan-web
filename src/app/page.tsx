@@ -12,7 +12,7 @@ import { Separator } from "@/components/ui/separator";
 import { LightRays } from "@/components/magicui/light-rays";
 import { AuroraText } from "@/components/magicui/aurora-text";
 import { ShimmerButton } from "@/components/magicui/shimmer-button";
-import { IconCloud } from "@/components/magicui/icon-cloud";
+import { ClientIconCloud } from "@/components/magicui/client-icon-cloud";
 import { Check, ArrowRight, Zap, Shield, Globe } from "lucide-react";
 import Link from "next/link";
 
@@ -96,8 +96,8 @@ export default function Home() {
         </div>
 
         {/* Right Column: Visual */}
-        <div className="flex justify-center items-center z-10 order-1 md:order-2 min-h-[300px]" aria-label="Technology icon cloud">
-            <IconCloud iconSlugs={ICON_SLUGS} />
+        <div className="flex justify-center items-center z-10 order-1 md:order-2 min-h-[300px]" role="img" aria-label="Technology icon cloud">
+            <ClientIconCloud iconSlugs={ICON_SLUGS} />
         </div>
       </section>
 
