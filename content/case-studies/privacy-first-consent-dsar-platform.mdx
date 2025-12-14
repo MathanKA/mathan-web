@@ -1,58 +1,130 @@
 ---
-title: "Privacy-First Consent & DSAR Platform"
+title: "Quansentz / SealForge — Privacy-as-code for Next.js"
 slug: "privacy-first-consent-dsar-platform"
 date: "2024-03-15"
-role: "Senior Frontend Engineer"
-company: "TechPrivacy Inc."
+role: "Solo Founder (Engineering + Product)"
+company: "Quansentz / SealForge"
 featured: true
-status: "launched"
-tags: ["Privacy", "GDPR", "CCPA", "Architecture"]
-modes: ["engineer", "manager"]
-stack: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Redis"]
-summary_one_liner: "Architected a scalable consent management platform handling 10M+ daily requests with 99.99% uptime."
+status: "pilot"
+tags: ["Privacy Engineering", "GDPR", "Next.js", "Architecture", "Audit Logs"]
+modes: ["engineer", "manager", "recruiter"]
+stack:
+  [
+    "Next.js (App Router)",
+    "TypeScript",
+    "PostgreSQL",
+    "Redis + BullMQ",
+    "S3 Storage",
+  ]
+summary_one_liner: "Built a developer-first privacy layer that turns consent and DSAR into code primitives, handling 10+ tenants with tamper-evident audit trails."
 links:
-  live: "https://example.com"
+  live: "https://www.quansentz.com/"
 ---
 
-## Problem
-Leading the frontend architecture for a privacy compliance platform designed to handle high-volume consent requests (GDPR/CCPA) and Data Subject Access Requests (DSAR). The legacy system was failing under load, and the manual DSAR process was costing legal teams 20+ hours a week.
+## TL;DR
 
-<Callout variant="note" title="The Core Issue">
-    Existing solutions treated privacy as an afterthought UI layer. We needed to bake compliance into the infrastructure itself.
+<Callout variant="note" title="Engineering Focus">
+  This project isn't just a UI wrapper; it's a **privacy engineering system**.
+  It enforces consent at the API boundary and treats DSAR exports as immutable,
+  auditable background jobs.
 </Callout>
+
+## Problem
+
+Compliance is usually treated as a legal tick-box—cookied banners that don't actually block tracking, and manual DSAR (Data Subject Access Request) workflows that involve emailing spreadsheets.
+
+This "privacy theater" fails engineering scrutiny:
+
+- **Routes execute before consent:** Next.js middleware often misses client-side fetchers.
+- **Exports break servers:** Synchronous CSV dumps time out on large datasets.
+- **Evidence is weak:** If a regulator asks "When did user X consent?", most teams point to a mutable row in a database.
+
+**The Goal:** Build a _self-evident_ privacy platform where "illegal states" (e.g., tracking without consent) are unrepresentable in the code, and every action leaves a tamper-evident cryptographic trail.
 
 ## Constraints
-*   **Scale:** System needed to process 10M+ consent signals/day with &lt;50ms latency.
-*   **Compliance:** Strict legal requirements meant zero data loss tolerance.
-*   **Legacy Data:** Had to migrate 5 years of user data without downtime.
+
+- **Auditability:** Every consent change or export must form a hash-chained ledger. Missing a link invalidates the chain.
+- **Isolation:** Multi-tenant architecture (SaaS) where Tenant A's DPO can never query Tenant B's subjects.
+- **Reliability:** DSAR exports can take hours; the system must handle retries and partial failures without data corruption.
+- **Latency:** Consent checks happen on every page load; they must add < 5ms blocked time.
+
+## Architecture
+
+I designed the system to decouple the _synchronous_ user path (Consent) from the _asynchronous_ compliance heavy-lifting (DSAR/Audit).
+
+<FigureLightbox
+  src="/case-studies/quansentz-architecture.svg"
+  alt="Quansentz System Architecture Diagram"
+  caption="High-level separation: Direct synchronous path for consent (Next.js + DB), Asynchronous path for DSAR (Redis + Worker)."
+/>
+
+#### Key Components:
+
+1.  **Consent Guards (Middleware/Hooks):** APIs check `Purpose` scopes before execution.
+2.  **Audit Ledger:** An append-only log table where `prevHash` links rows, proving sequence.
+3.  **Export Worker:** A BullMQ consumer that generates signed, encrypted archives and streams them to S3.
 
 ## Approach
-We rebuilt the consent widget using **Preact** for a 3kb bundle size, ensuring minimal impact on client site performance. The dashboard was migrated to **Next.js** with **Server Components**, reducing initial load time by 60%.
 
-### Key Wins
-1.  **Performance:** 50ms p99 latency for consent signal processing.
-2.  **Reliability:** Achieved 99.99% uptime during peak traffic (Black Friday).
-3.  **Efficiency:** Automated 80% of DSAR workflows.
+### 1. Privacy-as-Code Primitives
+
+Instead of "checking a box," developers import typed guards. This ensures that adding a new tracker requires explicit consent mapping at the code level.
 
 ```typescript
-// Example of optimistic UI update for consent toggle
-const toggleConsent = async (category: string) => {
-  setPreferences(prev => ({ ...prev, [category]: !prev[category] }));
-  await api.updateConsent(category); // Sync in background
-};
+// Example: Server Action protected by Purpose Guard
+import { protect, Purpose } from "@/lib/privacy";
+
+export const exportUserData = protect(
+  Purpose.ANALYTICS, // ❌ Fails if user hasn't consented to Analytics
+  async (userId: string) => {
+    // ... Safe to access data
+  }
+);
 ```
 
+### 2. The DSAR Pipeline (Async by Default)
+
+User data exports are computationally expensive. I implemented a standard "Job Interface" that any tenant service implements.
+
+1.  **Request:** User clicks "Download My Data".
+2.  **Queue:** Job `dsar-export` pushed to Redis (priority: low).
+3.  **Worker:**
+    - Fetches data chunks (cursor-based to save memory).
+    - Generates JSON/CSV artifact.
+    - Zips and uploads to S3 with a pre-signed URL.
+4.  **Notify:** User gets a time-limited download link.
+
+### 3. Tamper-Evident Evidence
+
+To prove compliance, the system logs `AuditEvent` rows. Each row contains a SHA-256 hash of its content + the previous row's hash.
+
 ## Tradeoffs
-<Callout variant="warning" title="Consistency vs. Availability">
-    We chose Eventual Consistency for consent statistics to prioritize Availability and Partition Tolerance (AP) for the user-facing widget. This meant admin dashboards were delayed by ~5 seconds, which was acceptable.
+
+<Callout variant="warning" title="Write Latency vs Audit Integrity">
+  I chose **synchronous hashing** for critical audit events. **Tradeoff:**
+  Writing an audit log adds ~20ms to the transaction because we must lock the
+  chain tip to calculate the hash. **Why:** Ensuring no "orphan" logs during a
+  race condition was worth the minor latency hit for a compliance tool.
 </Callout>
 
-*   **Complexity:** The event sourcing architecture added initial development time but paid off in auditability.
-*   **Storage:** Higher storage costs due to immutable audit logs.
+- **No Real-time Admin Stats:** Dashboard stats are calculated via background aggregations (materialized views) to keep the write path fast for users. Data is ~5 mins stale.
+- **Vendor Lock (S3):** I tightly coupled the export storage to S3 APIs for pre-signed URLs. This limits portability but saved 2 weeks of dev time implementing a generic storage adapter.
 
 ## Impact
-The new platform successfully handled the 10x traffic spike during the holiday season. Legal teams reported a **90% reduction** in manual DSAR processing time, allowing them to focus on high-value compliance strategy.
+
+The pilot launched to 3 internal products, handling the compliance workflow autonomously.
+
+### Metrics Evidence Notes
+
+| Metric              | Value               | Type         | Context                                      |
+| :------------------ | :------------------ | :----------- | :------------------------------------------- |
+| **Build Size**      | 185 KB (First Load) | **Measured** | `next build` report (Main bundle).           |
+| **Lighthouse**      | 98/100 (Perf)       | **Measured** | Local prod build, Mobile preset.             |
+| **Export Time**     | ~4s (P95)           | **Estimate** | Based on 10k mock rows/tenant.               |
+| **Audit Integrity** | 100%                | **Verified** | Hash validation script passed on 50k events. |
 
 <Callout variant="success" title="Outcome">
-    Reduced legal risk and saved ~$200k/year in operational costs.
+  Reduced the "Compliance Tax" for new features from **3 days** (manual
+  review/implementation) to **minutes** (importing the guard). Legal teams can
+  now self-serve evidence bundles without interrupting engineering.
 </Callout>

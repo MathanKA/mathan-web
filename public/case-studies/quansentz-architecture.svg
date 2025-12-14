@@ -1,0 +1,54 @@
+<svg width="800" height="400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feOffset result="offOut" in="SourceAlpha" dx="2" dy="2" />
+      <feGaussianBlur result="blurOut" in="offOut" stdDeviation="3" />
+      <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+    </filter>
+  </defs>
+  
+  <rect width="800" height="400" fill="#f8fafc" rx="8" ry="8" />
+  
+  <!-- Next.js App Router Node -->
+  <g transform="translate(50, 150)">
+    <rect width="160" height="100" fill="#ffffff" stroke="#2563eb" stroke-width="2" rx="8" filter="url(#shadow)" />
+    <text x="80" y="40" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#0f172a" text-anchor="middle">Next.js App</text>
+    <text x="80" y="60" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">(UI + API Routes)</text>
+    <text x="80" y="80" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Typed Consent</text>
+  </g>
+  
+  <!-- Database Node -->
+  <g transform="translate(300, 50)">
+    <rect width="160" height="80" fill="#ffffff" stroke="#059669" stroke-width="2" rx="8" filter="url(#shadow)" />
+    <text x="80" y="35" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#0f172a" text-anchor="middle">Postgres (Prisma)</text>
+    <text x="80" y="55" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Tenants / Consent / Audit</text>
+  </g>
+  
+  <!-- Queue Node -->
+  <g transform="translate(300, 250)">
+    <rect width="160" height="80" fill="#ffffff" stroke="#db2777" stroke-width="2" rx="8" filter="url(#shadow)" />
+    <text x="80" y="35" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#0f172a" text-anchor="middle">Redis (BullMQ)</text>
+    <text x="80" y="55" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Job Queues</text>
+  </g>
+  
+  <!-- Worker Node -->
+  <g transform="translate(550, 250)">
+    <rect width="160" height="80" fill="#ffffff" stroke="#7c3aed" stroke-width="2" rx="8" filter="url(#shadow)" />
+    <text x="80" y="35" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#0f172a" text-anchor="middle">Worker (Export)</text>
+    <text x="80" y="55" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Generates Evidence</text>
+  </g>
+  
+  <!-- S3 Node -->
+  <g transform="translate(550, 50)">
+    <rect width="160" height="80" fill="#ffffff" stroke="#d97706" stroke-width="2" rx="8" filter="url(#shadow)" />
+    <text x="80" y="35" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#0f172a" text-anchor="middle">S3 Storage</text>
+    <text x="80" y="55" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Export Artifacts</text>
+  </g>
+  
+  <!-- Edges -->
+  <path d="M210 200 L300 290" stroke="#94a3b8" stroke-width="2" /> <!-- App -> Redis -->
+  <path d="M460 290 L550 290" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5,5" /> <!-- Redis -> Worker -->
+  <path d="M630 250 L630 130" stroke="#94a3b8" stroke-width="2" /> <!-- Worker -> S3 -->
+  <path d="M210 150 L300 90" stroke="#94a3b8" stroke-width="2" /> <!-- App -> DB -->
+  <path d="M630 130 L300 350" stroke="#94a3b8" stroke-width="0" />
+</svg>
