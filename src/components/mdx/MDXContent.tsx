@@ -1,29 +1,11 @@
 import * as runtime from "react/jsx-runtime";
 import { cn } from "@/lib/utils";
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
+import { Callout } from "@/components/mdx/callout";
+import { CodeBlock } from "@/components/mdx/code-block";
+import Link from "next/link";
 
-// Simple Callout component using shadcn Card
-const Callout = ({
-  title,
-  children,
-  className,
-}: {
-  title?: string;
-  children: React.ReactNode;
-  className?: string;
-}) => {
-  return (
-    <Card className={cn("my-6 border-l-4 border-l-primary bg-muted/20", className)}>
-      <CardContent className="pt-6">
-        {title && <CardTitle className="mb-2 text-lg">{title}</CardTitle>}
-        <div className="text-sm text-muted-foreground">{children}</div>
-      </CardContent>
-    </Card>
-  );
-};
-
-// Map HTML elements to Tailwind classes
+// Customized heading components with anchor support styling
 const components = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
@@ -36,17 +18,26 @@ const components = {
   ),
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
-      className={cn(
-        "mt-10 scroll-m-20 pb-1 text-3xl font-semibold tracking-tight first:mt-0",
-        className
-      )}
-      {...props}
+        className={cn(
+            "group relative mt-12 scroll-m-24 border-l-4 border-primary pl-4 text-2xl font-semibold tracking-tight first:mt-0",
+            className
+        )}
+        {...props}
     />
   ),
   h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3
       className={cn(
-        "mt-8 scroll-m-20 text-2xl font-semibold tracking-tight",
+        "group relative mt-8 scroll-m-24 text-xl font-semibold tracking-tight hover:text-primary transition-colors",
+        className
+      )}
+      {...props}
+    />
+  ),
+  h4: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h4
+      className={cn(
+        "mt-8 scroll-m-20 text-lg font-semibold tracking-tight",
         className
       )}
       {...props}
@@ -54,7 +45,7 @@ const components = {
   ),
   p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p
-      className={cn("leading-7 [&:not(:first-child)]:mt-6", className)}
+      className={cn("leading-7 [&:not(:first-child)]:mt-6 max-w-[85ch]", className)}
       {...props}
     />
   ),
@@ -70,40 +61,45 @@ const components = {
   blockquote: ({ className, ...props }: React.HTMLAttributes<HTMLQuoteElement>) => (
     <blockquote
       className={cn(
-        "mt-6 border-l-2 pl-6 italic text-muted-foreground",
+        "mt-6 border-l-2 pl-6 italic text-muted-foreground bg-muted/20 py-2 pr-4 rounded-r-lg",
         className
       )}
       {...props}
     />
   ),
   a: ({ className, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
-    <a
+    <Link
+      href={props.href || "#"}
       className={cn(
-        "font-medium underline underline-offset-4 decoration-primary/50 hover:decoration-primary transition-colors",
+        "font-medium underline underline-offset-4 decoration-primary/50 hover:decoration-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm",
         className
       )}
       {...props}
-    />
+    >
+        {props.children}
+    </Link>
   ),
-  code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
-    <code
-      className={cn(
-        "relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold",
-        className
-      )}
-      {...props}
-    />
+  code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => {
+      // If code is inside pre (handled by CodeBlock/Shiki), this won't be hit usually for blocks,
+      // but Shiki might output spans.
+      // We check if it's inline code by lack of pre parent context or standard styling expectation.
+      // Simple heuristic: if it has no class or just language class, style it as inline.
+      return (
+        <code
+          className={cn(
+            "relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold text-foreground",
+            className
+          )}
+          {...props}
+        />
+      );
+  },
+  pre: ({ className, children, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
+      <CodeBlock className={className} {...props}>
+          {children}
+      </CodeBlock>
   ),
-  pre: ({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
-      <pre
-        className={cn(
-          "mb-4 mt-6 overflow-x-auto rounded-lg border bg-black py-4 px-4 text-white",
-          className
-        )}
-        {...props}
-      />
-  ),
-  // Add custom components
+  // Custom Mappings
   Callout,
   Image,
 };

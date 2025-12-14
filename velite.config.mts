@@ -1,4 +1,13 @@
 import { defineConfig, s } from "velite";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeShiki from "@shikijs/rehype";
+import {
+  transformerNotationDiff,
+  transformerNotationHighlight,
+  transformerNotationFocus,
+  transformerNotationErrorLevel,
+} from "@shikijs/transformers";
 
 export default defineConfig({
   collections: {
@@ -31,5 +40,35 @@ export default defineConfig({
           url: `/case-studies/${data.slug}`,
         })),
     },
+  },
+  mdx: {
+    rehypePlugins: [
+      rehypeSlug,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: "wrap",
+          properties: {
+            className: ["subheading-anchor"],
+            ariaLabel: "Link to section",
+          },
+        },
+      ],
+      [
+        rehypeShiki,
+        {
+          themes: {
+            light: "github-light",
+            dark: "github-dark",
+          },
+          transformers: [
+            transformerNotationDiff(),
+            transformerNotationHighlight(),
+            transformerNotationFocus(),
+            transformerNotationErrorLevel(),
+          ],
+        },
+      ],
+    ],
   },
 });
