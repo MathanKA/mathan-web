@@ -16,7 +16,7 @@ const ALL_LINKS: Record<string, NavItem> = {
   projects: { label: "Projects", href: "/projects" }, // Placeholder
   contact: { label: "Contact", href: "/contact" }, // Placeholder
   about: { label: "About", href: "/about" }, // Placeholder
-  code: { label: "GitHub / Code", href: "https://github.com/MathanKA" }, 
+  code: { label: "GitHub / Code", href: "https://github.com/MathanKA" },
 };
 
 const RECOMMENDED_PATHS: Record<ViewerMode, NavItem[]> = {
@@ -62,9 +62,20 @@ export function Nav({ mode }: NavProps) {
           </Link>
         </li>
         <li>
-           <span className="text-sm text-gray-400 cursor-not-allowed" title="Coming soon">
-             Blog
-           </span>
+          <span
+            className="text-sm text-gray-400 cursor-not-allowed"
+            title="Coming soon"
+          >
+            Blog
+          </span>
+        </li>
+        <li>
+          <Link
+            href="/resume"
+            className="text-sm text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
+          >
+            Resume
+          </Link>
         </li>
       </ul>
     </nav>
