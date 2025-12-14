@@ -57,7 +57,10 @@ export default async function ProjectsPage({
     // Sort by featured first, then date desc (assuming simple string sort works nicely for ISO dates)
     if (a.featured && !b.featured) return -1;
     if (!a.featured && b.featured) return 1;
-    return new Date(b.date || "").getTime() - new Date(a.date || "").getTime();
+    return (
+      new Date((b as any).date || "").getTime() -
+      new Date((a as any).date || "").getTime()
+    );
   });
 
   if (currentTagSlug) {

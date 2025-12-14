@@ -30,6 +30,7 @@ import {
 } from "@/components/ui/accordion";
 import { resumeData } from "@/data/resume";
 import { TextAnimate } from "@/components/magicui/text-animate";
+import { CopyEmailButton } from "@/components/resume/copy-email-button";
 
 export const metadata: Metadata = {
   title: "Resume | Mathan K A",
@@ -65,9 +66,19 @@ export default function ResumePage() {
       />
 
       {/* Print / Actions Row - Hidden in Print */}
-      <div className="mb-8 flex justify-end gap-4 print:hidden">
+      <div className="mb-8 flex flex-wrap justify-end gap-4 print:hidden">
         <Button variant="outline" asChild>
-          <Link href="/">View Portfolio</Link>
+          <Link href="/resume.json" target="_blank">
+            <code className="text-xs mr-2">{"{}"}</code>
+            JSON
+          </Link>
+        </Button>
+        <Button variant="default" asChild>
+          {/* Placeholder for PDF - verify if exists, else it might 404 but standard practice is to place file in public */}
+          <a href="/resume/MathanKA_Resume.pdf" download>
+            <Download className="mr-2 h-4 w-4" />
+            Download PDF
+          </a>
         </Button>
         <PrintButton />
       </div>
@@ -107,6 +118,7 @@ export default function ResumePage() {
                 >
                   {resumeData.header.email}
                 </a>
+                <CopyEmailButton email={resumeData.header.email} />
               </div>
               <div className="flex items-center gap-1">
                 <Phone className="h-3.5 w-3.5" />

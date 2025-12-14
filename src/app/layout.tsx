@@ -6,6 +6,8 @@ import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { JsonLd } from "@/components/seo/json-ld";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -95,20 +97,30 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
-        <header className="border-b border-gray-200 dark:border-gray-800 bg-white/50 dark:bg-black/50 backdrop-blur-sm sticky top-0 z-10 transition-colors">
-          <div className="container mx-auto p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <div className="flex flex-col gap-1">
-              <h1 className="text-xl font-bold tracking-tight">Portfolio Product</h1>
-              <ModeSwitcher initialMode={mode} />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <header className="border-b border-gray-200 dark:border-gray-800 bg-white/50 dark:bg-black/50 backdrop-blur-sm sticky top-0 z-10 transition-colors">
+            <div className="container mx-auto p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <div className="flex flex-col gap-1">
+                <h1 className="text-xl font-bold tracking-tight">
+                  Portfolio Product
+                </h1>
+                <ModeSwitcher initialMode={mode} />
+              </div>
+
+              <Nav mode={mode} />
             </div>
-            
-            <Nav mode={mode} />
-          </div>
-        </header>
+          </header>
 
-        <main className="grow container mx-auto p-4">{children}</main>
+          <main className="grow container mx-auto p-4">{children}</main>
 
-        <Footer />
+          <Footer />
+          <Toaster />
+        </ThemeProvider>
         <JsonLd
           data={[
             {

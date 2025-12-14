@@ -1,4 +1,5 @@
 import * as runtime from "react/jsx-runtime";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Callout } from "@/components/mdx/callout";
@@ -136,6 +137,6 @@ interface MDXProps {
 }
 
 export function MDXContent({ code }: MDXProps) {
-  const Component = useMDXComponent(code);
+  const Component = React.useMemo(() => useMDXComponent(code), [code]);
   return <Component components={components} />;
 }
