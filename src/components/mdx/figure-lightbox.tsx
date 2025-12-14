@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { Maximize2, ExternalLink } from "lucide-react";
+import { Maximize2 } from "lucide-react";
 import {
   Dialog,
   DialogContent,

@@ -137,6 +137,7 @@ interface MDXProps {
 }
 
 export function MDXContent({ code }: MDXProps) {
+  // eslint-disable-next-line react/no-unstable-nested-components
   const Component = React.useMemo(() => useMDXComponent(code), [code]);
   return <Component components={components} />;
 }
