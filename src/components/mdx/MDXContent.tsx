@@ -1,4 +1,6 @@
 import * as runtime from "react/jsx-runtime";
+// The MDX evaluation pattern below creates a component during render which is
+// intentional for velite MDX - opt out of React Compiler for this file
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -126,8 +128,8 @@ const components = {
   FigureLightbox,
 };
 
-// Hook to evaluate MDX code
-const useMDXComponent = (code: string) => {
+// Pure function to evaluate MDX code (not a hook)
+const getMDXComponent = (code: string) => {
   const fn = new Function(code);
   return fn({ ...runtime }).default;
 };
@@ -137,7 +139,7 @@ interface MDXProps {
 }
 
 export function MDXContent({ code }: MDXProps) {
-  // eslint-disable-next-line react/no-unstable-nested-components
-  const Component = React.useMemo(() => useMDXComponent(code), [code]);
+  // Memoize the component creation to avoid re-evaluation on each render
+  const Component = React.useMemo(() => getMDXComponent(code), [code]);
   return <Component components={components} />;
 }

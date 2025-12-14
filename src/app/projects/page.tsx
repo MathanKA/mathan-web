@@ -52,15 +52,11 @@ export default async function ProjectsPage({
 
   const allTags = Array.from(tagMap.values()).sort((a, b) => b.count - a.count);
 
-  // 2. Filter logic
+  // 2. Filter logic - sort by featured first
   let filteredProjects = caseStudies.sort((a, b) => {
-    // Sort by featured first, then date desc (assuming simple string sort works nicely for ISO dates)
     if (a.featured && !b.featured) return -1;
     if (!a.featured && b.featured) return 1;
-    return (
-      new Date((b as any).date || "").getTime() -
-      new Date((a as any).date || "").getTime()
-    );
+    return 0;
   });
 
   if (currentTagSlug) {

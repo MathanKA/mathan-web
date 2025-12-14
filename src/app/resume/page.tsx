@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import {
-  Printer,
   Download,
   Mail,
   Phone,
@@ -31,6 +30,7 @@ import {
 import { resumeData } from "@/data/resume";
 import { TextAnimate } from "@/components/magicui/text-animate";
 import { CopyEmailButton } from "@/components/resume/copy-email-button";
+import { PrintButton } from "./print-button";
 
 export const metadata: Metadata = {
   title: "Resume | Mathan K A",
@@ -409,16 +409,5 @@ export default function ResumePage() {
         </div>
       </div>
     </main>
-  );
-}
-
-function PrintButton() {
-  "use client";
-
-  return (
-    <Button onClick={() => window.print()}>
-      <Printer className="mr-2 h-4 w-4" />
-      Print Resume
-    </Button>
   );
 }

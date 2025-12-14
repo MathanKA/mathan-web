@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Check, Shield, Globe, Zap } from "lucide-react";
+import { Check, Shield, Globe, Zap, LucideIcon } from "lucide-react";
 import { ShimmerButton } from "@/components/magicui/shimmer-button";
 import { Button } from "@/components/ui/button";
 import { AuroraText } from "@/components/magicui/aurora-text";
@@ -8,7 +8,7 @@ import { ClientIconCloud } from "@/components/magicui/client-icon-cloud";
 import { ViewerMode } from "@/lib/viewer-mode";
 import { MODE_CONFIG, HERO_BULLETS } from "@/lib/mode/mode.config";
 
-const ICONS: Record<string, any> = {
+const ICONS: Record<string, LucideIcon> = {
   Check,
   Shield,
   Globe,
@@ -27,7 +27,7 @@ const ICON_SLUGS = [
   "docker",
   "git",
   "github",
-  "visualstudiocode",
+  "vscode",
   "figma",
 ];
 

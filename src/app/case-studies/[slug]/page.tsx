@@ -1,17 +1,10 @@
 import { caseStudies } from "@/velite";
 import { notFound } from "next/navigation";
 import { MDXContent } from "@/components/mdx/MDXContent";
-import { format, parseISO } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import {
-  ArrowLeft,
-  Calendar,
-  Briefcase,
-  Building2,
-  ExternalLink,
-} from "lucide-react";
+import { ArrowLeft, Briefcase } from "lucide-react";
 import { SectionNav } from "@/components/case-studies/section-nav";
 import { CaseStudyTitle } from "@/components/case-studies/case-study-title";
 

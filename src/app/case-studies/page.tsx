@@ -1,6 +1,5 @@
 import { caseStudies } from "@/velite"; // Uses tsconfig alias
 import Link from "next/link";
-import { format, parseISO } from "date-fns";
 import {
   Card,
   CardDescription,
