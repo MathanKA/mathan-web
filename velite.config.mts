@@ -9,10 +9,9 @@ export default defineConfig({
         .object({
           title: s.string().max(90),
           slug: s.slug("case-studies", ["admin", "login"]),
-          date: s.isodate(),
           role: s.string().max(80),
-          company: s.string().max(80),
           featured: s.boolean().default(false),
+          status: s.enum(["pilot", "beta", "launched", "paused"]).default("pilot"),
           tags: s.array(s.string().max(32)).max(12).default([]),
           modes: s
             .array(s.enum(["recruiter", "manager", "engineer"]))

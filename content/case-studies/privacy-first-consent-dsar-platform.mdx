@@ -1,39 +1,70 @@
 ---
-title: "Privacy-First Consent & DSAR Platform"
-slug: "privacy-first-consent-dsar-platform"
-date: "2024-03-15"
-role: "Senior Frontend Engineer"
-company: "TechPrivacy Inc."
+title: "Quansentz / SealForge — Privacy-as-code for Next.js teams"
+slug: "privacy-first-consent-dsar-audit-nextjs"
+summary_one_liner: "Dev-first Consent + DSAR pipeline with tamper-evident audit evidence for DPDP/GDPR."
+role: "Solo Founder (Product + Engineering)"
+status: pilot
 featured: true
-tags: ["Privacy", "GDPR", "CCPA", "Architecture"]
+tags:
+  - "DPDP"
+  - "GDPR"
+  - "DSAR"
+  - "Consent Management"
+  - "Audit Evidence"
 modes: ["engineer", "manager"]
-stack: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Redis"]
-summary_one_liner: "Architected a scalable consent management platform handling 10M+ daily requests with 99.99% uptime."
+stack: 
+  - "Next.js (App Router)"
+  - "TypeScript"
+  - "Postgres + Prisma"
+  - "Redis + BullMQ workers"
+  - "S3-compatible object storage"
+links:
+  live: "https://www.quansentz.com/"
 ---
 
-# Privacy-First Consent & DSAR Platform
 
-## Overview
-Leading the frontend architecture for a privacy compliance platform designed to handle high-volume consent requests (GDPR/CCPA) and Data Subject Access Requests (DSAR).
+## What I built
 
-## The Challenge
-*   **Scale:** System needed to process 10M+ consent signals/day with &lt;50ms latency.
-*   **Compliance:** Strict legal requirements meant zero data loss tolerance.
-*   **UX:** The admin dashboard for DSAR management was slow and confusing for legal teams.
+A developer-first privacy layer that turns **consent + DSAR** into **code-level primitives** (not just a banner), and generates **tamper-evident evidence** you can actually show during security/legal reviews.
 
-## The Solution
-We rebuilt the consent widget using **Preact** for a 3kb bundle size, ensuring minimal impact on client site performance. The dashboard was migrated to **Next.js** with **Server Components**, reducing initial load time by 60%.
+## The problem (in plain English)
 
-### Key Wins
-1.  **Performance:** 50ms p99 latency for consent signal processing.
-2.  **Reliability:** Achieved 99.99% uptime during peak traffic (Black Friday).
-3.  **Efficiency:** Automated 80% of DSAR workflows, saving legal teams ~20 hours/week.
+Most privacy tooling stops at UI. Real compliance lives deeper:
+- which routes run,
+- which jobs fire,
+- which scripts execute,
+- how exports/deletes happen,
+- and whether you can **prove** the above later.
 
-## Technical Deep Dive
-```typescript
-// Example of optimistic UI update for consent toggle
-const toggleConsent = async (category: string) => {
-  setPreferences(prev => ({ ...prev, [category]: !prev[category] }));
-  await api.updateConsent(category); // Sync in background
-};
+## The approach
+
+### 1) Consent that gates real behavior
+- Consent banner + preference center
+- Purpose model (typed keys) so “illegal states are harder to represent”
+- Server-side guards for routes/jobs (privacy-as-code)
+
+### 2) DSAR exports that don’t melt servers
+- Queue → worker → streaming export → S3 object
+- Signed download links with expiry
+- Audit events across lifecycle: requested → verified → processing → ready → downloaded/expired
+
+### 3) Evidence by default (tamper-evident audit)
+- Hash-chained audit events for consent/DSAR/retention actions
+- Designed for exporting regulator/customer-friendly timelines (“evidence bundles”)
+
+## Architecture snapshot
+
+- Next.js App Router app serves:
+  - public consent UI
+  - DSAR portal
+  - admin surfaces
+- Worker consumes BullMQ queues for heavy jobs
+- Postgres stores domain-tenant mapping, consent state, DSAR state, audit events
+- S3 stores export archives
+
+## What I’d improve next
+
+- External audit anchors (stronger tamper resistance)
+- More admin evidence surfaces (filters, exportable reports)
+- DPDP/GDPR “packs” to make jurisdiction toggles dead simple
 ```
