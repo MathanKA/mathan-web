@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import React from "react";
-import { Cloud, fetchSimpleIcons, renderSimpleIcon, ICloud } from "react-icon-cloud";
+import { Cloud, fetchSimpleIcons, renderSimpleIcon } from "react-icon-cloud";
 
 export type IconCloudProps = {
   iconSlugs: string[];

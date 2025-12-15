@@ -2,7 +2,6 @@ import { ViewerMode } from "@/lib/viewer-mode";
 import { MODE_CONFIG } from "@/lib/mode/mode.config";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 
 interface RecommendedPathProps {
   mode: ViewerMode;

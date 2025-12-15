@@ -19,6 +19,8 @@ export default defineConfig({
           title: s.string().max(90),
           slug: s.slug("case-studies", ["admin", "login"]),
           role: s.string().max(80),
+          date: s.string().optional(),
+          company: s.string().max(80).optional(),
           featured: s.boolean().default(false),
           status: s.enum(["pilot", "beta", "launched", "paused"]).default("pilot"),
           tags: s.array(s.string().max(32)).max(12).default([]),
@@ -27,6 +29,12 @@ export default defineConfig({
             .default(["recruiter", "manager", "engineer"]),
           stack: s.array(s.string().max(40)).max(20).default([]),
           summary_one_liner: s.string().max(160),
+          links: s
+            .object({
+              live: s.string().url().optional(),
+              repo: s.string().url().optional(),
+            })
+            .optional(),
           // Extract excerpt for previews (first 180 chars)
           excerpt: s.excerpt({ length: 180 }),
           // Metadata (reading time, etc.)

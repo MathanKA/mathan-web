@@ -1,3 +1,4 @@
+/* eslint react-hooks/static-components: "off" */
 import * as runtime from "react/jsx-runtime";
 // The MDX evaluation pattern below creates a component during render which is
 // intentional for velite MDX - opt out of React Compiler for this file

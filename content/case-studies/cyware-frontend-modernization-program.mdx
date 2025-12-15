@@ -1,0 +1,181 @@
+---
+title: "Cyware - Frontend Modernization Program (Performance, Accessibility, Delivery)"
+slug: "cyware-frontend-modernization-program"
+role: "Senior Software Engineer II (Frontend Lead)"
+company: "Cyware"
+featured: false
+status: "launched"
+tags: ["Cybersecurity", "Frontend Architecture", "Performance", "Accessibility", "Vue.js", "Nuxt.js", "Vite", "Platform Delivery", "Leadership"]
+modes: ["engineer", "manager", "recruiter"]
+stack: ["Vue.js 2", "Vue.js 3", "Nuxt.js", "Angular 2+", "Vite", "Bootstrap", "Webpack", "TypeScript", "Core Web Vitals", "WCAG 2.1 AA"]
+summary_one_liner: "Led Cyware frontend modernization: shipped CERT-In, lifted cyware.com Lighthouse ~60 -> ~90, delivered WCAG 2.1 AA/VPAT, cut Orchestrate bundle ~10MB -> ~4MB."
+---
+
+## TL;DR
+
+<Callout variant="note" title="Engineering Focus">
+  This was a program of parallel workstreams: keep shipping under security and
+  demo pressure while modernizing performance, accessibility, and build
+  ergonomics without breaking delivery cadence.
+</Callout>
+
+## What I Owned
+
+- Frontend delivery leadership across product and marketing surfaces
+- Incremental migration and refactor planning to reduce risk
+- Performance optimization for Core Web Vitals and bundle strategy
+- Accessibility remediation with QA and VPAT partners
+- Team coaching to keep releases predictable under executive visibility
+
+## Problem
+
+Cyware needed to accelerate delivery across customer platforms and the marketing
+site while reducing risk in performance, accessibility, and security-sensitive
+flows. The goal was not a rewrite; it was to keep demo and release cadence
+moving while lifting quality and maintainability.
+
+## Constraints
+
+- Security-first expectations: UI defects could translate into trust issues.
+- Frequent CTO demos with tight timelines demanded predictable delivery.
+- Mixed legacy stacks (Angular 2+, Vue 2) limited appetite for disruptive
+  rewrites.
+- Accessibility obligations: WCAG 2.1 AA remediation with VPAT-aligned reporting
+  and external stakeholders.
+- Performance expectations on public pages: measurable Lighthouse gains on key
+  pages with stable layout behavior.
+- NDA boundaries: share practices, not customer-specific implementation detail.
+
+## Approach
+
+Treated the work as a modernization program broken into contained streams, each
+with a clear definition of done, measurement, and rollback paths.
+
+### Workstream 1 - Threat Intelligence Platform delivery (Angular 2+ -> Vue 2) with CTO demos and CERT-In shipment
+
+**Goal:** Deliver a feature-rich Threat Intelligence Platform with demo
+readiness and production stability.
+
+What I did:
+
+- Delivered early modules in Angular 2+, then supported and executed a Vue 2
+  revamp to improve maintainability and UI agility.
+- Partnered directly with the CTO for demo-critical workflows:
+  - scoped demo-ready increments without destabilizing core flows,
+  - prioritized clarity in data rendering and error states,
+  - enforced incremental change windows with review checkpoints.
+- Supported the initial production release for CERT-In with a reliability focus.
+- Earned an annual increment (~20%) tied to delivery outcomes.
+
+### Workstream 2 - cyware.com Nuxt revamp; Lighthouse ~60 -> ~90 (sole lead for 2+ years)
+
+**Goal:** Make the marketing site fast, stable, and maintainable while handling
+content growth.
+
+What I owned end to end:
+
+- Sole lead developer for cyware.com implementation and long-term maintenance
+  for 2+ years.
+- Nuxt-based revamp centered on measurable improvements:
+  - Critical Rendering Path tuning to reduce render blocking,
+  - asset compression and long-term caching,
+  - layout stability fixes (CLS) via predictable image sizing and container
+    heights,
+  - responsive and cross-device consistency.
+- Result: Lighthouse performance increased from ~60 -> ~90 on key pages (mobile
+  Lighthouse runs in Chrome DevTools for homepage and blog pages) during the
+  optimization cycles.
+
+### Workstream 3 - Situational Awareness Platform accessibility: WCAG 2.1 AA and VPAT support (~1-2 months to certification)
+
+**Goal:** Contribute to WCAG 2.1 AA remediation and help reach VPAT-based
+certification.
+
+How I approached it:
+
+- Partnered with QA and external VPAT stakeholders to triage issues by severity
+  and user impact.
+- Fixed keyboard navigation, focus management, semantic structure, and ARIA
+  usage where needed; addressed heading order, labels, contrast, and interactive
+  control semantics.
+- Set a remediation loop: reproduce -> fix -> validate with keyboard and screen
+  reader expectations -> regression check.
+- Mentored junior engineers on accessibility-first implementation patterns.
+- Outcome: helped the product achieve VPAT-based accessibility certification
+  within ~1-2 months of joining that workstream.
+
+### Workstream 4 - Orchestrate refactor: Vue 3 + Vite; bundle ~10MB -> ~4MB
+
+**Goal:** Reduce performance and maintainability risk by modernizing build and
+runtime patterns.
+
+Key decisions:
+
+- Refactored legacy areas with Vue 3 and Vite to improve developer experience
+  and build performance.
+- Implemented dynamic imports for heavy modules, route-level code splitting,
+  and vendor chunk extraction to stabilize caching.
+- Result: reduced initial JavaScript bundle size from ~10MB -> ~4MB based on
+  Vite bundle analyzer comparisons for the initial bundle shipped to clients.
+
+### Workstream 5 - Cyware Social alpha: social graph with security-aware controls
+
+**Goal:** Build a social-style collaboration surface with security-conscious UX
+and access controls.
+
+What I delivered:
+
+- Led frontend for an alpha experience with posts, likes, comments, follows,
+  feeds, and profiles (social graph navigation).
+- Implemented role- and permission-aware UI states, guarded actions, and input
+  handling patterns to reduce injection and misuse risk in rendered content.
+- Outcome: reached alpha testing; paused later due to legal constraints.
+
+## Tradeoffs
+
+- Incremental modernization instead of a full rewrite reduced risk but required
+  strict boundaries between old and new patterns.
+- Reused Bootstrap and existing UI primitives to ship faster; a full redesign
+  would have slowed critical releases.
+- Balanced performance work with feature velocity by using measurement (mobile
+  Lighthouse runs, bundle analysis) to target changes instead of blanket
+  optimization.
+- Accessibility under deadlines relied on triage and phased cleanup rather than
+  attempting full remediation at once.
+
+## Impact
+
+### Metrics (measured or time-bound)
+
+| Metric | Value | Type | Measurement context |
+|---|---:|---|---|
+| cyware.com Lighthouse performance | ~60 -> ~90 | Measured (approx) | Mobile Lighthouse runs in Chrome DevTools on homepage and blog pages during optimization cycles |
+| Orchestrate initial JS bundle size | ~10MB -> ~4MB | Measured (approx) | Vite bundle analyzer comparison for initial JavaScript shipped to clients |
+| Accessibility certification | Achieved within ~1-2 months of joining effort | Measured (approx timeframe) | WCAG 2.1 AA remediation with QA and external VPAT stakeholders |
+| Delivery recognition | Annual increment ~20% | Measured (approx) | Recognition tied to delivery outcomes including CERT-In release and demo readiness |
+
+### Outcomes delivered
+
+- Faster, more stable marketing surface with measurable Lighthouse gains
+- Reduced risk and improved maintainability through targeted modernization
+- Accessibility improvements aligned to WCAG 2.1 AA and VPAT expectations
+- Security-aware social alpha delivered to testing before being paused for
+  legal reasons
+- Shipped high-stakes releases under executive demo pressure without sacrificing
+  quality
+
+## Evidence & Measurement Notes
+
+- Lighthouse: used as a repeatable guide for Critical Rendering Path and CLS
+  improvements on marketing pages.
+- Bundle size: validated with Vite bundle analyzer outputs while refactoring the
+  initial JavaScript bundle.
+- Accessibility: triage, remediation, and validation loop with QA and external
+  VPAT-focused stakeholders.
+- Redaction policy: architectural and practice-level details only; customer
+  data, internal URLs, and proprietary workflows are excluded.
+
+## Redactions (NDA-safe)
+
+- Customer names, internal URLs, and proprietary workflow details are omitted.
+- Screenshots and traces are excluded unless explicitly cleared for sharing.

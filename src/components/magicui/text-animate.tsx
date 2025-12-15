@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion, MotionProps, Variants } from "framer-motion";
+import { motion, MotionProps, Variants } from "framer-motion";
 import { ElementType } from "react";
 
 type AnimationType = "text" | "word" | "character" | "line";
@@ -57,11 +57,6 @@ interface TextAnimateProps extends MotionProps {
    */
   duration?: number;
 }
-
-const item: Variants = {
-  hidden: { filter: "blur(10px)", opacity: 0, y: 20 },
-  show: { filter: "blur(0px)", opacity: 1, y: 0 },
-};
 
 export function TextAnimate({
   children,
