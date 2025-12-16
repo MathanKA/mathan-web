@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 // Basic Next Config
 const nextConfig: NextConfig = {
   /* config options here */
-  reactCompiler: true,
+  reactCompiler: true
 };
 
 // VELITE INTEGRATION
@@ -24,5 +24,3 @@ if (!process.env.VELITE_STARTED) {
 }
 
 export default nextConfig;
-
-

@@ -11,36 +11,51 @@ import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  subsets: ["latin"]
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  subsets: ["latin"]
 });
 
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
+    { media: "(prefers-color-scheme: dark)", color: "black" }
+  ]
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mathan.pro"),
   title: {
     default: "Mathan K A | Senior Front-end Engineer",
-    template: "%s | Mathan K A",
+    template: "%s | Mathan K A"
   },
   description:
     "Senior Front-end Engineer and Solo Founder specializing in high-performance Next.js applications, scalable architecture, and user-centric design.",
   keywords: [
     "Senior Front-end Engineer",
     "Next.js Developer",
-    "React Specialist",
+    "React Developer",
     "Web Performance",
     "Tailwind CSS",
     "Software Architecture",
+    "Optimization Expert",
+    "JavaScript",
+    "TypeScript",
+    "Portfolio",
+    "Mathan K A",
+    "Mathan.pro",
+    "Web Developer",
+    "Vue.js",
+    "Nuxt.js",
+    "SEO Optimization",
+    "Web Core Vitals",
+    "Lighthouse",
+    "Web Acessibility",
+    "Progressive Web Apps",
+    "PWA"
   ],
   authors: [{ name: "Mathan K A", url: "https://mathan.pro" }],
   creator: "Mathan K A",
@@ -57,9 +72,9 @@ export const metadata: Metadata = {
         url: "/og/home.png", // TODO: Generate this image via screenshot
         width: 1200,
         height: 630,
-        alt: "Mathan K A - Portfolio Hero",
-      },
-    ],
+        alt: "Mathan K A - Portfolio Hero"
+      }
+    ]
   },
   twitter: {
     card: "summary_large_image",
@@ -67,10 +82,10 @@ export const metadata: Metadata = {
     description:
       "Building high-performance web applications that scale. Expert in React, Next.js, and modern web technologies.",
     images: ["/og/home.png"],
-    creator: "@MathanKA", // Replace with actual handle if different
+    creator: "@MathanKA" // Replace with actual handle if different
   },
   alternates: {
-    canonical: "https://mathan.pro",
+    canonical: "https://mathan.pro"
   },
   robots: {
     index: true,
@@ -80,20 +95,17 @@ export const metadata: Metadata = {
       follow: true,
       "max-video-preview": -1,
       "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+      "max-snippet": -1
+    }
+  }
 };
 
 export default async function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  children
+}: Readonly<{ children: React.ReactNode }>) {
   const mode = await getMode();
-
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
@@ -128,7 +140,7 @@ export default async function RootLayout({
               "@type": "WebSite",
               name: "Mathan K A | Senior Front-end Engineer",
               url: "https://mathan.pro",
-              alternateName: ["MathanHA Portfolio", "Mathan.pro"],
+              alternateName: ["MathanHA Portfolio", "Mathan.pro"]
             },
             {
               "@context": "https://schema.org",
@@ -139,7 +151,7 @@ export default async function RootLayout({
                 url: "https://mathan.pro",
                 sameAs: [
                   "https://github.com/MathanKA",
-                  "https://linkedin.com/in/mathanka",
+                  "https://linkedin.com/in/mathanka"
                 ],
                 jobTitle: "Senior Front-end Engineer",
                 knowsAbout: [
@@ -147,10 +159,10 @@ export default async function RootLayout({
                   "Next.js",
                   "TypeScript",
                   "Web Performance",
-                  "Software Architecture",
-                ],
-              },
-            },
+                  "Software Architecture"
+                ]
+              }
+            }
           ]}
         />
       </body>
