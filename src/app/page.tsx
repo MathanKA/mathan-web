@@ -10,19 +10,23 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col gap-12 pb-12">
-      {/* Recommended Path Strip */}
-      <RecommendedPath mode={mode} />
+      {/* Recommended Path */}
+      {/* <div className="container mx-auto px-4 pt-32 md:pt-40 lg:pt-32">
+        <RecommendedPath mode={mode} />
+      </div> */}
 
-      {/* Hero Section */}
+      {/* Hero Section - FULL WIDTH */}
       <HomeHero mode={mode} />
 
-      <Separator />
+      <div className="container mx-auto px-4 flex flex-col gap-12">
+        <Separator />
 
-      {/* Featured Case Study */}
-      <FeaturedCaseStudy mode={mode} />
+        {/* Featured Case Study */}
+        <FeaturedCaseStudy mode={mode} />
 
-      {/* Skills Snapshot */}
-      <SkillsSnapshot mode={mode} />
+        {/* Skills Snapshot */}
+        <SkillsSnapshot mode={mode} />
+      </div>
     </div>
   );
 }

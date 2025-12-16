@@ -1,11 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import Image from "next/image";
-import icon from "./icon.png";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google"; // Removed unused Image, icon
 import { getMode } from "@/lib/viewer-mode";
-import { ModeSwitcher } from "@/components/mode-switcher";
+// Removed unused ModeSwitcher
 import { HeaderResizable } from "@/components/header-resizable";
-import { Nav } from "@/components/nav";
+// Removed unused Nav
 import { Footer } from "@/components/footer";
 import { JsonLd } from "@/components/seo/json-ld";
 import "./globals.css";
@@ -121,7 +119,7 @@ export default async function RootLayout({
         >
           <HeaderResizable mode={mode} />
 
-          <main className="grow container mx-auto p-4 pt-40 md:pt-40 lg:pt-32 min-h-screen">
+          <main className="grow relative flex flex-col min-h-screen font-sans antialiased">
             {children}
           </main>
 

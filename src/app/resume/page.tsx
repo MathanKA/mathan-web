@@ -59,7 +59,7 @@ export default function ResumePage() {
   };
 
   return (
-    <main className="container max-w-4xl py-12 md:py-16 print:py-0 print:max-w-none">
+    <main className="container mx-auto p-4 pt-40 md:pt-40 lg:pt-32 max-w-4xl py-12 md:py-16 print:py-0 print:max-w-none">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
