@@ -12,7 +12,7 @@ interface ModeSwitcherProps {
 const MODES: { value: ViewerMode; label: string }[] = [
   { value: "recruiter", label: "Recruiter" },
   { value: "manager", label: "Manager" },
-  { value: "engineer", label: "Engineer" },
+  { value: "engineer", label: "Engineer" }
 ];
 
 export function ModeSwitcher({ initialMode }: ModeSwitcherProps) {
@@ -34,9 +34,9 @@ export function ModeSwitcher({ initialMode }: ModeSwitcherProps) {
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+      {/* <div className="text-xs font-medium text-gray-500 uppercase tracking-wider">
         Viewer Mode
-      </div>
+      </div> */}
       <div
         className="inline-flex rounded-lg bg-gray-100 p-1 dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
         role="group"
@@ -66,10 +66,10 @@ export function ModeSwitcher({ initialMode }: ModeSwitcherProps) {
           );
         })}
       </div>
-      <p className="text-[10px] text-gray-400">
+      {/* <p className="text-[10px] text-gray-400">
         Adapts content for {initialMode === "engineer" ? "an" : "a"}{" "}
         {initialMode}.
-      </p>
+      </p> */}
     </div>
   );
 }

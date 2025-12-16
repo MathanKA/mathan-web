@@ -1,4 +1,6 @@
 import type { Metadata, Viewport } from "next";
+import Image from "next/image";
+import icon from "./icon.png";
 import { Geist, Geist_Mono } from "next/font/google";
 import { getMode } from "@/lib/viewer-mode";
 import { ModeSwitcher } from "@/components/mode-switcher";
@@ -108,6 +110,7 @@ export default async function RootLayout({
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
+        suppressHydrationWarning
       >
         <ThemeProvider
           attribute="class"
@@ -115,13 +118,17 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <header className="border-b border-gray-200 dark:border-gray-800 bg-white/50 dark:bg-black/50 backdrop-blur-sm sticky top-0 z-10 transition-colors">
+          <header className="border-b border-gray-200 dark:border-gray-800 bg-white/50 dark:bg-black/50 backdrop-blur-[5px] sticky top-0 z-10 transition-colors ">
             <div className="container mx-auto p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-              <div className="flex flex-col gap-1">
-                <h1 className="text-xl font-bold tracking-tight">
-                  Portfolio Product
-                </h1>
-                <ModeSwitcher initialMode={mode} />
+              <div className="flex items-center gap-3">
+                <Image
+                  src={icon}
+                  alt="Mathan K A"
+                  width={37}
+                  height={37}
+                  className="rounded-full"
+                />
+                <h1 className="text-xl font-bold tracking-tight">Mathan K A</h1>
               </div>
 
               <Nav mode={mode} />
