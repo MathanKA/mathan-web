@@ -12,7 +12,7 @@ const ICONS: Record<string, LucideIcon> = {
   Check,
   Shield,
   Globe,
-  Zap,
+  Zap
 };
 
 const ICON_SLUGS = [
@@ -28,7 +28,7 @@ const ICON_SLUGS = [
   "git",
   "github",
   "vscode",
-  "figma",
+  "figma"
 ];
 
 export function HomeHero({ mode }: { mode: ViewerMode }) {

@@ -4,6 +4,7 @@ import icon from "./icon.png";
 import { Geist, Geist_Mono } from "next/font/google";
 import { getMode } from "@/lib/viewer-mode";
 import { ModeSwitcher } from "@/components/mode-switcher";
+import { HeaderResizable } from "@/components/header-resizable";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -118,24 +119,11 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <header className="border-b border-gray-200 dark:border-gray-800 bg-white/50 dark:bg-black/50 backdrop-blur-[5px] sticky top-0 z-10 transition-colors ">
-            <div className="container mx-auto p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <Image
-                  src={icon}
-                  alt="Mathan K A"
-                  width={37}
-                  height={37}
-                  className="rounded-full"
-                />
-                <h1 className="text-xl font-bold tracking-tight">Mathan K A</h1>
-              </div>
+          <HeaderResizable mode={mode} />
 
-              <Nav mode={mode} />
-            </div>
-          </header>
-
-          <main className="grow container mx-auto p-4">{children}</main>
+          <main className="grow container mx-auto p-4 pt-40 md:pt-40 lg:pt-32 min-h-screen">
+            {children}
+          </main>
 
           <Footer />
           <Toaster />

@@ -72,21 +72,21 @@ export const resumeData: ResumeData = {
       { label: "mathan.pro", href: "https://mathan.pro" },
       {
         label: "linkedin.com/in/mathanka",
-        href: "https://linkedin.com/in/mathanka",
+        href: "https://linkedin.com/in/mathanka"
       },
-      { label: "github.com/mathanka", href: "https://github.com/mathanka" },
-    ],
+      { label: "github.com/mathanka", href: "https://github.com/mathanka" }
+    ]
   },
   summary: [
     "Senior Full-Stack Engineer with over 10 years of experience building scalable web applications and platforms.",
     "Specialized in frontend architecture with React/Next.js and Vue/Nuxt, and privacy-first backend systems.",
     "Proven track record in leading frontend teams, optimizing performance (Lighthouse 90+), and building complex SaaS products from scratch.",
-    "Passionate about clean code, accessibility, and delivering exceptional user experiences.",
+    "Passionate about clean code, accessibility, and delivering exceptional user experiences."
   ],
   skills: [
     {
       category: "Languages & Web",
-      items: ["TypeScript", "JavaScript (ES6+)", "SQL", "HTML5", "CSS3"],
+      items: ["TypeScript", "JavaScript (ES6+)", "SQL", "HTML5", "CSS3"]
     },
     {
       category: "Frontend",
@@ -97,8 +97,8 @@ export const resumeData: ResumeData = {
         "Nuxt.js",
         "Tailwind CSS",
         "Bootstrap",
-        "Zod",
-      ],
+        "Zod"
+      ]
     },
     {
       category: "Backend",
@@ -108,12 +108,12 @@ export const resumeData: ResumeData = {
         "Server Actions",
         "REST APIs",
         "Webhooks",
-        "Prisma",
-      ],
+        "Prisma"
+      ]
     },
     {
       category: "Databases & Storage",
-      items: ["PostgreSQL", "MongoDB", "Redis", "S3 object storage"],
+      items: ["PostgreSQL", "MongoDB", "Redis", "S3 object storage"]
     },
     {
       category: "Auth & Security",
@@ -123,8 +123,8 @@ export const resumeData: ResumeData = {
         "sessions",
         "RBAC",
         "OWASP-aligned secure coding",
-        "GDPR/DPDP-aware data design",
-      ],
+        "GDPR/DPDP-aware data design"
+      ]
     },
     {
       category: "DevOps & Monitoring",
@@ -134,12 +134,12 @@ export const resumeData: ResumeData = {
         "GitHub Actions CI/CD",
         "Pino",
         "Sentry",
-        "Axiom",
-      ],
+        "Axiom"
+      ]
     },
     {
       category: "Dev Tools",
-      items: ["Git", "Vite", "Webpack", "npm", "pnpm", "eslint", "prettier"],
+      items: ["Git", "Vite", "Webpack", "npm", "pnpm", "eslint", "prettier"]
     },
     {
       category: "Performance & Optimization",
@@ -147,8 +147,8 @@ export const resumeData: ResumeData = {
         "code splitting",
         "lazy loading",
         "tree-shaking",
-        "Core Web Vitals/Lighthouse",
-      ],
+        "Core Web Vitals/Lighthouse"
+      ]
     },
     {
       category: "SEO & Accessibility",
@@ -158,9 +158,9 @@ export const resumeData: ResumeData = {
         "WCAG 2.1 AA",
         "ARIA",
         "semantic HTML",
-        "keyboard nav",
-      ],
-    },
+        "keyboard nav"
+      ]
+    }
   ],
   experience: [
     {
@@ -173,13 +173,13 @@ export const resumeData: ResumeData = {
         "Implemented domain-based tenant resolution with strict isolation.",
         "Developed consent capture, preference center, DSAR intake, and hash-chained audit logs.",
         "Built DSAR export pipeline using Redis-backed workers and S3 streaming for large encrypted exports.",
-        "Managed CI/CD pipelines, Vercel/Docker deployments, Prisma migrations, and comprehensive documentation (PRD/Architecture/MVP/QA).",
+        "Managed CI/CD pipelines, Vercel/Docker deployments, Prisma migrations, and comprehensive documentation (PRD/Architecture/MVP/QA)."
       ],
       highlights: [
         "Privacy-First Architecture",
         "Multi-tenancy",
-        "DSAR Pipeline",
-      ],
+        "DSAR Pipeline"
+      ]
     },
     {
       company: "Cyware",
@@ -191,9 +191,9 @@ export const resumeData: ResumeData = {
         "Revamped cyware.com with Nuxt, achieving significant performance gains (CRP/CLS optimizations, Lighthouse ~60 to ~90).",
         "Led Cyware Social alpha development (posts/likes/comments/follows) with robust security controls.",
         "Conducted WCAG 2.1 AA remediation and supported VPAT certification (~1 month effort).",
-        "Refactored legacy codebases to Vue 3 + Vite, reducing bundle size from ~10MB to ~4MB.",
+        "Refactored legacy codebases to Vue 3 + Vite, reducing bundle size from ~10MB to ~4MB."
       ],
-      highlights: ["Lighthouse 90+", "WCAG 2.1 AA", "Bundle Size Reduction"],
+      highlights: ["Lighthouse 90+", "WCAG 2.1 AA", "Bundle Size Reduction"]
     },
     {
       company: "SellerApp",
@@ -202,9 +202,9 @@ export const resumeData: ResumeData = {
       location: "Bengaluru",
       bullets: [
         "Built early product and marketing site using AngularJS, Jade, and CoffeeScript.",
-        "Shipped features rapidly in a startup environment, including dashboards and campaign tools.",
-      ],
-    },
+        "Shipped features rapidly in a startup environment, including dashboards and campaign tools."
+      ]
+    }
   ],
   additionalExperience: [
     {
@@ -213,16 +213,16 @@ export const resumeData: ResumeData = {
       dates: "May 2024 – Jan 2025",
       location: "Remote",
       bullets: [
-        "Mentored students and professionals in Full Stack MERN development.",
-      ],
+        "Mentored students and professionals in Full Stack MERN development."
+      ]
     },
     {
       company: "Blue Web Solutions",
       role: "UI Developer",
       dates: "Oct 2014 – Nov 2016",
       location: "Coimbatore",
-      bullets: ["Web agency work; promoted to lead."],
-    },
+      bullets: ["Web agency work; promoted to lead."]
+    }
   ],
   projects: [
     {
@@ -231,20 +231,20 @@ export const resumeData: ResumeData = {
       description:
         "A comprehensive privacy engineering platform helping companies automate GDPR/DPDP compliance.",
       tech: ["Next.js", "TypeScript", "PostgreSQL", "Redis", "S3"],
-      highlights: ["Privacy Engineering", "Automation", "Compliance"],
-    },
+      highlights: ["Privacy Engineering", "Automation", "Compliance"]
+    }
   ],
   education: [
     {
       degree: "B.E CSE",
       school: "SVS College of Engineering",
-      dates: "2010 – 2014",
-    },
+      dates: "2010 – 2014"
+    }
   ],
   certifications: ["Udacity Frontend Web Developer Nanodegree (2016)"],
   achievements: [
     "Microsoft Student Partner: organized events; won rewards",
     "Marmalade contest: top 300 globally; won BlackBerry Z10 dev device",
-    "Intel App Innovation Contest 2013 finalist; won Lenovo AIO (₹1.36L)",
-  ],
+    "Intel App Innovation Contest 2013 finalist; won Lenovo AIO (₹1.36L)"
+  ]
 };

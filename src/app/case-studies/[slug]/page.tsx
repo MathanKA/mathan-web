@@ -17,7 +17,7 @@ interface PageProps {
 // Generate static params for all case studies
 export async function generateStaticParams() {
   return caseStudies.map((post) => ({
-    slug: post.slug,
+    slug: post.slug
   }));
 }
 
@@ -27,13 +27,13 @@ export async function generateMetadata(props: PageProps) {
   const post = caseStudies.find((p) => p.slug === params.slug);
   if (!post) {
     return {
-      title: "Case Study Not Found",
+      title: "Case Study Not Found"
     };
   }
 
   return {
     title: `${post.title} | Mathan`,
-    description: post.summary_one_liner,
+    description: post.summary_one_liner
   };
 }
 

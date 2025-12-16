@@ -8,7 +8,7 @@ import {
   DialogContent,
   DialogTrigger,
   DialogTitle,
-  DialogClose,
+  DialogClose
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -24,7 +24,7 @@ export function FigureLightbox({
   src,
   alt,
   caption,
-  className,
+  className
 }: FigureLightboxProps) {
   const [isOpen, setIsOpen] = React.useState(false);
 

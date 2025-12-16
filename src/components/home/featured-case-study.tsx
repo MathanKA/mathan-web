@@ -8,7 +8,7 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card";
 import { ViewerMode } from "@/lib/viewer-mode";
 import { MODE_CONFIG } from "@/lib/mode/mode.config";
@@ -24,7 +24,7 @@ export function FeaturedCaseStudy({ mode }: { mode: ViewerMode }) {
     scope: "End-to-End Ownership",
     tradeoff: "Performance vs. Speed",
     perf: "WebSockets + Signals",
-    arch: "Micro-frontends",
+    arch: "Micro-frontends"
   };
 
   return (

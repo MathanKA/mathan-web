@@ -5,7 +5,7 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
@@ -17,8 +17,8 @@ export const metadata = {
   description:
     "A collection of Case Studies and architectural deep dives into Privacy Engineering, Next.js, and Frontend Systems.",
   alternates: {
-    canonical: "/projects",
-  },
+    canonical: "/projects"
+  }
 };
 
 interface ProjectsPageProps {
@@ -26,7 +26,7 @@ interface ProjectsPageProps {
 }
 
 export default async function ProjectsPage({
-  searchParams,
+  searchParams
 }: ProjectsPageProps) {
   const resolvedSearchParams = await searchParams;
   const currentTagSlug =

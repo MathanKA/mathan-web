@@ -5,7 +5,7 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card";
 import { ViewerMode } from "@/lib/viewer-mode";
 import { MODE_CONFIG } from "@/lib/mode/mode.config";

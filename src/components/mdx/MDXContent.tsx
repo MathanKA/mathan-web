@@ -126,7 +126,7 @@ const components = {
   // Custom Mappings
   Callout,
   Image,
-  FigureLightbox,
+  FigureLightbox
 };
 
 // Pure function to evaluate MDX code (not a hook)

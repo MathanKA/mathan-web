@@ -23,10 +23,10 @@ export function LightRays({ className }: { className?: string }) {
         )}
       />
       <div
-         className={cn(
-             "absolute inset-0 bg-gradient-to-bl from-rose-500/20 via-transparent to-transparent opacity-40 blur-3xl",
-             "animate-reverse-spin [--spin-duration:40s]"
-         )}
+        className={cn(
+          "absolute inset-0 bg-gradient-to-bl from-rose-500/20 via-transparent to-transparent opacity-40 blur-3xl",
+          "animate-reverse-spin [--spin-duration:40s]"
+        )}
       />
     </div>
   );

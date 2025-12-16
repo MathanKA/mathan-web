@@ -8,7 +8,7 @@ const IconCloud = dynamic(
     ssr: false,
     loading: () => (
       <div className="h-full w-full animate-pulse bg-muted/20 rounded-lg min-h-[300px]" />
-    ),
+    )
   }
 );
 

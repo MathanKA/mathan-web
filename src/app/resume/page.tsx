@@ -8,7 +8,7 @@ import {
   Github,
   Linkedin,
   Globe,
-  ExternalLink,
+  ExternalLink
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -17,7 +17,7 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-  CardDescription,
+  CardDescription
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -25,7 +25,7 @@ import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger,
+  AccordionTrigger
 } from "@/components/ui/accordion";
 import { resumeData } from "@/data/resume";
 import { TextAnimate } from "@/components/magicui/text-animate";
@@ -37,8 +37,8 @@ export const metadata: Metadata = {
   description:
     "Senior Full-Stack Engineer | TypeScript • React • Next.js • Vue.js • Nuxt.js • PostgreSQL. Building privacy-first consent & DSAR platform.",
   alternates: {
-    canonical: "/resume",
-  },
+    canonical: "/resume"
+  }
 };
 
 export default function ResumePage() {
@@ -54,8 +54,8 @@ export default function ResumePage() {
       telephone: resumeData.header.phone,
       url: "https://mathan.pro/resume",
       sameAs: resumeData.header.links.map((l) => l.href),
-      knowsAbout: resumeData.skills.flatMap((s) => s.items),
-    },
+      knowsAbout: resumeData.skills.flatMap((s) => s.items)
+    }
   };
 
   return (

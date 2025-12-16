@@ -15,7 +15,7 @@ const sections: Section[] = [
   { id: "constraints", label: "Constraints" },
   { id: "approach", label: "Approach" },
   { id: "tradeoffs", label: "Tradeoffs" },
-  { id: "impact", label: "Impact" },
+  { id: "impact", label: "Impact" }
 ];
 
 export function SectionNav() {

@@ -75,25 +75,25 @@ export function TextAnimate({
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: delay,
-      },
-    },
+        delayChildren: delay
+      }
+    }
   };
 
   const itemVariants: Variants = {
     hidden: {
       filter: animation.includes("blur") ? "blur(10px)" : "blur(0px)",
       opacity: 0,
-      y: animation.includes("Up") ? 20 : animation.includes("Down") ? -20 : 0,
+      y: animation.includes("Up") ? 20 : animation.includes("Down") ? -20 : 0
     },
     show: {
       filter: "blur(0px)",
       opacity: 1,
       y: 0,
       transition: {
-        duration: duration,
-      },
-    },
+        duration: duration
+      }
+    }
   };
 
   const segments = by === "word" ? children.split(" ") : [children];

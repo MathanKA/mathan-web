@@ -6,7 +6,7 @@ import {
   transformerNotationDiff,
   transformerNotationHighlight,
   transformerNotationFocus,
-  transformerNotationErrorLevel,
+  transformerNotationErrorLevel
 } from "@shikijs/transformers";
 
 export default defineConfig({
@@ -22,7 +22,9 @@ export default defineConfig({
           date: s.string().optional(),
           company: s.string().max(80).optional(),
           featured: s.boolean().default(false),
-          status: s.enum(["pilot", "beta", "launched", "paused"]).default("pilot"),
+          status: s
+            .enum(["pilot", "beta", "launched", "paused"])
+            .default("pilot"),
           tags: s.array(s.string().max(32)).max(12).default([]),
           modes: s
             .array(s.enum(["recruiter", "manager", "engineer"]))
@@ -32,7 +34,7 @@ export default defineConfig({
           links: s
             .object({
               live: s.string().url().optional(),
-              repo: s.string().url().optional(),
+              repo: s.string().url().optional()
             })
             .optional(),
           // Extract excerpt for previews (first 180 chars)
@@ -40,14 +42,14 @@ export default defineConfig({
           // Metadata (reading time, etc.)
           metadata: s.metadata(),
           // MDX content compiled to function body string
-          code: s.mdx(),
+          code: s.mdx()
         })
         .transform((data) => ({
           ...data,
           // Computed permalink
-          url: `/case-studies/${data.slug}`,
-        })),
-    },
+          url: `/case-studies/${data.slug}`
+        }))
+    }
   },
   mdx: {
     rehypePlugins: [
@@ -58,25 +60,25 @@ export default defineConfig({
           behavior: "wrap",
           properties: {
             className: ["subheading-anchor"],
-            ariaLabel: "Link to section",
-          },
-        },
+            ariaLabel: "Link to section"
+          }
+        }
       ],
       [
         rehypeShiki,
         {
           themes: {
             light: "github-light",
-            dark: "github-dark",
+            dark: "github-dark"
           },
           transformers: [
             transformerNotationDiff(),
             transformerNotationHighlight(),
             transformerNotationFocus(),
-            transformerNotationErrorLevel(),
-          ],
-        },
-      ],
-    ],
-  },
+            transformerNotationErrorLevel()
+          ]
+        }
+      ]
+    ]
+  }
 });

@@ -14,17 +14,17 @@ export async function GET() {
       location: {
         city: resumeData.header.location.split(",")[0].trim(),
         countryCode: "IN",
-        region: resumeData.header.location,
+        region: resumeData.header.location
       },
       profiles: resumeData.header.links.map((link) => ({
         network: link.label,
-        url: link.href,
-      })),
+        url: link.href
+      }))
     },
     summary: resumeData.summary.join("\n\n"),
     skills: resumeData.skills.map((skill) => ({
       name: skill.category,
-      keywords: skill.items,
+      keywords: skill.items
     })),
     work: [...resumeData.experience, ...resumeData.additionalExperience].map(
       (role) => ({
@@ -33,7 +33,7 @@ export async function GET() {
         startDate: role.dates.split("–")[0]?.trim(),
         endDate: role.dates.split("–")[1]?.trim() || "Present",
         summary: role.bullets.join(". "),
-        location: role.location,
+        location: role.location
       })
     ),
     education: resumeData.education.map((edu) => ({
@@ -41,13 +41,13 @@ export async function GET() {
       area: edu.degree,
       studyType: "Bachelor",
       startDate: edu.dates.split("–")[0]?.trim(),
-      endDate: edu.dates.split("–")[1]?.trim(),
+      endDate: edu.dates.split("–")[1]?.trim()
     })),
     certificates: resumeData.certifications.map((cert) => ({
-      name: cert,
+      name: cert
     })),
     awards: resumeData.achievements.map((award) => ({
-      title: award,
+      title: award
     })),
     projects: resumeData.projects.map((proj) => ({
       name: proj.title,
@@ -55,20 +55,20 @@ export async function GET() {
       highlights: proj.highlights,
       roles: [proj.role],
       url: proj.link,
-      keywords: proj.tech,
+      keywords: proj.tech
     })),
     meta: {
       generatedAt: new Date().toISOString(),
       source: "https://mathan.pro/resume.json",
-      version: "1.0.0",
-    },
+      version: "1.0.0"
+    }
   };
 
   return NextResponse.json(jsonResume, {
     headers: {
       "Content-Type": "application/json; charset=utf-8",
       "Cache-Control":
-        "public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800",
-    },
+        "public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800"
+    }
   });
 }
