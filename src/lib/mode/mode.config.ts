@@ -117,7 +117,7 @@ export const HERO_BULLETS: Record<
 > = {
   "role-breadth": {
     icon: "Check",
-    text: "9+ years Full-Stack Engineer (Frontend Specialist)",
+    text: "Building Quansentz, a privacy-first Consent with audit-ready & multi-tenant",
     color: "text-green-500"
   },
   delivery: {

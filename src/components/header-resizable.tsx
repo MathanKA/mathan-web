@@ -33,9 +33,11 @@ export function HeaderResizable({ mode }: HeaderResizableProps) {
               height={37}
               className="rounded-full"
             />
-            <h1 className="text-xl font-bold tracking-tight text-black dark:text-white">
-              Mathan K A
-            </h1>
+            <p>
+              <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-white/90 to-white/50 drop-shadow-2xl text-xl font-bold tracking-tight">
+                Mathan K A
+              </span>
+            </p>
           </Link>
         </div>
 
