@@ -96,10 +96,10 @@ export function HomeHero({ mode }: { mode: ViewerMode }) {
           <div className="flex justify-center items-center order-1 md:order-2 md:col-span-4">
             <div className="relative flex justify-center items-center">
               <div className="relative z-10 p-3 rounded-full bg-white/5 backdrop-blur-md border border-white/20 shadow-2xl ring-1 ring-white/10">
-                <div className="relative rounded-full overflow-hidden w-[300px] h-[300px] md:w-[350px] md:h-[350px]">
+                <div className="relative rounded-full overflow-hidden w-[300px] h-[300px] md:w-[380px] md:h-[380px]">
                   <Image
-                    src="/static/mathan.webp"
-                    alt="Mathan KA"
+                    src="/images/mathan-hero.png"
+                    alt="Mathan K A"
                     fill
                     className="object-cover hover:scale-105 transition-transform duration-500"
                     priority

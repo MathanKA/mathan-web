@@ -19,8 +19,6 @@ export default async function Home() {
       <HomeHero mode={mode} />
 
       <div className="container mx-auto px-4 flex flex-col gap-12">
-        <Separator />
-
         {/* Featured Case Study */}
         <FeaturedCaseStudy mode={mode} />
 

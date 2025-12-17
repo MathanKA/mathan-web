@@ -176,6 +176,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[#050505] text-white;
+    background: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #000000 100%);
   }
 }
