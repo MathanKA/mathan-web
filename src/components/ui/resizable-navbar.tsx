@@ -57,7 +57,8 @@ export const Navbar = ({ children, className }: NavbarProps) => {
   const [visible, setVisible] = useState<boolean>(false);
 
   useMotionValueEvent(scrollY, "change", (latest: number) => {
-    if (latest > 100) {
+    if (latest > 50) {
+      // Trigger earlier for smoother feel
       setVisible(true);
     } else {
       setVisible(false);
@@ -87,10 +88,8 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
     <motion.div
       animate={{
         backdropFilter: visible ? "blur(12px)" : "none",
-        boxShadow: visible
-          ? "0 4px 30px rgba(0, 0, 0, 0.1)" // Softer glass shadow
-          : "none",
-        width: visible ? "auto" : "100%", // Use auto width for pill to wrap content
+        boxShadow: visible ? "0 4px 30px rgba(0, 0, 0, 0.1)" : "none",
+        width: visible ? "auto" : "100%",
         y: visible ? 20 : 0,
         borderRadius: visible ? "9999px" : "0px"
       }}
@@ -99,18 +98,14 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         stiffness: 200,
         damping: 50
       }}
-      style={{
-        minWidth: visible ? "800px" : "100%" // Maintain minWidth but only for invisible? No.
-        // Actually, let's allow it to start full and shrink.
-        // If visible (pill), minWidth 800px might be too wide on tablets?
-        // Let's change minWidth to be responsive or smaller.
-        // But for now, let's stick to user request "Shrink to pill".
-        // The original had minWidth: "800px" ALWAYS.
-      }}
       className={cn(
-        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start bg-transparent px-4 py-2 lg:flex dark:bg-transparent",
+        "relative z-[60] flex flex-row items-center justify-between self-center", // Changed from mx-auto hidden ... self-start
+        "hidden lg:flex", // Keep visibility logic
+        // Default state: Full width, transparent
+        "bg-transparent px-4 py-2",
+        // Visible (Pill) state: White/Glass background, padding change
         visible &&
-          "bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10 px-8 py-3", // Glass styles
+          "bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10 px-8 py-3",
         className
       )}
     >

@@ -9,7 +9,6 @@ import icon from "@/app/icon.png";
 import {
   Navbar,
   NavBody,
-  MobileNav,
   MobileNavToggle,
   MobileNavMenu
 } from "@/components/ui/resizable-navbar";
@@ -24,7 +23,7 @@ export function HeaderResizable({ mode }: HeaderResizableProps) {
   return (
     <Navbar className="fixed top-0 inset-x-0 z-50 h-fit">
       {/* Desktop & Tablet view */}
-      <NavBody className="justify-between items-center bg-white/50 dark:bg-black/50 backdrop-blur-[5px] border-b border-gray-200 dark:border-gray-800 lg:border-none lg:bg-transparent lg:backdrop-blur-none lg:dark:bg-transparent">
+      <NavBody className="container mx-auto px-4 justify-between items-center bg-black/20 dark:bg-black/50 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 lg:border-none lg:bg-transparent lg:backdrop-blur-md lg:dark:bg-transparent">
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center gap-3">
             <Image
@@ -66,17 +65,6 @@ export function HeaderResizable({ mode }: HeaderResizableProps) {
           </div>
 
           <Nav mode={mode} />
-
-          {/* Add simplified links for mobile if Nav is too complex, 
-                 but Nav is already specialized. 
-                 The Nav component renders 'Recommended' and 'ModeSwitcher'. 
-                 It does NOT render the main nav links (Home, Blog, etc) currently 
-                 based on the read file content (commented out). 
-                 Wait, I should check Nav.tsx content again. 
-                 Lines 56-81 are commented out in Nav.tsx!
-                 So Nav ONLY renders 'Recommended' and 'ModeSwitcher'.
-                 That's fine, per requirements I must preserve <Nav mode={mode} /> content.
-             */}
         </div>
       </MobileNavMenu>
     </Navbar>

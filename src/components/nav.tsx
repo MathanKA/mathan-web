@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { ViewerMode } from "@/lib/viewer-mode";
-import { ModeSwitcher } from "./mode-switcher";
+import RoleToggle from "./role-toggle";
+import { cn } from "@/lib/utils";
 
 interface NavProps {
   mode: ViewerMode;
@@ -13,10 +15,10 @@ interface NavItem {
 
 const ALL_LINKS: Record<string, NavItem> = {
   home: { label: "Home", href: "/" },
-  resume: { label: "Resume", href: "/resume" }, // Placeholder
-  projects: { label: "Projects", href: "/projects" }, // Placeholder
-  contact: { label: "Contact", href: "/contact" }, // Placeholder
-  about: { label: "About", href: "/about" }, // Placeholder
+  resume: { label: "Resume", href: "/resume" },
+  projects: { label: "Projects", href: "/projects" },
+  contact: { label: "Contact", href: "/contact" },
+  about: { label: "About", href: "/about" },
   code: { label: "GitHub / Code", href: "https://github.com/MathanKA" }
 };
 
@@ -28,58 +30,40 @@ const RECOMMENDED_PATHS: Record<ViewerMode, NavItem[]> = {
 
 export function Nav({ mode }: NavProps) {
   const recommended = RECOMMENDED_PATHS[mode];
+  const pathname = usePathname();
 
   return (
     <nav className="flex flex-col sm:flex-row gap-6 items-center">
       {/* Recommended Section */}
       <div className="flex flex-col gap-1 items-start sm:items-end">
-        <span className="text-[10px] font-bold text-prime-blue dark:text-blue-400 uppercase tracking-wider">
+        <span className="text-[10px] font-bold text-zinc-500 dark:text-white/40 uppercase tracking-wider">
           Recommended for you
         </span>
         <ul className="flex gap-4">
-          {recommended.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                className="text-sm font-semibold text-gray-900 dark:text-white hover:underline decoration-blue-500 decoration-2 underline-offset-4"
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
+          {recommended.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className={cn(
+                    "text-sm transition-colors duration-200",
+                    isActive
+                      ? "text-white font-semibold"
+                      : "text-zinc-400 hover:text-white"
+                  )}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
 
-      <div className="h-px sm:h-8 w-full sm:w-px bg-gray-200 dark:bg-gray-800" />
+      <div className="h-px sm:h-8 w-full sm:w-px bg-white/10" />
 
-      {/* Main Nav (General) */}
-      {/* <ul className="flex gap-4">
-        <li>
-          <Link
-            href="/"
-            className="text-sm text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
-          >
-            Home
-          </Link>
-        </li>
-        <li>
-          <span
-            className="text-sm text-gray-400 cursor-not-allowed"
-            title="Coming soon"
-          >
-            Blog
-          </span>
-        </li>
-        <li>
-          <Link
-            href="/resume"
-            className="text-sm text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
-          >
-            Resume
-          </Link>
-        </li>
-      </ul> */}
-      <ModeSwitcher initialMode={mode} />
+      <RoleToggle initialMode={mode} />
     </nav>
   );
 }
