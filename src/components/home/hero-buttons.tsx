@@ -41,13 +41,15 @@ export function HeroButtons({
       {/* Secondary CTA - Standard Backdrop Blur */}
       <Link
         href={secondaryHref}
-        className="group relative inline-flex items-center justify-center px-8 py-3 rounded-full 
-        bg-white/5 hover:bg-white/10 
-        backdrop-blur-md 
-        border border-white/10 hover:border-white/20
-        shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.1)] 
-        transition-all duration-300 ease-out 
-        active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
+        className={cn(
+          "group relative inline-flex items-center justify-center px-8 py-3 rounded-full",
+          "bg-white/5 hover:bg-white/10",
+          "backdrop-blur-md",
+          "border border-white/10 hover:border-white/20",
+          "shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.1)]",
+          "transition-all duration-300 ease-out",
+          "active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
+        )}
       >
         {/* Optional: A subtle glow behind the text that appears on hover */}
         <div className="absolute inset-0 rounded-full bg-white/5 opacity-0 group-hover:opacity-100 blur-lg transition-opacity duration-500" />
