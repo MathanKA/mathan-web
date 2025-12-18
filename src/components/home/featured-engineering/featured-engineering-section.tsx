@@ -21,7 +21,7 @@ export const FeaturedEngineeringSection = () => {
 
   return (
     <section
-      id="featured-engineering"
+      id="work"
       className="relative w-full bg-[#050505] py-24 md:py-36"
       style={
         {

@@ -12,7 +12,10 @@ import { skills } from "@/data/site";
 
 export const SkillsSection = () => {
   return (
-    <section className="relative w-full pt-24 bg-[#050505] overflow-hidden">
+    <section
+      id="about"
+      className="relative w-full pt-24 bg-[#050505] overflow-hidden"
+    >
       {/* 1. BACKGROUND: Technical Grid Mesh
           - This provides the "Structure" after the fluid Hero.
       */}
