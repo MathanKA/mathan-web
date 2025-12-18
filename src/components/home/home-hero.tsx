@@ -21,6 +21,7 @@ export function HomeHero({ mode }: { mode: ViewerMode }) {
     <section
       aria-labelledby="hero-title"
       className="relative w-full overflow-hidden min-h-[90vh] flex flex-col justify-center py-12"
+      id="hero-section"
     >
       {/* Background Layer */}
       <div className="absolute inset-0 z-0 pointer-events-none">

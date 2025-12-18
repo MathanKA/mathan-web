@@ -177,9 +177,6 @@
   }
   body {
     @apply bg-[#050505] text-white;
-    background: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #000000 100%);
-    @apply min-h-screen bg-[#02070b]
-    bg-[radial-gradient(80%_60%_at_20%_10%,rgba(16,185,129,0.18),transparent_60%),radial-gradient(70%_55%_at_85%_20%,rgba(99,102,241,0.14),transparent_65%),linear-gradient(to_bottom,#06181b,#041015,#02070b)]
-    bg-no-repeat;
+    background: radial-gradient(circle at 50% 50%, #2d434a 0%, #000000 100%);
   }
 }
