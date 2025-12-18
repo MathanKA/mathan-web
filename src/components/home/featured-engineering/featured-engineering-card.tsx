@@ -52,7 +52,7 @@ export const FeaturedEngineeringCard: React.FC<
       style={{ opacity, scale }}
       className={cn(
         "relative w-full min-h-[500px] md:min-h-[600px] rounded-3xl overflow-hidden transition-all duration-700",
-        "bg-zinc-900/40 backdrop-blur-2xl border border-white/10",
+        "bg-zinc-900/40 backdrop-blur-lg border border-white/10",
         "shadow-[0_0_0_1px_rgba(255,255,255,0.06),_0_40px_80px_-20px_rgba(0,0,0,0.8)]",
         "before:absolute before:inset-0 before:rounded-3xl before:bg-gradient-to-b before:from-white/10 before:to-transparent before:opacity-40 before:pointer-events-none",
         isActive

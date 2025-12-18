@@ -22,7 +22,7 @@ export const FeaturedEngineeringSection = () => {
   return (
     <section
       id="featured-engineering"
-      className="relative w-full bg-[#050505] py-24 md:py-32"
+      className="relative w-full bg-[#050505] py-24 md:py-36"
       style={
         {
           "--accent-color": activeItem.theme.accentRgb
