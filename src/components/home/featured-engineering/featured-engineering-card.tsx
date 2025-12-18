@@ -52,19 +52,21 @@ export const FeaturedEngineeringCard: React.FC<
       style={{ opacity, scale }}
       className={cn(
         "relative w-full min-h-[500px] md:min-h-[600px] rounded-3xl overflow-hidden transition-all duration-700",
-        "bg-zinc-900/40 backdrop-blur-lg border border-white/10",
+        // Unified Iridescent Standard: Ghost Glass
+        "bg-black/20 backdrop-blur-xl border border-white/10",
         "shadow-[0_0_0_1px_rgba(255,255,255,0.06),_0_40px_80px_-20px_rgba(0,0,0,0.8)]",
-        "before:absolute before:inset-0 before:rounded-3xl before:bg-gradient-to-b before:from-white/10 before:to-transparent before:opacity-40 before:pointer-events-none",
+        // Gradient Top Sheen
+        "before:absolute before:inset-0 before:rounded-3xl before:bg-gradient-to-b before:from-white/5 before:to-transparent before:opacity-40 before:pointer-events-none",
         isActive
           ? "border-white/20 ring-1 ring-white/10"
           : "opacity-60 grayscale-[0.5]"
       )}
     >
-      {/* Background Glow */}
+      {/* Dynamic Ambient Glow (Unified) */}
       <div
         className="absolute inset-0 opacity-20 pointer-events-none"
         style={{
-          background: `radial-gradient(circle at 50% 50%, rgb(${item.theme.accentRgb} / 0.15), transparent 70%)`
+          background: `radial-gradient(circle at 50% 50%, rgb(${item.theme.accentRgb} / 0.2), transparent 70%)`
         }}
       />
 
@@ -75,7 +77,7 @@ export const FeaturedEngineeringCard: React.FC<
             className="inline-block px-3 py-1 rounded-full text-[10px] font-mono tracking-tighter uppercase mb-2"
             style={{
               backgroundColor: `rgb(${item.theme.accentRgb} / 0.1)`,
-              color: `rgb(${item.theme.accentRgb})`,
+              color: item.theme.accentHex,
               border: `1px solid rgb(${item.theme.accentRgb} / 0.2)`
             }}
           >
@@ -102,18 +104,19 @@ export const FeaturedEngineeringCard: React.FC<
         {/* Visual Stage */}
         <div className="flex-grow flex items-center justify-center relative">
           {item.visual.kind === "image" && item.visual.imageSrc && (
-            <div className="relative w-full max-w-2xl aspect-video rounded-xl overflow-hidden border border-white/10 shadow-lg">
+            <div className="relative w-full max-w-2xl aspect-video rounded-xl overflow-hidden border border-white/10 shadow-lg group">
               <Image
                 src={item.visual.imageSrc}
                 alt={item.visual.imageAlt || item.title}
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
                 onError={(e) => {
-                  // fallback if image not found
                   e.currentTarget.src =
                     "https://placehold.co/1200x675/050505/333333?text=Quansentz+Dashboard";
                 }}
               />
+              {/* Image Overlay Tint */}
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
             </div>
           )}
 
@@ -145,9 +148,14 @@ export const FeaturedEngineeringCard: React.FC<
                   animate={{ strokeDashoffset: isActive ? 70 : 140 }}
                   transition={{ duration: 1.5, ease: "easeOut" }}
                   className={cn(!isActive && "text-white/10")}
+                  style={{
+                    filter: isActive
+                      ? `drop-shadow(0 0 8px ${item.theme.accentHex})`
+                      : "none"
+                  }}
                 />
               </svg>
-              <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <div className="absolute inset-0 flex flex-col items-center justify-center rotate-90">
                 <span className="text-4xl md:text-6xl font-bold text-white">
                   40
                 </span>
@@ -164,8 +172,20 @@ export const FeaturedEngineeringCard: React.FC<
               <div className="p-4 space-y-4 pt-10">
                 <div className="h-2 w-2/3 bg-zinc-800 rounded" />
                 <div className="grid grid-cols-2 gap-2">
-                  <div className="h-20 bg-emerald-500/10 rounded-lg border border-emerald-500/20" />
-                  <div className="h-20 bg-emerald-500/10 rounded-lg border border-emerald-500/20" />
+                  <div
+                    className="h-20 rounded-lg border opacity-50"
+                    style={{
+                      backgroundColor: `rgb(${item.theme.accentRgb} / 0.1)`,
+                      borderColor: `rgb(${item.theme.accentRgb} / 0.2)`
+                    }}
+                  />
+                  <div
+                    className="h-20 rounded-lg border opacity-50"
+                    style={{
+                      backgroundColor: `rgb(${item.theme.accentRgb} / 0.1)`,
+                      borderColor: `rgb(${item.theme.accentRgb} / 0.2)`
+                    }}
+                  />
                 </div>
                 <div className="h-32 bg-zinc-900 rounded-lg border border-white/5" />
                 <div className="h-12 bg-zinc-900 rounded-lg border border-white/5" />
@@ -195,9 +215,15 @@ export const FeaturedEngineeringCard: React.FC<
             <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
             <div
               className={cn(
-                "w-1.5 h-1.5 rounded-full",
+                "w-1.5 h-1.5 rounded-full transition-colors duration-300",
                 isActive ? "bg-white" : "bg-white/20"
               )}
+              style={{
+                backgroundColor: isActive ? item.theme.accentHex : undefined,
+                boxShadow: isActive
+                  ? `0 0 10px ${item.theme.accentHex}`
+                  : "none"
+              }}
             />
             <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
           </div>

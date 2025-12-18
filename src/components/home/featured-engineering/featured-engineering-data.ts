@@ -9,7 +9,7 @@ export type FeaturedEngineeringItem = {
   theme: {
     name: string;
     accentHex: string; // used for glow + micro-interaction
-    accentRgb: string; // e.g. "99 102 241" for radial alpha
+    accentRgb: string; // e.g. "17 221 119" for radial alpha
   };
   visual: {
     kind: "image" | "speedometer" | "phone-frame";
@@ -34,9 +34,9 @@ export const FEATURED_ENGINEERING_ITEMS: FeaturedEngineeringItem[] = [
     description:
       "Architected a privacy-first consent platform with tamper-evident audit logging and GDPR-aligned data isolation.",
     theme: {
-      name: "Indigo",
-      accentHex: "#333eee",
-      accentRgb: "51 62 238"
+      name: "Emerald",
+      accentHex: "#11dd77", // Brand Primary
+      accentRgb: "17 221 119"
     },
     visual: {
       kind: "image",
@@ -68,8 +68,8 @@ export const FEATURED_ENGINEERING_ITEMS: FeaturedEngineeringItem[] = [
     description:
       "Led migration to Vue 3 + Vite, implemented code splitting and hardened performance metrics.",
     theme: {
-      name: "Purple",
-      accentHex: "#880088",
+      name: "Fuchsia",
+      accentHex: "#880088", // Brand Secondary
       accentRgb: "136 0 136"
     },
     visual: {
@@ -103,9 +103,9 @@ export const FEATURED_ENGINEERING_ITEMS: FeaturedEngineeringItem[] = [
     description:
       "Optimized critical rendering path, improved layout stability and interaction readiness.",
     theme: {
-      name: "Emerald",
-      accentHex: "#10b981",
-      accentRgb: "16 185 129"
+      name: "Indigo",
+      accentHex: "#333eee", // Brand Accent
+      accentRgb: "51 62 238"
     },
     visual: {
       kind: "phone-frame"
