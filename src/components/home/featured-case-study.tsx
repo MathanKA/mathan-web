@@ -28,7 +28,10 @@ export function FeaturedCaseStudy({ mode }: { mode: ViewerMode }) {
   };
 
   return (
-    <section id="case-studies" className="scroll-mt-20">
+    <section
+      id="case-studies"
+      className="relative w-full py-24 bg-[#050505] overflow-hidden"
+    >
       <h2 className="text-2xl font-bold mb-6">Featured Case Study</h2>
       <Card className="overflow-hidden border-2 border-primary/10">
         <CardHeader>

@@ -198,11 +198,11 @@ export function SkillsSec() {
           </div>
 
           {/* Right column: 3 pillar cards */}
-          <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+          {/* <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
             {PILLARS.map((pillar) => (
               <PillarCard key={pillar.title} pillar={pillar} />
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
