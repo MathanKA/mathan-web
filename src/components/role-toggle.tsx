@@ -2,7 +2,7 @@
 
 import { useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { setMode } from "@/app/actions/viewer-mode";
 import type { ViewerMode } from "@/lib/viewer-mode";
 

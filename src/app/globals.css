@@ -7,6 +7,8 @@
 @theme {
   --font-geist-sans: var(--font-geist-sans);
   --font-geist-mono: var(--font-geist-mono);
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
 
   --animate-aurora-text: aurora-text 3s linear infinite;
   --animate-shimmer-slide: shimmer-slide 3s linear infinite;

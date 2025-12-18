@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { motion, MotionProps, Variants } from "framer-motion";
+import { motion, MotionProps, Variants } from "motion/react";
 import { ElementType } from "react";
 
 type AnimationType = "text" | "word" | "character" | "line";

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google"; // Removed unused Image, icon
+import { Geist, Geist_Mono, Inter, Space_Grotesk } from "next/font/google"; // Removed unused Image, icon
 import { getMode } from "@/lib/viewer-mode";
 // Removed unused ModeSwitcher
 import { HeaderResizable } from "@/components/header-resizable";
@@ -17,6 +17,16 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"]
+});
+
+const inter = Inter({
+  variable: "--font-heading",
+  subsets: ["latin"]
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-body",
   subsets: ["latin"]
 });
 
@@ -108,7 +118,7 @@ export default async function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${spaceGrotesk.variable} antialiased flex flex-col min-h-screen`}
         suppressHydrationWarning
       >
         <ThemeProvider

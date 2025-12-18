@@ -1,8 +1,8 @@
 import { getMode } from "@/lib/viewer-mode";
 import { HomeHero } from "@/components/home/home-hero";
 import { FeaturedCaseStudy } from "@/components/home/featured-case-study";
-import { SkillsSnapshot } from "@/components/home/skills-snapshot";
 import { SkillsSection } from "@/components/home/skills-section";
+import { FeaturedEngineeringSection } from "@/components/home/featured-engineering";
 
 export default async function Home() {
   const mode = await getMode();
@@ -19,6 +19,9 @@ export default async function Home() {
 
       {/* Skills Section - FULL WIDTH */}
       <SkillsSection />
+
+      {/* Featured Engineering Section */}
+      <FeaturedEngineeringSection />
 
       {/* Featured Case Study */}
       <FeaturedCaseStudy mode={mode} />
