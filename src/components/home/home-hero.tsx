@@ -20,7 +20,7 @@ export function HomeHero({ mode }: { mode: ViewerMode }) {
   return (
     <section
       aria-labelledby="hero-title"
-      className="relative w-full overflow-hidden min-h-[90vh] flex flex-col justify-center"
+      className="relative w-full overflow-hidden min-h-[90vh] flex flex-col justify-center py-12"
     >
       {/* Background Layer */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -101,7 +101,7 @@ export function HomeHero({ mode }: { mode: ViewerMode }) {
                     src="/images/mathan-hero.png"
                     alt="Mathan K A"
                     fill
-                    className="object-cover hover:scale-105 transition-transform duration-500"
+                    className="object-cover hover:scale-105 transition-transform duration-500 object-[center_23%]"
                     priority
                   />
                 </div>
