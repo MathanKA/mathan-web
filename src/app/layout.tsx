@@ -116,7 +116,7 @@ export default async function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const mode = await getMode();
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+    <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${spaceGrotesk.variable} antialiased flex flex-col min-h-screen`}
         suppressHydrationWarning
@@ -124,9 +124,13 @@ export default async function RootLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
+          forcedTheme="dark"
           disableTransitionOnChange
         >
           <HeaderResizable mode={mode} />
+
+          {/* ADDED: Global Grain Overlay for "Film" Texture (Optional but Premium) */}
+          <div className="fixed inset-0 pointer-events-none z-0 opacity-20 bg-[url('/noise.png')] mix-blend-overlay"></div>
 
           <main className="grow relative flex flex-col min-h-screen font-sans antialiased">
             {children}

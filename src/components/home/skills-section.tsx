@@ -14,7 +14,7 @@ export const SkillsSection = () => {
   return (
     <section
       id="about"
-      className="relative w-full pt-24 bg-[#050505] overflow-hidden"
+      className="relative w-full pt-24 bg-transparent overflow-hidden"
     >
       {/* 1. BACKGROUND: Technical Grid Mesh
           - This provides the "Structure" after the fluid Hero.

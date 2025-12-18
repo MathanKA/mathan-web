@@ -83,7 +83,7 @@ export function Footer() {
   return (
     <footer
       role="contentinfo"
-      className="w-full bg-[#050505] border-t border-white/10 pt-20 pb-10"
+      className="w-full bg-transparent border-t border-white/10 pt-20 pb-10"
     >
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
@@ -104,7 +104,7 @@ export function Footer() {
 
             <motion.div variants={itemVariants} className="group relative">
               {/* Tooltip */}
-              <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1 bg-zinc-900 border border-white/10 rounded text-[10px] font-mono uppercase tracking-wider text-white opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity pointer-events-none mb-2 z-10">
+              <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1 bg-zinc-900 border border-white/10 rounded text-[10px] font-mono uppercase tracking-wider text-foreground opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity pointer-events-none mb-2 z-10">
                 {isCopied ? "Copied!" : "Copy to clipboard"}
               </div>
 
@@ -131,7 +131,7 @@ export function Footer() {
               <div className="mt-4">
                 <a
                   href={`mailto:${email}`}
-                  className="text-xs font-mono uppercase tracking-widest text-zinc-500 hover:text-[#333eee] transition-colors"
+                  className="text-xs font-mono uppercase tracking-widest text-zinc-500 hover:text-brand-accent transition-colors"
                 >
                   Or email me directly
                 </a>
@@ -170,7 +170,7 @@ export function Footer() {
                     <li key={link.name}>
                       <Link
                         href={link.href}
-                        className="font-mono text-sm text-zinc-400 hover:text-[#333eee] transition-colors"
+                        className="font-mono text-sm text-zinc-400 hover:text-brand-accent transition-colors"
                       >
                         {link.name}
                       </Link>

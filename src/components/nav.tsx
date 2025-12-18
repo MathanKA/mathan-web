@@ -50,7 +50,7 @@ export function Nav({ mode }: NavProps) {
                     "text-sm transition-colors duration-200",
                     isActive
                       ? "text-white font-semibold"
-                      : "text-zinc-400 hover:text-white"
+                      : "text-zinc-400 hover:text-brand-accent"
                   )}
                 >
                   {item.label}

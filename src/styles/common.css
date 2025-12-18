@@ -1,3 +1,12 @@
+/* --- 3. UTILITY CLASSES --- */
+@utility glass-card {
+  @apply bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl;
+}
+
+@utility text-glow {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
 #hero-section {
   @apply bg-[#02070b]
     bg-[radial-gradient(80%_60%_at_20%_10%,rgba(16,185,129,0.18),transparent_60%),radial-gradient(70%_55%_at_85%_20%,rgba(99,102,241,0.14),transparent_65%),linear-gradient(to_bottom,#06181b,#041015,#02070b)]

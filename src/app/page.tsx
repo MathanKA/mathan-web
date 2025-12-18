@@ -9,7 +9,7 @@ export default async function Home() {
   const mode = await getMode();
 
   return (
-    <div className="flex flex-col gap-0 pb-12">
+    <div className="flex flex-col gap-0">
       {/* Recommended Path */}
       {/* <div className="container mx-auto px-4 pt-32 md:pt-40 lg:pt-32">
         <RecommendedPath mode={mode} />
@@ -28,7 +28,7 @@ export default async function Home() {
       <ExperienceSection />
 
       {/* Featured Case Study */}
-      <FeaturedCaseStudy mode={mode} />
+      {/* <FeaturedCaseStudy mode={mode} /> */}
     </div>
   );
 }

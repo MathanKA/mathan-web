@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * PHASE 4 - Experience Data
+ * Updated to align with the "Unified Iridescent" Theme Palette.
  */
 export type ExperienceItem = {
   id: string;
@@ -23,8 +24,8 @@ export type ExperienceItem = {
   location: string;
   description: string;
   tech: string[];
-  colorHex: string;
-  colorRgb: string;
+  // We now use CSS variables for colors to ensure theme consistency
+  colorVar: string;
 };
 
 const EXPERIENCE_DATA: ExperienceItem[] = [
@@ -39,8 +40,7 @@ const EXPERIENCE_DATA: ExperienceItem[] = [
     description:
       "Defining the technical roadmap for a privacy-first SaaS. Architecting multi-tenant systems and authoring core product specifications (PRDs) for a v1.0 pilot launch.",
     tech: ["Next.js", "Prisma", "Architecture"],
-    colorHex: "#333eee",
-    colorRgb: "51 62 238"
+    colorVar: "var(--color-brand-primary)" // Emerald (Hero Match)
   },
   {
     id: "softzane",
@@ -53,8 +53,7 @@ const EXPERIENCE_DATA: ExperienceItem[] = [
     description:
       "Mentored students on MERN stack architecture and clean code practices. Translated complex engineering concepts into structured learning paths.",
     tech: ["Mentorship", "Communication"],
-    colorHex: "#fbbf24",
-    colorRgb: "251 191 36"
+    colorVar: "var(--color-brand-primary)" // Amber (Retained for contrast, or use brand-secondary if preferred)
   },
   {
     id: "cyware",
@@ -67,8 +66,7 @@ const EXPERIENCE_DATA: ExperienceItem[] = [
     description:
       "Owned the frontend for India's national CERT platform. Collaborated directly with the CTO to deliver high-stakes demos and mentored junior developers across teams.",
     tech: ["Vue.js", "Performance", "Leadership"],
-    colorHex: "#880088",
-    colorRgb: "136 0 136"
+    colorVar: "var(--color-brand-primary)" // Fuchsia (Hero Match)
   },
   {
     id: "sellerapp",
@@ -81,8 +79,7 @@ const EXPERIENCE_DATA: ExperienceItem[] = [
     description:
       "Sole developer responsible for building the early-stage web product. Translated founder requirements into production UI for the platform's initial growth phase.",
     tech: ["Angular", "Zero-to-One"],
-    colorHex: "#10b981",
-    colorRgb: "16 185 129"
+    colorVar: "var(--color-brand-primary)" // Emerald
   },
   {
     id: "blue-web",
@@ -95,13 +92,13 @@ const EXPERIENCE_DATA: ExperienceItem[] = [
     description:
       "Developed customized client websites and led a team of interns for brand promotion and development tasks.",
     tech: ["HTML/CSS", "Team Lead"],
-    colorHex: "#3b82f6",
-    colorRgb: "59 130 246"
+    colorVar: "var(--color-brand-primary)" // Blue
   }
 ];
 
 /**
  * PHASE 6.1 - ScrollProgressTrace
+ * UPDATED: Uses the Hero's Emerald -> Purple gradient.
  */
 const ScrollProgressTrace = ({
   sectionRef
@@ -118,11 +115,11 @@ const ScrollProgressTrace = ({
   return (
     <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-[2px]">
       {/* Base trace line */}
-      <div className="absolute inset-0 bg-white/10" />
-      {/* Fill beam */}
+      <div className="absolute inset-0 bg-white/5" />
+      {/* Fill beam - "The Iridescent Signal" */}
       <motion.div
         style={{ scaleY }}
-        className="absolute inset-0 bg-gradient-to-b from-indigo-500 via-purple-500 to-cyan-400 origin-top shadow-[0_0_8px_rgba(99,102,241,0.5)]"
+        className="absolute inset-0 bg-gradient-to-b from-[var(--color-brand-primary)] via-[var(--color-brand-secondary)] to-[var(--color-brand-accent)] origin-top shadow-[0_0_15px_rgba(16,185,129,0.4)]"
       />
     </div>
   );
@@ -169,14 +166,14 @@ const TimelineItem = ({ item, isActive, onInView }: TimelineItemProps) => {
                 ? {
                     scale: [1, 1.2, 1],
                     boxShadow: [
-                      `0 0 0px rgba(${item.colorRgb}, 0)`,
-                      `0 0 20px rgba(${item.colorRgb}, 0.6)`,
-                      `0 0 0px rgba(${item.colorRgb}, 0)`
+                      `0 0 0px ${item.colorVar}`,
+                      `0 0 20px ${item.colorVar}`,
+                      `0 0 0px ${item.colorVar}`
                     ]
                   }
                 : isActive
-                  ? { boxShadow: `0 0 20px rgba(${item.colorRgb}, 0.55)` }
-                  : { boxShadow: "0 0 0px rgba(255, 255, 255, 0)" }
+                  ? { boxShadow: `0 0 20px ${item.colorVar}` }
+                  : { boxShadow: "0 0 0px rgba(0,0,0,0)" }
             }
             transition={{
               duration: 2,
@@ -188,8 +185,8 @@ const TimelineItem = ({ item, isActive, onInView }: TimelineItemProps) => {
               isActive ? "bg-white border-white" : "bg-zinc-900 border-white/20"
             )}
             style={{
-              borderColor: isActive ? `rgb(${item.colorRgb})` : undefined,
-              backgroundColor: isActive ? `rgb(${item.colorRgb})` : undefined
+              borderColor: isActive ? item.colorVar : undefined,
+              backgroundColor: isActive ? item.colorVar : undefined
             }}
           />
         </div>
@@ -204,9 +201,10 @@ const TimelineItem = ({ item, isActive, onInView }: TimelineItemProps) => {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className={cn(
             "relative group p-6 rounded-2xl border transition-all duration-500",
-            "bg-zinc-900/50 backdrop-blur-xl border-white/10",
-            "shadow-[0_0_0_1px_rgba(255,255,255,0.06),_0_20px_60px_-20px_rgba(0,0,0,0.8)]",
-            isActive && "border-white/20 ring-1 ring-white/10"
+            // Glass Card Style matching globals.css
+            "bg-black/20 backdrop-blur-xl border-white/10",
+            "shadow-2xl",
+            isActive && "border-white/20 ring-1 ring-white/5"
           )}
         >
           {/* Connector wire */}
@@ -220,10 +218,15 @@ const TimelineItem = ({ item, isActive, onInView }: TimelineItemProps) => {
                 {item.from.replace(" ", "_").toUpperCase()} —{" "}
                 {item.to.replace(" ", "_").toUpperCase()}
               </span>
-              <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">
+              <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight group-hover:text-[var(--color-brand-primary)] transition-colors duration-300">
                 {item.title}
               </h3>
-              <div className="text-indigo-400 font-medium">{item.company}</div>
+              <div
+                className="font-medium mt-1"
+                style={{ color: item.colorVar }}
+              >
+                {item.company}
+              </div>
             </div>
             <div className="flex flex-col items-start md:items-end gap-1">
               <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider px-2 py-1 rounded bg-white/5 border border-white/10">
@@ -242,7 +245,7 @@ const TimelineItem = ({ item, isActive, onInView }: TimelineItemProps) => {
             {item.tech.map((t) => (
               <span
                 key={t}
-                className="px-2 py-1 rounded text-[10px] font-mono bg-white/5 text-zinc-300 border border-white/5 uppercase tracking-tighter"
+                className="px-2 py-1 rounded text-[10px] font-mono bg-white/5 text-zinc-300 border border-white/5 uppercase tracking-tighter hover:border-[var(--color-brand-primary)] hover:text-white transition-colors"
               >
                 {t}
               </span>
@@ -262,7 +265,8 @@ export const ExperienceSection = () => {
     <section
       id="experience"
       ref={sectionRef}
-      className="relative w-full bg-[#050505] py-24 sm:py-32 overflow-hidden"
+      // Replaced bg-zinc-950 with bg-transparent to let the global Iridescent body shine through
+      className="relative w-full bg-transparent py-24 sm:py-32 overflow-hidden"
     >
       {/* Background decoration consistent with other sections */}
       <div className="absolute inset-0 pointer-events-none">
@@ -272,7 +276,7 @@ export const ExperienceSection = () => {
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="grid grid-cols-12 gap-8 mb-16 md:mb-24">
           <div className="col-span-12">
-            <span className="text-[10px] md:text-xs font-mono tracking-[0.3em] text-zinc-500 uppercase block mb-4">
+            <span className="text-[10px] md:text-xs font-mono tracking-[0.3em] text-[var(--color-brand-primary)] uppercase block mb-4">
               Professional Journey
             </span>
             <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight font-heading mb-4">
