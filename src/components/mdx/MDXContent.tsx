@@ -24,7 +24,8 @@ const components = {
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
-        "group relative mt-12 scroll-m-24 border-l-4 border-primary pl-4 text-2xl font-semibold tracking-tight first:mt-0",
+        "group relative mt-16 scroll-m-32 text-3xl font-bold tracking-tight text-white first:mt-0",
+        "before:absolute before:-left-8 before:top-1/2 before:h-1 before:w-4 before:-translate-y-1/2 before:rounded-full before:bg-brand-primary before:opacity-0 before:transition-opacity group-hover:before:opacity-100",
         className
       )}
       {...props}
@@ -33,7 +34,8 @@ const components = {
   h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3
       className={cn(
-        "group relative mt-8 scroll-m-24 text-xl font-semibold tracking-tight hover:text-primary transition-colors",
+        "group relative mt-12 scroll-m-32 text-xl font-semibold tracking-tight text-white/90 hover:text-brand-primary transition-colors",
+        "after:ml-2 after:font-mono after:text-[10px] after:text-zinc-600 after:opacity-0 after:content-['[SPEC]'] group-hover:after:opacity-100",
         className
       )}
       {...props}
@@ -51,7 +53,7 @@ const components = {
   p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p
       className={cn(
-        "leading-7 [&:not(:first-child)]:mt-6 max-w-[85ch]",
+        "leading-relaxed text-zinc-400 [&:not(:first-child)]:mt-8 max-w-[85ch] text-lg selection:bg-brand-primary/20",
         className
       )}
       {...props}
@@ -78,7 +80,8 @@ const components = {
   }: React.HTMLAttributes<HTMLQuoteElement>) => (
     <blockquote
       className={cn(
-        "mt-6 border-l-2 pl-6 italic text-muted-foreground bg-muted/20 py-2 pr-4 rounded-r-lg",
+        "mt-8 flex gap-4 rounded-xl border border-brand-primary/20 bg-brand-primary/5 p-6 text-zinc-300 shadow-sm",
+        "before:h-auto before:w-1 before:rounded-full before:bg-brand-primary",
         className
       )}
       {...props}
@@ -100,14 +103,10 @@ const components = {
     </Link>
   ),
   code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => {
-    // If code is inside pre (handled by CodeBlock/Shiki), this won't be hit usually for blocks,
-    // but Shiki might output spans.
-    // We check if it's inline code by lack of pre parent context or standard styling expectation.
-    // Simple heuristic: if it has no class or just language class, style it as inline.
     return (
       <code
         className={cn(
-          "relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold text-foreground",
+          "relative rounded bg-white/5 border border-white/10 px-[0.4rem] py-[0.1rem] font-mono text-[0.85em] font-medium text-zinc-300",
           className
         )}
         {...props}
@@ -126,6 +125,13 @@ const components = {
   // Custom Mappings
   Callout,
   Image,
+  img: ({ ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => (
+    <FigureLightbox
+      src={(props.src as string) || ""}
+      alt={props.alt || ""}
+      caption={props.title}
+    />
+  ),
   FigureLightbox
 };
 
@@ -142,5 +148,9 @@ interface MDXProps {
 export function MDXContent({ code }: MDXProps) {
   // Memoize the component creation to avoid re-evaluation on each render
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
-  return <Component components={components} />;
+  return (
+    <div className="prose-custom">
+      <Component components={components} />
+    </div>
+  );
 }

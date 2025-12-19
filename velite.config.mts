@@ -31,6 +31,8 @@ export default defineConfig({
             .default(["recruiter", "manager", "engineer"]),
           stack: s.array(s.string().max(40)).max(20).default([]),
           summary_one_liner: s.string().max(160),
+          timeline: s.string().max(40).optional(),
+          key_stat: s.string().max(60).optional(),
           links: s
             .object({
               live: s.string().url().optional(),

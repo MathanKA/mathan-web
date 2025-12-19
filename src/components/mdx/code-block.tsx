@@ -24,26 +24,37 @@ export function CodeBlock({ children, ...props }: CodeBlockProps) {
   }, []);
 
   return (
-    <div className="relative group my-6 overflow-hidden rounded-lg border bg-zinc-950 dark:bg-zinc-900">
-      <div className="absolute right-4 top-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
-        <Button
-          variant="outline"
-          size="icon"
-          className="h-8 w-8 bg-background/50 hover:bg-background/80 backdrop-blur-sm"
-          onClick={onCopy}
-          aria-label="Copy code"
-        >
-          {hasCopied ? (
-            <Check className="h-4 w-4 text-green-500" />
-          ) : (
-            <Copy className="h-4 w-4" />
-          )}
-        </Button>
+    <div className="relative group my-8 overflow-hidden rounded-xl border border-white/10 bg-[#0d0d0d] shadow-2xl">
+      {/* VS Code Header */}
+      <div className="flex items-center justify-between border-b border-white/5 bg-white/5 px-4 py-2">
+        <div className="flex gap-1.5">
+          <div className="h-2.5 w-2.5 rounded-full bg-red-500/50" />
+          <div className="h-2.5 w-2.5 rounded-full bg-amber-500/50" />
+          <div className="h-2.5 w-2.5 rounded-full bg-emerald-500/50" />
+        </div>
+        <div className="font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+          Source_Code
+        </div>
+        <div className="absolute right-4 top-1.5 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-7 w-7 text-zinc-500 hover:bg-white/5 hover:text-white"
+            onClick={onCopy}
+            aria-label="Copy code"
+          >
+            {hasCopied ? (
+              <Check className="h-3 w-3 text-brand-primary" />
+            ) : (
+              <Copy className="h-3 w-3" />
+            )}
+          </Button>
+        </div>
       </div>
       <pre
         ref={preRef}
         {...props}
-        className="overflow-x-auto p-4 text-sm text-zinc-50 font-mono leading-relaxed scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-transparent"
+        className="overflow-x-auto p-6 text-[13px] md:text-sm text-zinc-300 font-mono leading-relaxed scrollbar-thin scrollbar-thumb-white/5 scrollbar-track-transparent"
       >
         {children}
       </pre>

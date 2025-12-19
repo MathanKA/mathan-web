@@ -1,16 +1,9 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
-import {
-  Github,
-  Linkedin,
-  Mail,
-  Copy,
-  Check,
-  ArrowUpRight
-} from "lucide-react";
+import { Github, Linkedin, Mail, Copy, Check } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 

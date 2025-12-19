@@ -53,7 +53,7 @@ export function HeaderResizable({ mode }: HeaderResizableProps) {
       </NavBody>
 
       {/* Mobile Menu Content */}
-      <MobileNavMenu isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <MobileNavMenu isOpen={isOpen}>
         <div className="flex flex-col gap-6 p-4">
           <div className="flex items-center gap-3 mb-4">
             <Image

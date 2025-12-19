@@ -1,12 +1,9 @@
 import {
   Activity,
-  ArrowBigRight,
-  Code2,
   Layers,
   MoveRight,
   PencilRuler,
-  ShieldCheck,
-  Zap
+  ShieldCheck
 } from "lucide-react"; // Example icons
 import { skills } from "@/data/site";
 

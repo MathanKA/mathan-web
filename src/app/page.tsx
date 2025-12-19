@@ -1,6 +1,5 @@
 import { getMode } from "@/lib/viewer-mode";
 import { HomeHero } from "@/components/home/home-hero";
-import { FeaturedCaseStudy } from "@/components/home/featured-case-study";
 import { SkillsSection } from "@/components/home/skills-section";
 import { FeaturedEngineeringSection } from "@/components/home/featured-engineering";
 import { ExperienceSection } from "@/components/sections/experience";
@@ -26,9 +25,6 @@ export default async function Home() {
 
       {/* Experience Section */}
       <ExperienceSection />
-
-      {/* Featured Case Study */}
-      {/* <FeaturedCaseStudy mode={mode} /> */}
     </div>
   );
 }

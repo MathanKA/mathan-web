@@ -29,11 +29,11 @@ export function FigureLightbox({
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <figure className={cn("my-8 group relative", className)}>
+    <figure className={cn("my-12 group relative", className)}>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
           <div
-            className="relative overflow-hidden rounded-xl border bg-muted/20 cursor-zoom-in ring-offset-background transition-all hover:ring-2 hover:ring-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 cursor-zoom-in ring-offset-0 transition-all hover:border-brand-primary/30 hover:shadow-[0_0_30px_rgba(16,185,129,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
             role="button"
             aria-label={`View fullscreen: ${alt}`}
           >
