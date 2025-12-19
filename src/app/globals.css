@@ -110,12 +110,48 @@
   }
 }
 
-/* @layer base {
-  * {
-    @apply border-border outline-ring/50;
+/* --- 3. PRINT STYLES --- */
+@media print {
+  @page {
+    margin: 20mm;
   }
+
   body {
-    @apply bg-[#050505] text-white;
-    background: radial-gradient(circle at 50% 50%, #2d434a 0%, #000000 100%);
+    background: white !important;
+    color: black !important;
+    background-image: none !important;
   }
-} */
+
+  /* Force light mode colors for print */
+  * {
+    color: black !important;
+    border-color: #ddd !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .print-hidden,
+  .no-print,
+  button,
+  nav,
+  footer {
+    display: none !important;
+  }
+
+  .print-block {
+    display: block !important;
+  }
+
+  /* Page break control */
+  .break-inside-avoid {
+    break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}

@@ -3,15 +3,7 @@
 import React, { useState, useCallback } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
-import {
-  Github,
-  Linkedin,
-  Mail,
-  Copy,
-  Check,
-  Calendar,
-  ArrowUpRight
-} from "lucide-react";
+import { Github, Linkedin, Check, Calendar, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 
