@@ -19,7 +19,7 @@ export default defineConfig({
           title: s.string().max(90),
           slug: s.slug("case-studies", ["admin", "login"]),
           role: s.string().max(80),
-          date: s.string().optional(),
+          date: s.isodate().optional(),
           company: s.string().max(80).optional(),
           featured: s.boolean().default(false),
           status: s
