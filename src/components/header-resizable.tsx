@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ViewerMode } from "@/lib/viewer-mode";
 import { Nav } from "@/components/nav";
-import icon from "@/app/icon.png";
+import icon from "@public/images/mathan.svg";
 import {
   Navbar,
   NavBody,
