@@ -1,14 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Inter, Space_Grotesk } from "next/font/google"; // Removed unused Image, icon
-import { getMode } from "@/lib/viewer-mode";
-// Removed unused ModeSwitcher
+import { Geist, Geist_Mono, Inter, Space_Grotesk } from "next/font/google";
+
 import { HeaderResizable } from "@/components/header-resizable";
-// Removed unused Nav
 import { Footer } from "@/components/footer";
 import { JsonLd } from "@/components/seo/json-ld";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "@/components/ui/sonner";
+// import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -114,7 +112,6 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children
 }: Readonly<{ children: React.ReactNode }>) {
-  const mode = await getMode();
   return (
     <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
       <body
@@ -127,9 +124,9 @@ export default async function RootLayout({
           forcedTheme="dark"
           disableTransitionOnChange
         >
-          <HeaderResizable mode={mode} />
+          <HeaderResizable />
 
-          {/* ADDED: Global Grain Overlay for "Film" Texture (Optional but Premium) */}
+          {/* Grain overlay */}
           <div className="fixed inset-0 pointer-events-none z-0 opacity-20 bg-[url('/noise.png')] mix-blend-overlay"></div>
 
           <main className="grow relative flex flex-col min-h-screen font-sans antialiased">
@@ -137,7 +134,7 @@ export default async function RootLayout({
           </main>
 
           <Footer />
-          <Toaster />
+          {/* <Toaster /> */}
         </ThemeProvider>
         <JsonLd
           data={[
