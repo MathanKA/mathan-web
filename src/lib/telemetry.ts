@@ -124,8 +124,10 @@ async function fetchGitHubEvents(username: string): Promise<GitHubTelemetry> {
         };
       });
     return { items };
-  } catch (error: any) {
-    console.warn(`[Telemetry] GitHub fetch handled: ${error.message}`);
+  } catch (error: unknown) {
+    console.warn(
+      `[Telemetry] GitHub fetch handled: ${error instanceof Error ? error.message : String(error)}`
+    );
     return fallback;
   }
 }
@@ -185,8 +187,10 @@ async function fetchWakaTimeStats(apiKey: string): Promise<WakaTimeTelemetry> {
       segments,
       updatedAtISO: new Date().toISOString()
     };
-  } catch (error: any) {
-    console.warn(`[Telemetry] WakaTime fetch handled: ${error.message}`);
+  } catch (error: unknown) {
+    console.warn(
+      `[Telemetry] WakaTime fetch handled: ${error instanceof Error ? error.message : String(error)}`
+    );
     return fallback;
   } finally {
     clearTimeout(timeout);

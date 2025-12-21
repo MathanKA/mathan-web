@@ -49,11 +49,6 @@ export function Footer() {
     }
   };
 
-  const itemVariants = {
-    initial: { opacity: 0, y: shouldReduceMotion ? 0 : 10 },
-    whileInView: { opacity: 1, y: 0 }
-  };
-
   return (
     <footer
       role="contentinfo"
@@ -130,7 +125,7 @@ export function Footer() {
             {/* Column D: Network [Cols 11-12] */}
             <div className="col-span-6 md:col-span-2 md:border-l md:border-white/5 md:pl-8 space-y-4">
               <div className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.2em]">
-                {"// NETWORK"}
+                {"// CONNECT"}
               </div>
               <div className="flex flex-wrap gap-4">
                 {SOCIAL_LINKS.map((social) => (

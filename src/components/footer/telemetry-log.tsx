@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { GitBranch, Clock, AlertCircle } from "lucide-react";
+import { GitBranch, Clock, AlertCircle, ExternalLink } from "lucide-react";
 import { type TelemetryData } from "@/lib/telemetry";
 import { cn } from "@/lib/utils";
 
@@ -57,13 +57,26 @@ export function TelemetryLog() {
             Last Commit
           </span>
         </div>
-        <div className="group relative">
-          <p className="text-zinc-400 hover:text-white transition-colors cursor-help">
-            {latestShip?.text || "No recent activity"}
-            <span className="ml-2 text-zinc-600">
-              ({latestShip?.whenRelative})
-            </span>
-          </p>
+        <div className="group relative w-fit">
+          {latestShip ? (
+            <a
+              href={latestShip.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 text-zinc-400 hover:text-emerald-400 transition-colors cursor-pointer"
+            >
+              <span className="truncate max-w-[250px]">{latestShip.text}</span>
+              <ExternalLink
+                size={10}
+                className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 shrink-0"
+              />
+              <span className="text-zinc-600 ml-1">
+                ({latestShip.whenRelative})
+              </span>
+            </a>
+          ) : (
+            <p className="text-zinc-500">No recent activity</p>
+          )}
 
           {/* Tooltip */}
           {latestShip && (
@@ -78,13 +91,47 @@ export function TelemetryLog() {
       </div>
 
       {/* Row 2: Energy Monitor (Wakatime) */}
-      <div className="space-y-1.5">
+      <div className="space-y-1.5 relative group/waka">
         <div className="flex items-center gap-2 text-fuchsia-400">
           <Clock size={12} />
           <span className="uppercase tracking-widest opacity-70">
-            Weekly Focus
+            Focus Monitor
           </span>
         </div>
+
+        {/* WakaTime Tooltip */}
+        {waka.segments.length > 0 && (
+          <div className="absolute bottom-full left-0 mb-2 p-2 bg-zinc-900 border border-white/10 rounded text-[10px] font-mono text-white opacity-0 group-hover/waka:opacity-100 transition-opacity pointer-events-none z-20 min-w-[140px]">
+            <div className="space-y-1">
+              <div className="text-zinc-500 uppercase text-[9px] mb-1">
+                Languages
+              </div>
+              {waka.segments.slice(0, 3).map((seg, i) => (
+                <div key={seg.label} className="flex justify-between gap-4">
+                  <span
+                    className={cn(
+                      i === 0
+                        ? "text-brand-primary/80"
+                        : i === 1
+                          ? "text-brand-secondary/80"
+                          : "text-brand-accent/90",
+                      "font-semibold tracking-wider"
+                    )}
+                  >
+                    {seg.label}
+                  </span>
+                  <span>{Math.round(seg.pct)}%</span>
+                </div>
+              ))}
+              {waka.segments.length > 3 && (
+                <div className="text-zinc-500 italic pt-1 mt-1 border-t border-white/5">
+                  + {waka.segments.length - 3} others
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
         <div className="space-y-1">
           <div className="flex justify-between items-baseline">
             <span className="text-white font-bold">{waka.totalText} Focus</span>
@@ -99,10 +146,10 @@ export function TelemetryLog() {
                 className={cn(
                   "h-full",
                   i === 0
-                    ? "bg-blue-500"
+                    ? "bg-brand-primary/50"
                     : i === 1
-                      ? "bg-emerald-500"
-                      : "bg-fuchsia-500"
+                      ? "bg-brand-secondary/50"
+                      : "bg-brand-accent/50"
                 )}
                 style={{ width: `${seg.pct}%` }}
               />
