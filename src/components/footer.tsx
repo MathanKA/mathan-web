@@ -1,17 +1,16 @@
 "use client";
-
-import { useState, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
-import { Github, Linkedin, Mail, Copy, Check } from "lucide-react";
-import { toast } from "sonner";
-import { cn } from "@/lib/utils";
+import { Github, Linkedin, Mail, ArrowRight } from "lucide-react";
+import { FooterCTA } from "./footer/footer-cta";
+import { TelemetryLog } from "./footer/telemetry-log";
 
-const NAV_LINKS = [
+const NAV_INDEX = [
   { name: "Home", href: "/" },
-  { name: "Work", href: "/#work" },
-  { name: "Experience", href: "/#experience" },
-  { name: "About", href: "/#about" }
+  { name: "Case Studies", href: "/case-studies" },
+  { name: "Resume", href: "/resume" },
+  { name: "Uses", href: "/uses" }
 ];
 
 const SOCIAL_LINKS = [
@@ -19,50 +18,32 @@ const SOCIAL_LINKS = [
     name: "GitHub",
     href: "https://github.com/MathanKA",
     icon: Github,
-    label: "GitHub (opens in a new tab)"
+    label: "GitHub"
   },
   {
     name: "LinkedIn",
     href: "https://linkedin.com/in/mathanka",
     icon: Linkedin,
-    label: "LinkedIn (opens in a new tab)"
+    label: "LinkedIn"
+  },
+  {
+    name: "Email",
+    href: "mailto:hello@mathan.pro",
+    icon: Mail,
+    label: "Email"
   }
 ];
 
 export function Footer() {
   const shouldReduceMotion = useReducedMotion();
-  const [isCopied, setIsCopied] = useState(false);
-  const email = "hello@mathan.pro";
-
-  const copyToClipboard = useCallback(async () => {
-    try {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText(email);
-      } else {
-        // Fallback for older browsers
-        const textArea = document.createElement("textarea");
-        textArea.value = email;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textArea);
-      }
-      setIsCopied(true);
-      toast.success("Email copied to clipboard!");
-      setTimeout(() => setIsCopied(false), 2000);
-    } catch (err) {
-      console.error("Failed to copy!", err);
-      toast.error("Failed to copy email.");
-    }
-  }, [email]);
 
   const containerVariants = {
-    initial: { opacity: 0, y: shouldReduceMotion ? 0 : 12 },
+    initial: { opacity: 0, y: shouldReduceMotion ? 0 : 20 },
     whileInView: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.6,
         staggerChildren: 0.1
       }
     }
@@ -76,106 +57,82 @@ export function Footer() {
   return (
     <footer
       role="contentinfo"
-      className="w-full bg-transparent border-t border-white/10 pt-20 pb-10"
+      className="w-full bg-black/40 backdrop-blur-xl border-t border-white/10 pt-24 pb-8 overflow-hidden"
     >
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           variants={containerVariants}
           initial="initial"
           whileInView="whileInView"
-          viewport={{ once: true, amount: 0.2 }}
-          className="grid grid-cols-12 gap-y-16"
+          viewport={{ once: true, amount: 0.1 }}
+          className="grid grid-cols-12 gap-y-20"
         >
-          {/* Zone A: Big Ask */}
-          <div className="col-span-12 flex flex-col items-center text-center space-y-8">
-            <motion.h2
-              variants={itemVariants}
-              className="text-4xl md:text-6xl font-sans font-bold tracking-tight text-white"
-            >
-              Ready to engineer the future?
-            </motion.h2>
+          {/* Zone A: The Big Ask (Refactored) */}
+          <FooterCTA />
 
-            <motion.div variants={itemVariants} className="group relative">
-              {/* Tooltip */}
-              <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1 bg-zinc-900 border border-white/10 rounded text-[10px] font-mono uppercase tracking-wider text-foreground opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity pointer-events-none mb-2 z-10">
-                {isCopied ? "Copied!" : "Copy to clipboard"}
+          {/* Zone B: The Command Center (Data Grid) */}
+          <div className="col-span-12 grid grid-cols-12 gap-8 md:gap-4 border-t border-white/5 pt-16">
+            {/* Column A: Identity & Status [Cols 1-3] */}
+            <div className="col-span-12 md:col-span-3 space-y-6">
+              <div className="flex items-center gap-3">
+                <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-white/10 bg-zinc-900 flex items-center justify-center p-1.5 grayscale hover:grayscale-0 transition-all">
+                  <Image
+                    src="/images/mathan.svg"
+                    alt="M Logo"
+                    fill
+                    className="object-contain p-1"
+                  />
+                </div>
+                <span className="text-sm font-bold uppercase tracking-widest bg-clip-text bg-gradient-to-b from-white via-white/90 to-white/50 drop-shadow-2xl">
+                  Mathan K A
+                </span>
               </div>
 
-              <button
-                type="button"
-                onClick={copyToClipboard}
-                onKeyDown={(e) => e.key === "Enter" && copyToClipboard()}
-                className={cn(
-                  "flex items-center gap-3 px-6 py-4 rounded-full transition-all duration-300",
-                  "backdrop-blur-2xl bg-zinc-900/50 border border-white/10",
-                  "hover:border-white/20 hover:bg-zinc-800/50 focus-visible:ring-2 focus-visible:ring-white/30 outline-none",
-                  "group/btn text-lg md:text-xl font-mono text-zinc-300 hover:text-white"
-                )}
-                aria-label={`Copy email address: ${email}`}
-              >
-                <span>{email}</span>
-                {isCopied ? (
-                  <Check className="w-5 h-5 text-green-400 shrink-0" />
-                ) : (
-                  <Copy className="w-5 h-5 group-hover/btn:scale-110 transition-transform shrink-0" />
-                )}
-              </button>
-
-              <div className="mt-4">
-                <a
-                  href={`mailto:${email}`}
-                  className="text-xs font-mono uppercase tracking-widest text-zinc-500 hover:text-brand-accent transition-colors"
-                >
-                  Or email me directly
-                </a>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Zone B: Data Grid */}
-          <div className="col-span-12 grid grid-cols-12 gap-8 border-t border-white/5 pt-16">
-            {/* Column 1: Identity */}
-            <div className="col-span-12 md:col-span-3 space-y-4">
-              <div className="space-y-1">
-                <h3 className="font-sans font-bold text-white tracking-widest text-sm uppercase">
-                  MATHAN K A
-                </h3>
-                <p className="text-zinc-500 text-sm">
-                  Senior Full-Stack Engineer
-                </p>
-              </div>
-              <div className="flex items-center gap-2">
-                <div
-                  className="w-2 h-2 rounded-full bg-green-500 animate-status-pulse"
-                  aria-hidden="true"
-                />
-                <span className="text-[10px] font-mono uppercase tracking-tighter text-zinc-400">
+              <div className="flex items-center gap-2 group cursor-default">
+                <div className="relative">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-brand-primary)] animate-pulse animate-status-pulse" />
+                  <div className="absolute inset-0 w-1.5 h-1.5 rounded-full bg-[var(--color-brand-primary)] animate-ping opacity-40" />
+                </div>
+                <span className="text-xs text-zinc-400 font-medium tracking-widest   group-hover:text-white transition-colors duration-300">
                   Open to Opportunities
                 </span>
               </div>
             </div>
 
-            {/* Column 2: Navigation */}
-            <div className="col-span-12 md:col-span-3">
-              <nav aria-label="Footer">
-                <ul className="space-y-3">
-                  {NAV_LINKS.map((link) => (
-                    <li key={link.name}>
-                      <Link
-                        href={link.href}
-                        className="font-mono text-sm text-zinc-400 hover:text-brand-accent transition-colors"
-                      >
-                        {link.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
+            {/* Column B: The Unified Telemetry Stream [Cols 4-7] */}
+            <div className="col-span-12 md:col-span-4 border-l md:border-white/5 md:pl-8 space-y-4">
+              <div className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.2em]">
+                {"// Dev ACTIVITY"}
+              </div>
+              <TelemetryLog />
             </div>
 
-            {/* Column 3: Connect */}
-            <div className="col-span-12 md:col-span-3 space-y-6">
-              <div className="flex gap-4">
+            {/* Column C: Navigation Index [Cols 8-10] */}
+            <div className="col-span-6 md:col-span-3 md:border-l md:border-white/5 md:pl-8 space-y-4">
+              <div className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.2em]">
+                {"// INDEX"}
+              </div>
+              <ul className="space-y-2">
+                {NAV_INDEX.map((link) => (
+                  <li key={link.name} className="group flex items-center gap-2">
+                    <ArrowRight className="w-3 h-3 text-[var(--color-brand-primary)] -ml-5 opacity-0 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
+                    <Link
+                      href={link.href}
+                      className="text-sm text-zinc-400 hover:text-white transition-colors duration-200"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column D: Network [Cols 11-12] */}
+            <div className="col-span-6 md:col-span-2 md:border-l md:border-white/5 md:pl-8 space-y-4">
+              <div className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.2em]">
+                {"// NETWORK"}
+              </div>
+              <div className="flex flex-wrap gap-4">
                 {SOCIAL_LINKS.map((social) => (
                   <a
                     key={social.name}
@@ -183,37 +140,20 @@ export function Footer() {
                     target="_blank"
                     rel="noreferrer noopener"
                     aria-label={social.label}
-                    className="group/social"
+                    className="p-2 rounded-md bg-white/5 border border-white/5 hover:border-white/20 hover:bg-white/10 hover:scale-110 transition-all duration-300 group"
                   >
-                    <div className="p-2 rounded-lg bg-zinc-900/50 border border-white/5 group-hover/social:border-white/20 group-hover/social:bg-white/5 transition-all duration-200 group-hover/social:scale-110 group-hover/social:shadow-[0_0_15px_rgba(255,255,255,0.1)]">
-                      <social.icon className="w-5 h-5 text-zinc-400 group-hover/social:text-white transition-colors" />
-                    </div>
+                    <social.icon className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors" />
                   </a>
                 ))}
-                <a
-                  href={`mailto:${email}`}
-                  aria-label="Email Mathan"
-                  className="group/social"
-                >
-                  <div className="p-2 rounded-lg bg-zinc-900/50 border border-white/5 group-hover/social:border-white/20 group-hover/social:bg-white/5 transition-all duration-200 group-hover/social:scale-110 group-hover/social:shadow-[0_0_15px_rgba(255,255,255,0.1)]">
-                    <Mail className="w-5 h-5 text-zinc-400 group-hover/social:text-white transition-colors" />
-                  </div>
-                </a>
-              </div>
-              <div className="flex items-center gap-1.5 text-zinc-500">
-                <span className="text-sm font-mono tracking-tight">
-                  Bengaluru, India
-                </span>
               </div>
             </div>
+          </div>
 
-            {/* Column 4: Colophon */}
-            <div className="col-span-12 md:col-span-3 space-y-4 text-right md:text-left">
-              <p className="text-xs font-mono text-zinc-500 leading-relaxed uppercase tracking-tighter">
-                Built with Next.js 16, React 19 & Tailwind 4.
-              </p>
-              <p className="text-xs font-mono text-zinc-600 uppercase tracking-tighter">
-                © 2025 Mathan.pro. All rights reserved.
+          {/* Bottom Bar (Copyright) */}
+          <div className="col-span-12 pt-12 border-t border-white/5">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-4 text-center">
+              <p className="font-mono text-[10px] text-zinc-600 uppercase tracking-widest">
+                Crafted with Next.js & Tailwind | © 2025 Mathan K A
               </p>
             </div>
           </div>
