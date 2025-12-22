@@ -9,11 +9,6 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col gap-0">
-      {/* Recommended Path */}
-      {/* <div className="container mx-auto px-4 pt-32 md:pt-40 lg:pt-32">
-        <RecommendedPath mode={mode} />
-      </div> */}
-
       {/* Hero Section - FULL WIDTH */}
       <HomeHero mode={mode} />
 

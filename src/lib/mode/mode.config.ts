@@ -33,11 +33,10 @@ export interface ModeConfig {
 export const MODE_CONFIG: Record<ViewerMode, ModeConfig> = {
   recruiter: {
     hero: {
-      primaryCTA: { label: "View Resume", href: "/resume" },
+      primaryCTA: { label: "View Case Studies", href: "/case-studies" },
       secondaryCTA: {
-        label: "Contact Me",
-        href: "mailto:hello@mathan.pro",
-        external: true
+        label: "Connect",
+        href: "/contact"
       },
       bullets: ["role-breadth", "delivery", "proof-metrics"]
     },
@@ -79,7 +78,7 @@ export const MODE_CONFIG: Record<ViewerMode, ModeConfig> = {
   },
   engineer: {
     hero: {
-      primaryCTA: { label: "View Case Studies", href: "/projects" },
+      primaryCTA: { label: "View Case Studies", href: "/case-studies" },
       secondaryCTA: {
         label: "GitHub",
         href: "https://github.com/MathanKA",
@@ -116,18 +115,18 @@ export const HERO_BULLETS: Record<
   { icon: string; text: string; color: string }
 > = {
   "role-breadth": {
-    icon: "Check",
-    text: "Building Quansentz, a privacy-first Consent with audit-ready & multi-tenant",
+    icon: "Fingerprint",
+    text: "Building a privacy consent product with audit ready & multi-tenant",
     color: "text-green-500"
   },
   delivery: {
-    icon: "Globe",
-    text: "End-to-end delivery from design to deploy",
+    icon: "Rocket",
+    text: "Led cybersecurity products frontend, delivered on schedule in a startup environment",
     color: "text-purple-500"
   },
   "proof-metrics": {
-    icon: "Zap",
-    text: "Proven track record: Lighthouse 90+, WCAG 2.1 AA",
+    icon: "Lightbulb",
+    text: "Passionate to mentor and explore new tech through workshops",
     color: "text-yellow-500"
   },
   impact: {

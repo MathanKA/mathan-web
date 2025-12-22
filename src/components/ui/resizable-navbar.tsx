@@ -73,7 +73,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
       className={cn("sticky inset-x-0 top-20 z-40 w-full", className)}
     >
       {React.Children.map(children, (child) =>
-        React.isValidElement(child)
+        React.isValidElement(child) && typeof child.type !== "string"
           ? React.cloneElement(
               child as React.ReactElement<{ visible?: boolean }>,
               { visible }

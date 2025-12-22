@@ -28,7 +28,6 @@ export function HeaderResizable() {
   return (
     <Navbar className="fixed top-0 inset-x-0 z-50 h-fit">
       {/* Desktop & Tablet view */}
-      {/* Desktop & Tablet view */}
       <NavBody className="container mx-auto px-4 justify-between items-center bg-black/20 dark:bg-black/50 backdrop-blur-md lg:bg-transparent lg:backdrop-blur-md lg:dark:bg-transparent">
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center gap-3">
