@@ -28,7 +28,7 @@ export function ResumeSidebar({ data }: ResumeSidebarProps) {
           <p className="text-lg font-medium text-muted-foreground mt-2">
             {data.header.titleLine.split("|")[0].trim()}
           </p>
-          <p className="text-sm text-muted-foreground/80 mt-1 uppercase tracking-widest font-mono">
+          <p className="text-sm text-muted-foreground/80 mt-1 uppercase tracking-widest font-sans">
             {data.header.location}
           </p>
         </motion.div>

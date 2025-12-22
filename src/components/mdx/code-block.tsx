@@ -32,7 +32,7 @@ export function CodeBlock({ children, ...props }: CodeBlockProps) {
           <div className="h-2.5 w-2.5 rounded-full bg-amber-500/50" />
           <div className="h-2.5 w-2.5 rounded-full bg-emerald-500/50" />
         </div>
-        <div className="font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+        <div className="font-sans text-[10px] uppercase tracking-widest text-zinc-500">
           Source_Code
         </div>
         <div className="absolute right-4 top-1.5 z-10 opacity-0 group-hover:opacity-100 transition-opacity">

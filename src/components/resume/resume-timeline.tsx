@@ -67,7 +67,7 @@ export function ResumeTimeline({ data }: ResumeTimelineProps) {
                       {exp.role}
                     </p>
                   </div>
-                  <div className="flex flex-col gap-1 text-sm text-white/50 font-mono">
+                  <div className="flex flex-col gap-1 text-sm text-white/50 font-sans">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-3.5 h-3.5" />
                       {exp.dates}
@@ -128,7 +128,7 @@ export function ResumeTimeline({ data }: ResumeTimelineProps) {
                     <p className="font-bold text-white/80">{exp.company}</p>
                     <p className="text-xs text-brand-primary/60">{exp.role}</p>
                   </div>
-                  <span className="text-[10px] font-mono text-white/40">
+                  <span className="text-[10px] font-sans text-white/40">
                     {exp.dates}
                   </span>
                 </div>
@@ -184,7 +184,7 @@ export function ResumeTimeline({ data }: ResumeTimelineProps) {
                 {project.tech.map((t, i) => (
                   <span
                     key={i}
-                    className="text-[10px] px-2 py-1 rounded bg-black/40 border border-white/5 text-white/40 font-mono"
+                    className="text-[10px] px-2 py-1 rounded bg-black/40 border border-white/5 text-white/40 font-sans"
                   >
                     {t}
                   </span>

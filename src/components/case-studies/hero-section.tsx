@@ -28,7 +28,7 @@ export function HeroSection({ data }: HeroSectionProps) {
             variant="ghost"
             size="sm"
             asChild
-            className="-ml-3 font-mono text-xs text-zinc-500 hover:text-white"
+            className="-ml-3 font-sans text-xs text-zinc-500 hover:text-white"
           >
             <Link href="/case-studies">
               <ArrowLeft className="mr-2 h-3 w-3" />
@@ -50,7 +50,7 @@ export function HeroSection({ data }: HeroSectionProps) {
                 <Badge
                   variant="outline"
                   className={cn(
-                    "border-white/10 bg-white/5 font-mono text-[10px] uppercase tracking-tighter",
+                    "border-white/10 bg-white/5 font-sans text-[10px] uppercase tracking-tighter",
                     accentColor === "fuchsia"
                       ? "text-brand-secondary"
                       : "text-brand-primary"
@@ -59,7 +59,7 @@ export function HeroSection({ data }: HeroSectionProps) {
                   {data.status}
                 </Badge>
                 {data.featured && (
-                  <Badge className="bg-white/10 text-white font-mono text-[10px] uppercase">
+                  <Badge className="bg-white/10 text-white font-sans text-[10px] uppercase">
                     FEATURED_SPEC
                   </Badge>
                 )}
@@ -78,7 +78,7 @@ export function HeroSection({ data }: HeroSectionProps) {
               {/* System Specs Metadata Row */}
               <div className="mt-12 flex flex-wrap gap-x-10 gap-y-6 pt-8 border-t border-white/10">
                 <div className="space-y-1">
-                  <span className="block font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+                  <span className="block font-sans text-[10px] uppercase tracking-widest text-zinc-500">
                     Role
                   </span>
                   <div className="flex items-center gap-2 text-sm text-zinc-300">
@@ -89,7 +89,7 @@ export function HeroSection({ data }: HeroSectionProps) {
 
                 {data.company && (
                   <div className="space-y-1">
-                    <span className="block font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+                    <span className="block font-sans text-[10px] uppercase tracking-widest text-zinc-500">
                       Company
                     </span>
                     <div className="flex items-center gap-2 text-sm text-zinc-300">
@@ -101,7 +101,7 @@ export function HeroSection({ data }: HeroSectionProps) {
 
                 {data.timeline && (
                   <div className="space-y-1">
-                    <span className="block font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+                    <span className="block font-sans text-[10px] uppercase tracking-widest text-zinc-500">
                       Timeline
                     </span>
                     <div className="flex items-center gap-2 text-sm text-zinc-300">
@@ -112,7 +112,7 @@ export function HeroSection({ data }: HeroSectionProps) {
                 )}
 
                 <div className="space-y-1">
-                  <span className="block font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+                  <span className="block font-sans text-[10px] uppercase tracking-widest text-zinc-500">
                     Stack
                   </span>
                   <div className="flex flex-wrap gap-1.5 pt-0.5">

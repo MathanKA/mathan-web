@@ -96,7 +96,7 @@ export function Footer() {
 
             {/* Column B: The Unified Telemetry Stream [Cols 4-7] */}
             <div className="col-span-12 md:col-span-4 border-l md:border-white/5 md:pl-8 space-y-4">
-              <div className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.2em]">
+              <div className="font-sans text-[10px] text-zinc-600 uppercase tracking-[0.2em]">
                 {"// Dev ACTIVITY"}
               </div>
               <TelemetryLog />
@@ -104,7 +104,7 @@ export function Footer() {
 
             {/* Column C: Navigation Index [Cols 8-10] */}
             <div className="col-span-6 md:col-span-3 md:border-l md:border-white/5 md:pl-8 space-y-4">
-              <div className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.2em]">
+              <div className="font-sans text-[10px] text-zinc-600 uppercase tracking-[0.2em]">
                 {"// INDEX"}
               </div>
               <ul className="space-y-2">
@@ -124,7 +124,7 @@ export function Footer() {
 
             {/* Column D: Network [Cols 11-12] */}
             <div className="col-span-6 md:col-span-2 md:border-l md:border-white/5 md:pl-8 space-y-4">
-              <div className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.2em]">
+              <div className="font-sans text-[10px] text-zinc-600 uppercase tracking-[0.2em]">
                 {"// CONNECT"}
               </div>
               <div className="flex flex-wrap gap-4">
@@ -147,7 +147,7 @@ export function Footer() {
           {/* Bottom Bar (Copyright) */}
           <div className="col-span-12 pt-12 border-t border-white/5">
             <div className="flex flex-col md:flex-row justify-center items-center gap-4 text-center">
-              <p className="font-mono text-[10px] text-zinc-600 uppercase tracking-widest">
+              <p className="font-sans text-[10px] text-zinc-600 uppercase tracking-widest">
                 Crafted with Next.js & Tailwind | © 2025 Mathan K A
               </p>
             </div>

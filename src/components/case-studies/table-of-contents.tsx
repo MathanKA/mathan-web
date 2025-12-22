@@ -69,7 +69,7 @@ export function TableOfContents() {
 
   return (
     <nav className="sticky top-32 space-y-4 pr-8">
-      <h4 className="font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+      <h4 className="font-sans text-[10px] uppercase tracking-widest text-zinc-500">
         TECHNICAL_SPEC_INDEX
       </h4>
 

@@ -53,7 +53,7 @@ export const FeaturedEngineeringSection = () => {
               {/* Header */}
               <div className="space-y-4">
                 <span
-                  className="text-[10px] md:text-xs font-mono tracking-[0.2em] uppercase transition-colors duration-500"
+                  className="text-[10px] md:text-xs font-sans tracking-[0.2em] uppercase transition-colors duration-500"
                   style={{ color: activeItem.theme.accentHex }}
                 >
                   Featured Engineering
@@ -104,7 +104,7 @@ export const FeaturedEngineeringSection = () => {
               >
                 <div className="grid grid-cols-2 gap-6">
                   <div className="space-y-1">
-                    <span className="text-[10px] font-mono text-zinc-500 uppercase uppercase tracking-wider">
+                    <span className="text-[10px] font-sans text-zinc-500 uppercase uppercase tracking-wider">
                       Role
                     </span>
                     <div className="text-sm text-zinc-300 font-medium">
@@ -112,7 +112,7 @@ export const FeaturedEngineeringSection = () => {
                     </div>
                   </div>
                   <div className="space-y-1">
-                    <span className="text-[10px] font-mono text-zinc-500 uppercase uppercase tracking-wider">
+                    <span className="text-[10px] font-sans text-zinc-500 uppercase uppercase tracking-wider">
                       Metric
                     </span>
                     <div
@@ -125,7 +125,7 @@ export const FeaturedEngineeringSection = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase uppercase tracking-wider">
+                  <span className="text-[10px] font-sans text-zinc-500 uppercase uppercase tracking-wider">
                     Stack
                   </span>
                   <div className="flex flex-wrap gap-2">
@@ -239,7 +239,7 @@ const ProjectIndexItem = ({
           <motion.span
             initial={{ opacity: 0, y: -2 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-[10px] font-mono tracking-tighter transition-colors"
+            className="text-[10px] font-sans tracking-tighter transition-colors"
             style={{ color: item.theme.accentHex }}
           >
             {item.tagline}

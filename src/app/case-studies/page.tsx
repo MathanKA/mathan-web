@@ -34,7 +34,7 @@ export default function CaseStudiesPage() {
       <div className="container relative z-10 mx-auto px-4 md:px-6 py-24 md:py-32 max-w-7xl">
         {/* --- HEADER --- */}
         <div className="max-w-2xl mb-16 md:mb-24 space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] md:text-xs font-mono text-[var(--color-brand-primary)] uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] md:text-xs font-sans text-[var(--color-brand-primary)] uppercase tracking-wider">
             <Sparkles size={12} />
             <span>Engineering Logs</span>
           </div>
@@ -66,7 +66,7 @@ export default function CaseStudiesPage() {
                       <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-[var(--color-brand-primary)] text-black">
                         Featured Issue
                       </span>
-                      <span className="text-xs text-zinc-500 font-mono flex items-center gap-1">
+                      <span className="text-xs text-zinc-500 font-sans flex items-center gap-1">
                         <Calendar size={12} />
                         {featuredPost.date
                           ? new Date(featuredPost.date).getFullYear()
@@ -86,7 +86,7 @@ export default function CaseStudiesPage() {
                       {featuredPost.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-3 py-1 text-xs font-mono rounded-md bg-white/5 text-zinc-300 border border-white/10"
+                          className="px-3 py-1 text-xs font-sans rounded-md bg-white/5 text-zinc-300 border border-white/10"
                         >
                           {tag}
                         </span>
@@ -121,7 +121,7 @@ export default function CaseStudiesPage() {
                         {post.tags.slice(0, 2).map((tag) => (
                           <span
                             key={tag}
-                            className="text-[10px] uppercase tracking-wider text-zinc-500 font-mono"
+                            className="text-[10px] uppercase tracking-wider text-zinc-500 font-sans"
                           >
                             #{tag}
                           </span>
@@ -145,7 +145,7 @@ export default function CaseStudiesPage() {
 
                     {/* Footer */}
                     <div className="pt-6 border-t border-white/5 flex items-center justify-between">
-                      <span className="text-xs text-zinc-500 font-mono">
+                      <span className="text-xs text-zinc-500 font-sans">
                         {"// "}
                         {post.date
                           ? new Date(post.date).toLocaleDateString("en-US", {

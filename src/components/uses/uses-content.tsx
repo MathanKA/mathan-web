@@ -62,7 +62,7 @@ export function UsesContent() {
                     <button
                       key={category.id}
                       onClick={() => scrollToSection(category.id)}
-                      className="text-sm font-mono text-zinc-500 hover:text-white transition-colors text-left group flex items-center gap-2"
+                      className="text-sm font-sans text-zinc-500 hover:text-white transition-colors text-left group flex items-center gap-2"
                     >
                       <span className="w-1 h-1 rounded-full bg-brand-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                       {category.title}
@@ -71,10 +71,10 @@ export function UsesContent() {
                 </nav>
 
                 <div className="flex flex-col gap-1">
-                  <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-600 font-mono">
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-600 font-sans">
                     Last Updated
                   </span>
-                  <span className="text-xs text-zinc-400 font-mono">
+                  <span className="text-xs text-zinc-400 font-sans">
                     {LAST_UPDATED}
                   </span>
                 </div>

@@ -43,7 +43,7 @@ export function UsesLinkRow({ item, onViewConfig }: UsesLinkRowProps) {
       {item.config && onViewConfig && (
         <button
           onClick={() => onViewConfig(item.config!)}
-          className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/10 border border-white/10 text-[10px] font-mono uppercase tracking-wider text-zinc-400 hover:text-zinc-200 transition-all active:scale-95"
+          className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/10 border border-white/10 text-[10px] font-sans uppercase tracking-wider text-zinc-400 hover:text-zinc-200 transition-all active:scale-95"
         >
           <Terminal className="h-3 w-3" />
           <span>Config</span>

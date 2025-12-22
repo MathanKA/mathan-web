@@ -18,7 +18,7 @@ export function NextProjectCard({ project }: NextProjectCardProps) {
 
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
           <div className="space-y-4">
-            <span className="font-mono text-xs uppercase tracking-widest text-zinc-500">
+            <span className="font-sans text-xs uppercase tracking-widest text-zinc-500">
               NEXT_CHASSIS
             </span>
 
@@ -33,11 +33,11 @@ export function NextProjectCard({ project }: NextProjectCardProps) {
             <div className="flex items-center gap-4 pt-4">
               <Badge
                 variant="outline"
-                className="border-white/10 bg-white/5 font-mono text-[10px] uppercase text-zinc-400"
+                className="border-white/10 bg-white/5 font-sans text-[10px] uppercase text-zinc-400"
               >
                 {project.status}
               </Badge>
-              <div className="flex items-center gap-2 text-brand-primary font-mono text-xs font-bold uppercase tracking-tighter transition-all group-hover:gap-4">
+              <div className="flex items-center gap-2 text-brand-primary font-sans text-xs font-bold uppercase tracking-tighter transition-all group-hover:gap-4">
                 Execute Dive <ArrowRight className="h-3 w-3" />
               </div>
             </div>

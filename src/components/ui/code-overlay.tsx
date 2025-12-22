@@ -71,7 +71,7 @@ export function CodeOverlay({
                     <div className="h-2.5 w-2.5 rounded-full bg-amber-500/50" />
                     <div className="h-2.5 w-2.5 rounded-full bg-emerald-500/50" />
                   </div>
-                  <span className="font-mono text-xs text-zinc-400 select-none">
+                  <span className="font-sans text-xs text-zinc-400 select-none">
                     {title}
                   </span>
                 </div>
@@ -111,7 +111,7 @@ export function CodeOverlay({
 
               {/* Footer / Meta */}
               <div className="px-4 py-2 border-t border-white/5 bg-white/2 flex justify-end">
-                <span className="text-[10px] uppercase tracking-widest text-zinc-600 font-mono">
+                <span className="text-[10px] uppercase tracking-widest text-zinc-600 font-sans">
                   {language}
                 </span>
               </div>

@@ -61,7 +61,7 @@ export const SkillsSection = () => {
               <div className="flex items-center justify-center p-3 rounded-xl bg-[#f59e0b]/20 text-[#fbbf24]/60">
                 <PencilRuler size={22} />
               </div>
-              <h3 className="text-xl font-mono text-zinc-200 uppercase tracking-wider mt-2">
+              <h3 className="text-xl font-sans text-zinc-200 uppercase tracking-wider mt-2">
                 {"Craftsmanship"}
               </h3>
             </div>
@@ -83,7 +83,7 @@ export const SkillsSection = () => {
               <div className="flex items-center justify-center p-3 rounded-xl bg-[#880088]/20 text-[#e879f9]/80">
                 <Activity size={22} />
               </div>
-              <h3 className="text-xl font-mono text-zinc-200 uppercase tracking-wider mt-2">
+              <h3 className="text-xl font-sans text-zinc-200 uppercase tracking-wider mt-2">
                 {"Adaptability"}
               </h3>
             </div>
@@ -105,7 +105,7 @@ export const SkillsSection = () => {
               <div className="flex items-center justify-center p-3 rounded-xl bg-[#10b981]/20 text-[#34d399]/80">
                 <ShieldCheck size={22} />
               </div>
-              <h3 className="text-xl font-mono text-zinc-200 uppercase tracking-wider mt-2">
+              <h3 className="text-xl font-sans text-zinc-200 uppercase tracking-wider mt-2">
                 {"Performance & Sec"}
               </h3>
             </div>
@@ -127,7 +127,7 @@ export const SkillsSection = () => {
               <div className="flex items-center justify-center p-3 rounded-xl bg-[#333eee]/15 text-[#6366f1]/80">
                 <Layers size={22} />
               </div>
-              <h3 className="text-xl font-mono text-zinc-200 uppercase tracking-wider mt-2">
+              <h3 className="text-xl font-sans text-zinc-200 uppercase tracking-wider mt-2">
                 {"Frontend Ecosystem"}
               </h3>
             </div>

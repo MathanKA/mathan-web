@@ -40,7 +40,7 @@ export function ImpactCard({
       />
 
       <div className="space-y-2">
-        <span className="font-mono text-xs uppercase tracking-widest text-zinc-500">
+        <span className="font-sans text-xs uppercase tracking-widest text-zinc-500">
           {label}
         </span>
         <h3 className="bg-gradient-to-br from-white to-zinc-500 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl">

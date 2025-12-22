@@ -213,7 +213,7 @@ const TimelineItem = ({ item, isActive, onInView }: TimelineItemProps) => {
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
             <div>
-              <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-1">
+              <span className="font-sans text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-1">
                 {"// "}
                 {item.from.replace(" ", "_").toUpperCase()} —{" "}
                 {item.to.replace(" ", "_").toUpperCase()}
@@ -229,7 +229,7 @@ const TimelineItem = ({ item, isActive, onInView }: TimelineItemProps) => {
               </div>
             </div>
             <div className="flex flex-col items-start md:items-end gap-1">
-              <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider px-2 py-1 rounded bg-white/5 border border-white/10">
+              <span className="text-[10px] font-sans text-zinc-500 uppercase tracking-wider px-2 py-1 rounded bg-white/5 border border-white/10">
                 {item.type}
               </span>
               <span className="text-xs text-zinc-400">{item.location}</span>
@@ -245,7 +245,7 @@ const TimelineItem = ({ item, isActive, onInView }: TimelineItemProps) => {
             {item.tech.map((t) => (
               <span
                 key={t}
-                className="px-2 py-1 rounded text-[10px] font-mono bg-white/5 text-zinc-300 border border-white/5 uppercase tracking-tighter hover:border-[var(--color-brand-primary)] hover:text-white transition-colors"
+                className="px-2 py-1 rounded text-[10px] font-sans bg-white/5 text-zinc-300 border border-white/5 uppercase tracking-tighter hover:border-[var(--color-brand-primary)] hover:text-white transition-colors"
               >
                 {t}
               </span>
@@ -276,7 +276,7 @@ export const ExperienceSection = () => {
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="grid grid-cols-12 gap-8 mb-16 md:mb-24">
           <div className="col-span-12">
-            <span className="text-[10px] md:text-xs font-mono tracking-[0.3em] text-[var(--color-brand-primary)] uppercase block mb-4">
+            <span className="text-[10px] md:text-xs font-sans tracking-[0.3em] text-[var(--color-brand-primary)] uppercase block mb-4">
               Professional Journey
             </span>
             <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight font-heading mb-4">

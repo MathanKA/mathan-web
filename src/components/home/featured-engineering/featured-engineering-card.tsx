@@ -74,7 +74,7 @@ export const FeaturedEngineeringCard: React.FC<
         {/* Mobile Info (Visible on small screens) */}
         <div className="md:hidden mb-8">
           <span
-            className="inline-block px-3 py-1 rounded-full text-[10px] font-mono tracking-tighter uppercase mb-2"
+            className="inline-block px-3 py-1 rounded-full text-[10px] font-sans tracking-tighter uppercase mb-2"
             style={{
               backgroundColor: `rgb(${item.theme.accentRgb} / 0.1)`,
               color: item.theme.accentHex,

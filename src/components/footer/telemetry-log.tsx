@@ -101,7 +101,7 @@ export function TelemetryLog() {
 
         {/* WakaTime Tooltip */}
         {waka.segments.length > 0 && (
-          <div className="absolute bottom-full left-0 mb-2 p-2 bg-zinc-900 border border-white/10 rounded text-[10px] font-mono text-white opacity-0 group-hover/waka:opacity-100 transition-opacity pointer-events-none z-20 min-w-[140px]">
+          <div className="absolute bottom-full left-0 mb-2 p-2 bg-zinc-900 border border-white/10 rounded text-[10px] font-sans text-white opacity-0 group-hover/waka:opacity-100 transition-opacity pointer-events-none z-20 min-w-[140px]">
             <div className="space-y-1">
               <div className="text-zinc-500 uppercase text-[9px] mb-1">
                 Languages

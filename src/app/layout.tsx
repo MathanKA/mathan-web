@@ -1,31 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Inter, Space_Grotesk } from "next/font/google";
+import { Geist, IBM_Plex_Mono } from "next/font/google";
 
 import { HeaderResizable } from "@/components/header-resizable";
 import { Footer } from "@/components/footer";
 import { JsonLd } from "@/components/seo/json-ld";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-// import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"]
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"]
-});
-
-const inter = Inter({
-  variable: "--font-heading",
-  subsets: ["latin"]
-});
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-body",
-  subsets: ["latin"]
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-ibm-plex-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"]
 });
 
 export const viewport: Viewport = {
@@ -115,7 +105,7 @@ export default async function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${spaceGrotesk.variable} antialiased flex flex-col min-h-screen`}
+        className={`${geistSans.variable} ${ibmPlexMono.variable} antialiased flex flex-col min-h-screen`}
         suppressHydrationWarning
       >
         <ThemeProvider
@@ -134,7 +124,6 @@ export default async function RootLayout({
           </main>
 
           <Footer />
-          {/* <Toaster /> */}
         </ThemeProvider>
         <JsonLd
           data={[

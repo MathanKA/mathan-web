@@ -47,7 +47,7 @@ export function FooterCTA() {
       </motion.h2>
 
       <motion.div variants={itemVariants} className="group relative">
-        <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1 bg-zinc-900 border border-white/10 rounded text-[10px] font-mono uppercase tracking-wider text-foreground opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity pointer-events-none mb-2 z-10">
+        <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1 bg-zinc-900 border border-white/10 rounded text-[10px] font-sans uppercase tracking-wider text-foreground opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity pointer-events-none mb-2 z-10">
           {isCopied ? "Copied!" : "Copy to clipboard"}
         </div>
 

@@ -2,10 +2,8 @@
 @import "../styles/common.css";
 
 @theme {
-  --font-geist-sans: var(--font-geist-sans);
-  --font-geist-mono: var(--font-geist-mono);
-  --font-heading: var(--font-heading);
-  --font-body: var(--font-body);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-ibm-plex-mono);
 
   --animate-aurora-text: aurora-text 3s linear infinite;
   --animate-shimmer-slide: shimmer-slide 3s linear infinite;

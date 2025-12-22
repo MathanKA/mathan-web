@@ -35,7 +35,7 @@ const components = {
     <h3
       className={cn(
         "group relative mt-12 scroll-m-32 text-xl font-semibold tracking-tight text-white/90 hover:text-brand-primary transition-colors",
-        "after:ml-2 after:font-mono after:text-[10px] after:text-zinc-600 after:opacity-0 after:content-['[SPEC]'] group-hover:after:opacity-100",
+        "after:ml-2 after:font-sans after:text-[10px] after:text-zinc-600 after:opacity-0 after:content-['[SPEC]'] group-hover:after:opacity-100",
         className
       )}
       {...props}
@@ -106,7 +106,7 @@ const components = {
     return (
       <code
         className={cn(
-          "relative rounded bg-white/5 border border-white/10 px-[0.4rem] py-[0.1rem] font-mono text-[0.85em] font-medium text-zinc-300",
+          "relative rounded bg-white/5 border border-white/10 px-[0.4rem] py-[0.1rem] font-sans text-[0.85em] font-medium text-zinc-300",
           className
         )}
         {...props}
