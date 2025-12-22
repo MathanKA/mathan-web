@@ -31,29 +31,37 @@ export type ExperienceItem = {
 const EXPERIENCE_DATA: ExperienceItem[] = [
   {
     id: "quansentz",
-    title: "Founder & Architect",
+    title: "Senior Full-Stack Engineer & Founder",
     company: "Quansentz",
     from: "Sep 2025",
     to: "Present",
     type: "Remote",
     location: "Global",
     description:
-      "Defining the technical roadmap for a privacy-first SaaS. Architecting multi-tenant systems and authoring core product specifications (PRDs) for a v1.0 pilot launch.",
-    tech: ["Next.js", "Prisma", "Architecture"],
-    colorVar: "var(--color-brand-primary)" // Emerald (Hero Match)
+      "Building a privacy-first consent and DSAR platform. Implemented domain-based multi-tenant isolation, RBAC-backed flows, hash-chained audit events, and a Redis worker plus S3 streaming pipeline for large encrypted exports. Set up Docker + Vercel CI/CD and authored core product specs for a v1.0 pilot.",
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Postgres",
+      "Prisma",
+      "RBAC",
+      "Redis",
+      "S3"
+    ],
+    colorVar: "var(--color-brand-primary)"
   },
   {
     id: "softzane",
-    title: "Senior Software Tutor",
-    company: "Softzane",
+    title: "Senior Software Tutor (Full-Stack, MERN)",
+    company: "Softzane Solutions",
     from: "May 2024",
     to: "Jan 2025",
     type: "Remote",
     location: "Global",
     description:
-      "Mentored students on MERN stack architecture and clean code practices. Translated complex engineering concepts into structured learning paths.",
-    tech: ["Mentorship", "Communication"],
-    colorVar: "var(--color-brand-primary)" // Amber (Retained for contrast, or use brand-secondary if preferred)
+      "Delivered instructor-led MERN training and mentored students through code reviews, debugging support, and structured feedback on assignments and mini-projects, reinforcing clean coding and web development best practices.",
+    tech: ["MERN", "Mentoring", "Code Reviews", "Teaching"],
+    colorVar: "var(--color-brand-secondary)"
   },
   {
     id: "cyware",
@@ -64,22 +72,29 @@ const EXPERIENCE_DATA: ExperienceItem[] = [
     type: "Hybrid",
     location: "Bengaluru, India",
     description:
-      "Owned the frontend for India's national CERT platform. Collaborated directly with the CTO to deliver high-stakes demos and mentored junior developers across teams.",
-    tech: ["Vue.js", "Performance", "Leadership"],
-    colorVar: "var(--color-brand-primary)" // Fuchsia (Hero Match)
+      "Led frontend delivery for threat intelligence and security platforms, collaborating with the CTO for high-stakes demos and shipping the initial CERT-In release. Revamped cyware.com for faster rendering and stability, supported VPAT-driven accessibility remediation, and modernized legacy dashboard code with Vue 3 + Vite using route-level splitting and chunking to reduce initial JS payload.",
+    tech: [
+      "Vue.js",
+      "Nuxt.js",
+      "Angular",
+      "Vite",
+      "Performance",
+      "Accessibility"
+    ],
+    colorVar: "var(--color-brand-accent)"
   },
   {
     id: "sellerapp",
-    title: "Software Lead",
+    title: "Software Lead, Web Development",
     company: "SellerApp",
     from: "Feb 2017",
     to: "Sep 2017",
     type: "On-site",
     location: "Bengaluru, India",
     description:
-      "Sole developer responsible for building the early-stage web product. Translated founder requirements into production UI for the platform's initial growth phase.",
-    tech: ["Angular", "Zero-to-One"],
-    colorVar: "var(--color-brand-primary)" // Emerald
+      "Sole developer for the early-stage web product and marketing site. Built core dashboards and campaign visibility features using AngularJS, Jade, and CoffeeScript, translating founder requirements into production-ready UI under rapid iteration cycles.",
+    tech: ["AngularJS", "CoffeeScript", "Jade", "Dashboards"],
+    colorVar: "var(--color-brand-secondary)"
   },
   {
     id: "blue-web",
@@ -90,9 +105,9 @@ const EXPERIENCE_DATA: ExperienceItem[] = [
     type: "On-site",
     location: "Coimbatore, India",
     description:
-      "Developed customized client websites and led a team of interns for brand promotion and development tasks.",
-    tech: ["HTML/CSS", "Team Lead"],
-    colorVar: "var(--color-brand-primary)" // Blue
+      "Delivered end-to-end client websites from requirements through deployment and maintenance. Provided client support and content updates, and was promoted to lead and train interns for brand promotion and development work.",
+    tech: ["HTML", "CSS", "JavaScript", "Client Delivery", "Team Lead"],
+    colorVar: "var(--color-brand-accent)"
   }
 ];
 
@@ -218,7 +233,7 @@ const TimelineItem = ({ item, isActive, onInView }: TimelineItemProps) => {
                 {item.from.replace(" ", "_").toUpperCase()} —{" "}
                 {item.to.replace(" ", "_").toUpperCase()}
               </span>
-              <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight group-hover:text-[var(--color-brand-primary)] transition-colors duration-300">
+              <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight  transition-colors duration-300">
                 {item.title}
               </h3>
               <div
@@ -229,10 +244,12 @@ const TimelineItem = ({ item, isActive, onInView }: TimelineItemProps) => {
               </div>
             </div>
             <div className="flex flex-col items-start md:items-end gap-1">
-              <span className="text-[10px] font-sans text-zinc-500 uppercase tracking-wider px-2 py-1 rounded bg-white/5 border border-white/10">
+              <span className="text-[10px] font-sans text-zinc-500 tracking-wider px-2 py-0.5 rounded bg-white/5 border border-white/10">
                 {item.type}
               </span>
-              <span className="text-xs text-zinc-400">{item.location}</span>
+              <span className="text-xs text-zinc-400 mt-2 md:mt-1">
+                {item.location}
+              </span>
             </div>
           </div>
 
@@ -245,7 +262,7 @@ const TimelineItem = ({ item, isActive, onInView }: TimelineItemProps) => {
             {item.tech.map((t) => (
               <span
                 key={t}
-                className="px-2 py-1 rounded text-[10px] font-sans bg-white/5 text-zinc-300 border border-white/5 uppercase tracking-tighter hover:border-[var(--color-brand-primary)] hover:text-white transition-colors"
+                className="px-2 py-0.5 rounded text-[10px] font-sans bg-white/5 text-zinc-300 border border-white/5 tracking-wide transition-colors"
               >
                 {t}
               </span>
@@ -265,7 +282,7 @@ export const ExperienceSection = () => {
     <section
       id="experience"
       ref={sectionRef}
-      className="relative w-full bg-transparent py-24 sm:py-32 overflow-hidden"
+      className="relative w-full bg-transparent pt-24 sm:py-32 md:pt-36 overflow-hidden"
     >
       {/* Background decoration consistent with other sections */}
       <div className="absolute inset-0 pointer-events-none">
@@ -275,15 +292,17 @@ export const ExperienceSection = () => {
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="grid grid-cols-12 gap-8 mb-16 md:mb-24">
           <div className="col-span-12">
-            <span className="text-[10px] md:text-xs font-sans tracking-[0.3em] text-[var(--color-brand-primary)] uppercase block mb-4">
+            <span className="text-[10px] md:text-xs font-sans tracking-[0.4em] text-[var(--color-brand-primary)] uppercase block mb-4 opacity-80">
               Professional Journey
             </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight font-heading mb-4">
-              Experience
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight font-heading mb-4">
+              <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-white/90 to-white/50 drop-shadow-2xl pr-1">
+                Experience
+              </span>{" "}
             </h2>
-            <p className="text-zinc-400 text-lg leading-relaxed max-w-2xl font-body">
-              A timeline of engineering leadership, architecture, and product
-              development across high-growth startups and enterprises.
+            <p className="text-foreground/70 text-lg leading-relaxed max-w-2xl font-body">
+              A timeline of engineering leadership and product development
+              across high growth startups and enterprise teams.
             </p>
           </div>
         </div>

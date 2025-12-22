@@ -1,5 +1,6 @@
 // telemetry original
 import { formatDistanceToNow } from "date-fns";
+import { enUS } from "date-fns/locale";
 export interface GitHubTelemetry {
   items: Array<{
     text: string;
@@ -45,6 +46,15 @@ interface WakaTimeData {
     languages: WakaTimeLanguage[];
   };
 }
+
+const enUSNoAbout = {
+  ...enUS,
+  formatDistance: (token: any, count: any, options: any) => {
+    const s = enUS.formatDistance(token, count, options);
+    return s.replace(/^about\s+/, "");
+  }
+};
+
 async function fetchWithTimeout(
   url: string,
   options: RequestInit & { timeout?: number } = {}
@@ -118,9 +128,10 @@ async function fetchGitHubEvents(username: string): Promise<GitHubTelemetry> {
           url,
           hash,
           whenISO: event.created_at,
-          whenRelative: formatDistanceToNow(new Date(event.created_at), {
-            addSuffix: true
-          })
+          whenRelative: `~ ${formatDistanceToNow(new Date(event.created_at), {
+            addSuffix: true,
+            locale: enUSNoAbout
+          })}`
         };
       });
     return { items };

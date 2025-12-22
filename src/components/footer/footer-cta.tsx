@@ -41,13 +41,15 @@ export function FooterCTA() {
     <div className="col-span-12 flex flex-col items-center text-center space-y-8">
       <motion.h2
         variants={itemVariants}
-        className="text-4xl md:text-6xl font-sans font-bold tracking-tight text-white"
+        className="text-3xl md:text-5xl font-sans font-bold tracking-tight text-white"
       >
-        Ready to engineer the future?
+        <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-white/90 to-white/50 drop-shadow-2xl">
+          Open to roles, collaborations, and shared learning.
+        </span>
       </motion.h2>
 
       <motion.div variants={itemVariants} className="group relative">
-        <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1 bg-zinc-900 border border-white/10 rounded text-[10px] font-sans uppercase tracking-wider text-foreground opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity pointer-events-none mb-2 z-10">
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-3 py-1 bg-zinc-900 border border-white/10 rounded text-[10px] font-sans uppercase tracking-wider text-foreground opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity pointer-events-none mb-2 z-10">
           {isCopied ? "Copied!" : "Copy to clipboard"}
         </div>
 
@@ -70,16 +72,15 @@ export function FooterCTA() {
             <Copy className="w-5 h-5 group-hover/btn:scale-110 transition-transform shrink-0" />
           )}
         </button>
-
-        <div className="mt-4">
-          <a
-            href={`mailto:${email}`}
-            className="text-xs font-mono uppercase tracking-widest text-zinc-500 hover:text-brand-accent transition-colors"
-          >
-            Or email me directly
-          </a>
-        </div>
       </motion.div>
+      <div className="mt-0">
+        <a
+          href={`mailto:${email}`}
+          className="text-xs font-mono uppercase tracking-widest text-zinc-500 hover:text-brand-accent transition-colors"
+        >
+          Or email me directly
+        </a>
+      </div>
     </div>
   );
 }

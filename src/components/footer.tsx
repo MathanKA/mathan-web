@@ -15,16 +15,16 @@ const NAV_INDEX = [
 
 const SOCIAL_LINKS = [
   {
-    name: "GitHub",
-    href: "https://github.com/MathanKA",
-    icon: Github,
-    label: "GitHub"
-  },
-  {
     name: "LinkedIn",
     href: "https://linkedin.com/in/mathanka",
     icon: Linkedin,
     label: "LinkedIn"
+  },
+  {
+    name: "GitHub",
+    href: "https://github.com/MathanKA",
+    icon: Github,
+    label: "GitHub"
   },
   {
     name: "Email",
@@ -69,8 +69,8 @@ export function Footer() {
           <div className="col-span-12 grid grid-cols-12 gap-8 md:gap-4 border-t border-white/5 pt-16">
             {/* Column A: Identity & Status [Cols 1-3] */}
             <div className="col-span-12 md:col-span-3 space-y-6">
-              <div className="flex items-center gap-3">
-                <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-white/10 bg-zinc-900 flex items-center justify-center p-1.5 grayscale hover:grayscale-0 transition-all">
+              <div className="flex items-center gap-3 group">
+                <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-white/10 bg-zinc-900 flex items-center justify-center p-1.5 grayscale-90 transition-all group-hover:grayscale-0">
                   <Image
                     src="/images/mathan.svg"
                     alt="M Logo"
@@ -110,13 +110,13 @@ export function Footer() {
               <ul className="space-y-2">
                 {NAV_INDEX.map((link) => (
                   <li key={link.name} className="group flex items-center gap-2">
-                    <ArrowRight className="w-3 h-3 text-[var(--color-brand-primary)] -ml-5 opacity-0 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
                     <Link
                       href={link.href}
                       className="text-sm text-zinc-400 hover:text-white transition-colors duration-200"
                     >
                       {link.name}
                     </Link>
+                    <ArrowRight className="w-3 h-3 text-[var(--color-brand-primary)] -ml-5 opacity-0 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
                   </li>
                 ))}
               </ul>
@@ -147,8 +147,8 @@ export function Footer() {
           {/* Bottom Bar (Copyright) */}
           <div className="col-span-12 pt-12 border-t border-white/5">
             <div className="flex flex-col md:flex-row justify-center items-center gap-4 text-center">
-              <p className="font-sans text-[10px] text-zinc-600 uppercase tracking-widest">
-                Crafted with Next.js & Tailwind | © 2025 Mathan K A
+              <p className="font-sans text-[10px] text-zinc-600 tracking-wide">
+                &copy; 2025 Mathan K A &middot; All Rights Reserved.
               </p>
             </div>
           </div>

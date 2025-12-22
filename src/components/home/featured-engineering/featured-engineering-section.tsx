@@ -22,7 +22,7 @@ export const FeaturedEngineeringSection = () => {
   return (
     <section
       id="work"
-      className="relative w-full bg-transparent py-24 md:py-36"
+      className="relative w-full bg-transparent pt-24 md:pt-36"
       // style={
       //   {
       //     "--accent-rgb": activeItem.theme.accentRgb,
