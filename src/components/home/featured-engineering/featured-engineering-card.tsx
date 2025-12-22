@@ -51,7 +51,7 @@ export const FeaturedEngineeringCard: React.FC<
       id={item.id}
       style={{ opacity, scale }}
       className={cn(
-        "relative w-full min-h-[500px] md:min-h-[600px] rounded-3xl overflow-hidden transition-all duration-700",
+        "relative w-full min-h-[500px] md:min-h-[400px] rounded-3xl overflow-hidden transition-all duration-700",
         // Unified Iridescent Standard: Ghost Glass
         "bg-black/20 backdrop-blur-xl border border-white/10",
         "shadow-[0_0_0_1px_rgba(255,255,255,0.06),_0_40px_80px_-20px_rgba(0,0,0,0.8)]",
@@ -70,7 +70,7 @@ export const FeaturedEngineeringCard: React.FC<
         }}
       />
 
-      <div className="relative h-full flex flex-col p-6 md:p-10 justify-between">
+      <div className="relative h-full flex flex-col p-4 md:p-6 justify-between">
         {/* Mobile Info (Visible on small screens) */}
         <div className="md:hidden mb-8">
           <span
@@ -109,7 +109,7 @@ export const FeaturedEngineeringCard: React.FC<
                 src={item.visual.imageSrc}
                 alt={item.visual.imageAlt || item.title}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                className="object-fill transition-transform duration-700 group-hover:scale-105"
                 onError={(e) => {
                   e.currentTarget.src =
                     "https://placehold.co/1200x675/050505/333333?text=Quansentz+Dashboard";
@@ -194,16 +194,18 @@ export const FeaturedEngineeringCard: React.FC<
           )}
 
           {/* Code Overlay */}
-          <motion.div
-            style={{ y }}
-            className="absolute -right-4 -bottom-4 md:right-0 md:bottom-20 w-[240px] md:w-[380px] z-20 pointer-events-none md:pointer-events-auto"
-          >
-            <CodeOverlay
-              title={item.codeOverlay.title}
-              languageLabel={item.codeOverlay.languageLabel}
-              code={item.codeOverlay.code}
-            />
-          </motion.div>
+          {item.codeOverlay && (
+            <motion.div
+              style={{ y }}
+              className="absolute -right-4 -bottom-4 md:-right-5 md:-bottom-6 w-[240px] md:w-[450px] z-20 pointer-events-none md:pointer-events-auto"
+            >
+              <CodeOverlay
+                title={item.codeOverlay.title}
+                languageLabel={item.codeOverlay.languageLabel}
+                code={item.codeOverlay.code}
+              />
+            </motion.div>
+          )}
         </div>
 
         {/* Stats / Footer context inside card */}

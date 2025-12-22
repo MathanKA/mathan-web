@@ -103,9 +103,13 @@ export default async function RootLayout({
   children
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${ibmPlexMono.variable} scroll-smooth dark`}
+      suppressHydrationWarning
+    >
       <body
-        className={`${geistSans.variable} ${ibmPlexMono.variable} antialiased flex flex-col min-h-screen`}
+        className="antialiased flex flex-col min-h-screen"
         suppressHydrationWarning
       >
         <ThemeProvider

@@ -19,7 +19,7 @@ export const CodeOverlay: React.FC<CodeOverlayProps> = ({
   return (
     <div
       className={cn(
-        "rounded-xl overflow-hidden bg-[#0d1117] border border-white/10 shadow-2xl flex flex-col font-sans text-[10px] md:text-sm",
+        "rounded-xl overflow-hidden bg-[#0d1117] border border-white/10 shadow-2xl flex flex-col font-sans text-[10px] md:text-xs",
         className
       )}
     >

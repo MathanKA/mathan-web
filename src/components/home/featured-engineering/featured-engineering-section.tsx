@@ -23,12 +23,12 @@ export const FeaturedEngineeringSection = () => {
     <section
       id="work"
       className="relative w-full bg-transparent py-24 md:py-36"
-      style={
-        {
-          "--accent-rgb": activeItem.theme.accentRgb,
-          "--accent-hex": activeItem.theme.accentHex
-        } as React.CSSProperties
-      }
+      // style={
+      //   {
+      //     "--accent-rgb": activeItem.theme.accentRgb,
+      //     "--accent-hex": activeItem.theme.accentHex
+      //   } as React.CSSProperties
+      // }
     >
       {/* Background Layer */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -46,24 +46,27 @@ export const FeaturedEngineeringSection = () => {
       </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="grid grid-cols-12 gap-8 md:gap-12">
+        <div className="grid grid-cols-12 gap-6 md:gap-12">
           {/* Left Column: Sticky Project Index & Details */}
-          <div className="col-span-12 md:col-span-4 self-start md:sticky md:top-24 mb-12 md:mb-0">
+          <div className="col-span-12 md:col-span-5 self-start md:sticky md:top-24 mb-4 md:mb-0">
             <div className="space-y-8">
               {/* Header */}
               <div className="space-y-4">
                 <span
-                  className="text-[10px] md:text-xs font-sans tracking-[0.2em] uppercase transition-colors duration-500"
+                  className="text-[10px] md:text-xs font-mono tracking-[0.4em] uppercase transition-colors duration-500 opacity-80"
                   style={{ color: activeItem.theme.accentHex }}
                 >
                   Featured Engineering
                 </span>
-                <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight font-heading">
-                  Crafting <span className="text-zinc-500">at scale.</span>
+                <h2 className="text-3xl md:text-5xl font-bold text-foreground/60 tracking-tight font-heading">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-white/90 to-white/50 drop-shadow-2xl pr-1">
+                    Crafting
+                  </span>{" "}
+                  <span className="text-foreground/60">at scale.</span>
                 </h2>
-                <p className="text-zinc-400 text-lg leading-relaxed max-w-sm font-body">
-                  A selection of architectural decisions and performance wins
-                  from recent projects.
+                <p className="text-foreground/70 text-lg leading-relaxed max-w-sm font-body">
+                  A selection of products and architectural decisions I led from
+                  concept to delivery.
                 </p>
               </div>
 
@@ -147,7 +150,7 @@ export const FeaturedEngineeringSection = () => {
           </div>
 
           {/* Right Column: Scrolling Card Stack */}
-          <div className="col-span-12 md:col-span-8 flex flex-col gap-24 md:gap-40">
+          <div className="col-span-12 md:col-span-7 flex flex-col gap-18 md:gap-40">
             {FEATURED_ENGINEERING_ITEMS.map((item) => (
               <ProjectCardWrapper
                 key={item.id}
@@ -229,7 +232,7 @@ const ProjectIndexItem = ({
       <div className="flex flex-col">
         <span
           className={cn(
-            "text-xs md:text-sm font-medium transition-colors duration-300 font-heading",
+            "text-xs md:text-[16px] font-medium transition-colors duration-300 font-heading",
             isActive ? "text-white" : "text-zinc-500"
           )}
         >
@@ -239,7 +242,7 @@ const ProjectIndexItem = ({
           <motion.span
             initial={{ opacity: 0, y: -2 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-[10px] font-sans tracking-tighter transition-colors"
+            className="text-[14px] font-sans tracking-wide transition-colors"
             style={{ color: item.theme.accentHex }}
           >
             {item.tagline}

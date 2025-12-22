@@ -16,7 +16,7 @@
   /* Brand Palette (The "Iridescent" Colors) */
   --color-brand-primary: #11dd77; /* Emerald-500 */
   --color-brand-secondary: #880088; /* Fuchsia-500 */
-  --color-brand-accent: #333eee; /* Your Custom Indigo */
+  --color-brand-accent: #333eee; /* Indigo-500 */
   /* Semantic Colors (Single Dark Theme) */
   --color-background: #050505; /* Deep Obsidian */
   --color-foreground: #fafafa; /* Off-White */
@@ -104,7 +104,7 @@
           rgba(217, 70, 239, 0.05) 0%,
           transparent 40%
         ); /* Bottom Purple Glow */
-    background-attachment: fixed; /* Keeps the glow in place while scrolling */
+    background-attachment: fixed;
   }
 }
 
