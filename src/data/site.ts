@@ -1,58 +1,58 @@
 export const skills = {
   craftmanship: [
     {
-      title: "Spec-First Engineering"
+      title: "Spec-first engineering"
     },
     {
-      title: "Strategic Tech Selection"
+      title: "Strategic tech selection"
     },
     {
-      title: "Modern Code Standards"
+      title: "Modern code standards"
     },
     {
-      title: "Structured Workflows"
+      title: "Structured workflows"
     }
   ],
   adaptability: [
     {
-      title: "Legacy Modernization"
+      title: "Legacy modernization"
     },
     {
-      title: "Proactive Flow Optimization"
+      title: "Proactive flow optimization"
     },
     {
-      title: "Cross-Functional Alignment"
+      title: "Cross functional alignment"
     },
     {
-      title: "Time-Critical Delivery"
+      title: "Time critical delivery"
     }
   ],
   performance: [
     {
-      title: "Secure API Handling"
+      title: "Secure API handling"
     },
     {
-      title: "OWASP-Aligned Security"
+      title: "OWASP aligned security"
     },
     {
-      title: "Lighthouse 90+ Metrics"
+      title: "Lighthouse 90+ metrics"
     },
     {
-      title: "Core Vitals Mastery"
+      title: "Core Vitals mastery"
     }
   ],
   architecture: [
     {
-      title: "Scalable Design Systems"
+      title: "Scalable design systems"
     },
     {
-      title: "Cross-Framework Mastery"
+      title: "Cross framework mastery"
     },
     {
-      title: "Security & Compliance"
+      title: "Security & compliance"
     },
     {
-      title: "Multi-Tenant Architecture"
+      title: "Multi tenant architecture"
     }
   ]
 };

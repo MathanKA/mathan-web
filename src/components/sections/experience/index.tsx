@@ -265,7 +265,6 @@ export const ExperienceSection = () => {
     <section
       id="experience"
       ref={sectionRef}
-      // Replaced bg-zinc-950 with bg-transparent to let the global Iridescent body shine through
       className="relative w-full bg-transparent py-24 sm:py-32 overflow-hidden"
     >
       {/* Background decoration consistent with other sections */}
