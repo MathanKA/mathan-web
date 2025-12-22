@@ -2,7 +2,11 @@
 
 import { Download, Mail } from "lucide-react";
 
-export function ActionPill() {
+interface ActionPillProps {
+  onClick?: () => void;
+}
+
+export function ActionPill({ onClick }: ActionPillProps) {
   return (
     <div className="flex items-center p-1 bg-black/5 dark:bg-white/10 backdrop-blur-md rounded-full border border-black/5 dark:border-white/10">
       {/* Resume Button */}
@@ -10,6 +14,7 @@ export function ActionPill() {
         href="/MATHANKA_resume_.pdf"
         download
         aria-label="Download Resume"
+        onClick={onClick}
         className="relative group flex items-center gap-2 px-4 py-1.5 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200 outline-none"
       >
         <span className="absolute inset-0 bg-white/50 dark:bg-white/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
@@ -24,6 +29,7 @@ export function ActionPill() {
       <a
         href="mailto:hello@mathan.pro"
         aria-label="Send Email"
+        onClick={onClick}
         className="relative group flex items-center gap-2 px-4 py-1.5 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200 outline-none"
       >
         <span className="absolute inset-0 bg-white/50 dark:bg-white/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
