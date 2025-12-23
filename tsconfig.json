@@ -19,7 +19,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/velite": ["./.velite"],
+      "@public/*": ["./public/*"]
     }
   },
   "include": [

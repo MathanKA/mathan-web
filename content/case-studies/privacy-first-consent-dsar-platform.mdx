@@ -1,0 +1,93 @@
+---
+title: "Quansentz: Privacy as code for Next.js"
+slug: "privacy-first-consent-dsar-platform"
+date: 2025-11-05
+role: "Solo Founder (Engineering and Product)"
+company: "Quansentz (internal codename SealForge)"
+featured: true
+status: "beta"
+tags: ["DPDP", "GDPR", "DSAR", "Next.js", "Architecture", "Audit Logs"]
+modes: ["engineer", "manager", "recruiter"]
+stack:
+  [
+    "Next.js (App Router)",
+    "TypeScript",
+    "PostgreSQL (Prisma)",
+    "Redis (BullMQ)",
+    "S3 Compatible Object Storage"
+  ]
+summary_one_liner: "Built a Next.js native privacy layer that enforces purpose level consent at the API boundary, runs DSAR exports asynchronously, and produces a tamper evident audit chain for evidence."
+links:
+  live: "https://www.quansentz.com/"
+timeline: "Nov 2025 to Present"
+key_stat: "Building consent and DSAR operations audit ready by default"
+---
+
+## TL;DR
+
+<Callout variant="note" title="Engineering focus">
+  Quansentz is not a banner generator. It is a privacy control plane that makes
+  consent and DSAR workflows enforceable, observable, and evidence ready in a
+  modern Next.js stack.
+</Callout>
+
+## Context
+
+Most products treat compliance as a UI problem: show a cookie banner, store a boolean, and hope nothing sensitive happens before consent is captured. In practice, tracking, client side fetches, and third party scripts can run before a user has made a choice.
+
+DSAR workflows are usually worse: manual exports, ad hoc scripts, or synchronous endpoints that time out once real data shows up.
+
+Quansentz targets the gap between legal requirements and runtime behavior by turning consent and DSAR into code primitives and by making evidence a first class output of the system.
+
+## Goals
+
+- Enforce purpose level consent at the boundary where behavior happens (APIs, server actions, script activation).
+- Provide DSAR export as an asynchronous pipeline that scales with data volume and failure modes.
+- Produce a tamper evident audit trail so evidence does not depend on mutable rows or operator memory.
+
+## Constraints and design principles
+
+- **Auditability:** Every consent or DSAR state transition appends to a hash chained ledger. A missing or altered link invalidates the chain.
+- **Tenant isolation:** Every read and write is tenant scoped, with domain based tenant resolution and strict query filters.
+- **Async by default for DSAR:** Exports run in a worker via queues with retries and idempotent transitions.
+- **Operational clarity:** Health and readiness signals exist for both the web app and worker, with structured logs that avoid raw personal data.
+
+## Architecture
+
+The system separates the synchronous user path (consent reads and writes) from asynchronous compliance workloads (DSAR exports, later DSAR deletes and retention).
+
+<FigureLightbox
+  src="/case-studies/quansentz-architecture.svg"
+  alt="Quansentz Quansentz architecture diagram"
+  caption="Synchronous consent path in the web app, asynchronous DSAR pipeline in the worker via queues and object storage."
+/>
+
+### Core components
+
+1. **Tenant resolution and config:** Resolve `tenantId` from the request host and load a scoped config snapshot (banner copy, DSAR settings, storage settings).
+2. **Consent core:** Store purposes and decisions, expose read and write APIs, and default to privacy safe behavior on unknown or error states.
+3. **Script activation:** Run non essential scripts only after the relevant purposes are granted.
+4. **Purpose guards:** Gate sensitive server side behavior with typed purpose checks.
+5. **DSAR export engine:** Request, verify identity, enqueue, stream export artifacts to object storage, and issue short lived download links.
+6. **Audit ledger:** Append only audit events with `prevHash` and `hash` so evidence can be verified, not trusted.
+
+## Implementation highlights
+
+### Tenant scoping at the boundary
+
+Tenant context is not optional. Every handler resolves tenant from the domain mapping and all database operations include tenant filters. This prevents accidental cross tenant reads when building admin and DSAR tooling.
+
+### Consent as typed primitives
+
+Instead of sprinkling conditionals across routes, the app uses purpose aware guards. This keeps consent enforcement close to behavior and makes missing mappings easier to detect during review.
+
+```typescript
+import { protect, Purpose } from "@/lib/privacy";
+
+export const exportUserData = protect(
+  Purpose.ANALYTICS,
+  async (userId: string) => {
+    // Safe to execute only when Analytics consent is granted
+  }
+);
+```

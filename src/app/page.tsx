@@ -1,23 +1,25 @@
+import { getMode } from "@/lib/viewer-mode";
+import { HomeHero } from "@/components/home/home-hero";
+import { SkillsSection } from "@/components/home/skills-section";
+import { FeaturedEngineeringSection } from "@/components/home/featured-engineering";
+import { ExperienceSection } from "@/components/sections/experience";
 
+export default async function Home() {
+  const mode = await getMode();
 
-export default function Home() {
   return (
-    <div className="flex flex-col gap-8 items-start">
-      <section>
-        <h2 className="text-3xl font-bold mb-4">Welcome to the Portfolio</h2>
-        <ul className="list-disc list-inside space-y-2 text-lg">
-          <li>Performance-first architecture</li>
-          <li>Accessible by default</li>
-          <li>Responsive design</li>
-        </ul>
-      </section>
+    <div className="flex flex-col gap-0">
+      {/* Hero Section - FULL WIDTH */}
+      <HomeHero mode={mode} />
 
-      <section className="p-6 border border-dashed border-gray-400 rounded-lg w-full">
-        <h3 className="text-sm font-uppercase text-gray-500 mb-2">
-          Detailed View Stub
-        </h3>
-        <p>[ Viewer Mode Switcher Placeholder ]</p>
-      </section>
+      {/* Skills Section - FULL WIDTH */}
+      <SkillsSection />
+
+      {/* Featured Engineering Section */}
+      <FeaturedEngineeringSection />
+
+      {/* Experience Section */}
+      <ExperienceSection />
     </div>
   );
 }
