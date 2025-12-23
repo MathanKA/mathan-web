@@ -163,8 +163,8 @@ export function HeroSection({ data }: HeroSectionProps) {
       </div>
 
       {/* Decorative Aurora Orbs */}
-      <div className="pointer-events-none absolute -top-1/2 left-1/4 -z-10 h-[500px] w-[500px] rounded-full bg-brand-primary/5 blur-[120px]" />
-      <div className="pointer-events-none absolute -bottom-1/2 right-1/4 -z-10 h-[500px] w-[500px] rounded-full bg-brand-secondary/5 blur-[120px]" />
+      {/* <div className="pointer-events-none absolute -top-1/2 left-1/4 -z-10 h-[500px] w-[500px] rounded-full bg-brand-primary/5 blur-[120px]" />
+      <div className="pointer-events-none absolute -bottom-1/2 right-1/4 -z-10 h-[500px] w-[500px] rounded-full bg-brand-secondary/5 blur-[120px]" /> */}
     </section>
   );
 }

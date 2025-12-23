@@ -28,7 +28,7 @@ export function ResumeControlBar() {
       className="sticky top-23 z-40 w-full"
     >
       <div className="container mx-auto px-4">
-        <div className="flex flex-col sm:flex-row items-center justify-end gap-4 shadow-2xl">
+        <div className="flex flex-col sm:flex-row items-center justify-end gap-4">
           {/* <div className="flex items-center gap-3">
             <div className="relative flex h-3 w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-primary opacity-75"></span>

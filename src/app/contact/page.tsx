@@ -39,24 +39,16 @@ export default function ContactPage() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#050505] selection:bg-emerald-500/30 overflow-hidden flex flex-col justify-center py-20 px-4 md:px-0">
-      {/* Visual Concept + Background (Phase 3) */}
-      <div
-        className="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-indigo-500/10 blur-[120px] pointer-events-none -z-10"
-        aria-hidden="true"
-      />
-      <div
-        className="fixed bottom-0 right-0 w-[500px] h-[400px] bg-purple-500/5 blur-[100px] pointer-events-none -z-10"
-        aria-hidden="true"
-      />
+    <div className="relative min-h-screen selection:bg-emerald-500/30 overflow-hidden flex flex-col justify-center py-20 px-4 md:px-0">
+      {/* --- BACKGROUND AMBIENCE (Unified Iridescent Theme) --- */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Fixed "Aurora" Gradient at Top Center */}
+        {/* <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[80vw] h-[500px] bg-[conic-gradient(from_90deg_at_50%_50%,var(--color-brand-primary)_0%,var(--color-brand-secondary)_50%,var(--color-brand-primary)_100%)] opacity-10 blur-[120px]" /> */}
 
-      {/* Noise Overlay (matches global layout) */}
-      <div
-        className="fixed inset-0 pointer-events-none z-0 opacity-[0.03] bg-[url('/noise.png')] mix-blend-overlay"
-        aria-hidden="true"
-      />
-
-      <main className="relative z-10 w-full">
+        {/* Subtle Grid Texture */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:32px_32px]" />
+      </div>
+      <div className="relative z-10 w-full">
         <section aria-labelledby="contact-title" className="container mx-auto">
           <div className="grid grid-cols-12 gap-4">
             {/* The Glass Card (Phase 4) */}
@@ -68,28 +60,23 @@ export default function ContactPage() {
               transition={{ duration: 0.5, ease: "easeOut" }}
               className={cn(
                 "col-span-12 md:col-span-8 md:col-start-3 lg:col-span-6 lg:col-start-4",
-                "bg-black/20 backdrop-blur-2xl border border-white/10 rounded-[2rem] p-8 md:p-12",
+                "bg-black/20 backdrop-blur-2xl  rounded-[2rem] p-8 md:p-12",
                 "ring-1 ring-white/10 shadow-[0_20px_80px_-30px_rgba(0,0,0,0.9)]"
               )}
             >
               <div className="flex flex-col space-y-8">
                 {/* Heading (Phase 5.1) */}
-                <div className="space-y-3">
+                <div className="space-y-3 flex items-center justify-center">
                   <h1
                     id="contact-title"
-                    className="text-3xl md:text-5xl font-extrabold tracking-tighter text-white"
+                    className="text-3xl md:text-5xl font-bold tracking-normal text-foreground/90"
                   >
-                    Ready to Collaborate?
+                    Open to Collaboration
                   </h1>
-                  {/* Subtext (Phase 5.2) */}
-                  <p className="text-zinc-400 text-base md:text-lg leading-relaxed max-w-md">
-                    I am currently open for architectural consulting and senior
-                    engineering roles.
-                  </p>
                 </div>
 
                 {/* Primary Action — Massive Email Display (Phase 5.3) */}
-                <div className="relative pt-4">
+                <div className="relative pt-4 flex items-center justify-center">
                   <button
                     onClick={copyToClipboard}
                     onKeyDown={(e) => {
@@ -98,7 +85,7 @@ export default function ContactPage() {
                         copyToClipboard();
                       }
                     }}
-                    className="group relative flex flex-col items-start focus:outline-none"
+                    className="group relative flex flex-col items-start focus:outline-none justify-center"
                     aria-label="Copy email address"
                   >
                     <span
@@ -215,7 +202,7 @@ export default function ContactPage() {
             </motion.div>
           </div>
         </section>
-      </main>
+      </div>
     </div>
   );
 }

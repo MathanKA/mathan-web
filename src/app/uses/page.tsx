@@ -16,7 +16,14 @@ export const metadata: Metadata = {
 
 export default function UsesPage() {
   return (
-    <div className="bg-[#050505] min-h-screen">
+    <div className=" min-h-screen relative w-full">
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Fixed "Aurora" Gradient at Top Center */}
+        {/* <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[80vw] h-[500px] bg-[conic-gradient(from_90deg_at_50%_50%,var(--color-brand-primary)_0%,var(--color-brand-secondary)_50%,var(--color-brand-primary)_100%)] opacity-10 blur-[120px]" /> */}
+
+        {/* Subtle Grid Texture */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:32px_32px]" />
+      </div>
       <UsesContent />
     </div>
   );

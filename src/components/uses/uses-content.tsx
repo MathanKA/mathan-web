@@ -35,10 +35,7 @@ export function UsesContent() {
 
   return (
     <>
-      {/* Ambient Background Orb */}
-      <div className="pointer-events-none fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-brand-primary/10 blur-[120px] -z-10" />
-
-      <main className="w-full pt-32 pb-20">
+      <div className="w-full pt-32 pb-20">
         <section className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-12 gap-8 lg:gap-12">
             {/* Left Column: Sticky Header & Index */}
@@ -49,7 +46,11 @@ export function UsesContent() {
                 transition={{ duration: 0.5 }}
               >
                 <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
-                  Uses<span className="text-brand-primary">.</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-white/90 to-white/50 drop-shadow-2xl pr-1">
+                    Uses
+                  </span>
+
+                  <span className="text-brand-primary">.</span>
                 </h1>
                 <p className="text-zinc-400 text-lg mb-8 max-w-sm">
                   Tools, systems, and hardware that drive my daily creation
@@ -96,7 +97,7 @@ export function UsesContent() {
             </div>
           </div>
         </section>
-      </main>
+      </div>
 
       {/* Code Overlay Modal */}
       <CodeOverlay

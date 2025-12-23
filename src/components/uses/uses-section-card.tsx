@@ -25,7 +25,7 @@ export function UsesSectionCard({
       id={category.id}
       className="col-span-12 md:col-span-6 group"
     >
-      <div className="h-full flex flex-col p-6 rounded-2xl border border-white/10 bg-zinc-900/40 backdrop-blur-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] hover:border-white/20 transition-colors">
+      <div className="h-full flex flex-col p-6 rounded-2xl border border-white/10 bg-background/60 backdrop-blur-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] hover:border-white/20 transition-colors">
         <div className="mb-4">
           <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-brand-primary transition-colors">
             {category.title}
