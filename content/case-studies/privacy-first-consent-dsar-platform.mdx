@@ -1,132 +1,93 @@
 ---
-title: "Quansentz / SealForge — Privacy-as-code for Next.js"
+title: "Quansentz: Privacy as code for Next.js"
 slug: "privacy-first-consent-dsar-platform"
 date: 2025-11-05
-role: "Solo Founder (Engineering + Product)"
-company: "Quansentz / SealForge"
+role: "Solo Founder (Engineering and Product)"
+company: "Quansentz (internal codename SealForge)"
 featured: true
-status: "pilot"
-tags: ["Privacy Engineering", "GDPR", "Next.js", "Architecture", "Audit Logs"]
+status: "beta"
+tags: ["DPDP", "GDPR", "DSAR", "Next.js", "Architecture", "Audit Logs"]
 modes: ["engineer", "manager", "recruiter"]
 stack:
   [
     "Next.js (App Router)",
     "TypeScript",
-    "PostgreSQL",
-    "Redis + BullMQ",
-    "S3 Storage"
+    "PostgreSQL (Prisma)",
+    "Redis (BullMQ)",
+    "S3 Compatible Object Storage"
   ]
-summary_one_liner: "Built a developer-first privacy layer that turns consent and DSAR into code primitives, handling 10+ tenants with tamper-evident audit trails."
+summary_one_liner: "Built a Next.js native privacy layer that enforces purpose level consent at the API boundary, runs DSAR exports asynchronously, and produces a tamper evident audit chain for evidence."
 links:
   live: "https://www.quansentz.com/"
-timeline: "2024 — Present"
-key_stat: "100% Audit Integrity"
+timeline: "Nov 2025 to Present"
+key_stat: "Building consent and DSAR operations audit ready by default"
 ---
 
 ## TL;DR
 
-<Callout variant="note" title="Engineering Focus">
-  This project isn't just a UI wrapper; it's a **privacy engineering system**.
-  It enforces consent at the API boundary and treats DSAR exports as immutable,
-  auditable background jobs.
+<Callout variant="note" title="Engineering focus">
+  Quansentz is not a banner generator. It is a privacy control plane that makes
+  consent and DSAR workflows enforceable, observable, and evidence ready in a
+  modern Next.js stack.
 </Callout>
 
-## Problem
+## Context
 
-Compliance is usually treated as a legal tick-box—cookied banners that don't actually block tracking, and manual DSAR (Data Subject Access Request) workflows that involve emailing spreadsheets.
+Most products treat compliance as a UI problem: show a cookie banner, store a boolean, and hope nothing sensitive happens before consent is captured. In practice, tracking, client side fetches, and third party scripts can run before a user has made a choice.
 
-This "privacy theater" fails engineering scrutiny:
+DSAR workflows are usually worse: manual exports, ad hoc scripts, or synchronous endpoints that time out once real data shows up.
 
-- **Routes execute before consent:** Next.js middleware often misses client-side fetchers.
-- **Exports break servers:** Synchronous CSV dumps time out on large datasets.
-- **Evidence is weak:** If a regulator asks "When did user X consent?", most teams point to a mutable row in a database.
+Quansentz targets the gap between legal requirements and runtime behavior by turning consent and DSAR into code primitives and by making evidence a first class output of the system.
 
-**The Goal:** Build a _self-evident_ privacy platform where "illegal states" (e.g., tracking without consent) are unrepresentable in the code, and every action leaves a tamper-evident cryptographic trail.
+## Goals
 
-## Constraints
+- Enforce purpose level consent at the boundary where behavior happens (APIs, server actions, script activation).
+- Provide DSAR export as an asynchronous pipeline that scales with data volume and failure modes.
+- Produce a tamper evident audit trail so evidence does not depend on mutable rows or operator memory.
 
-- **Auditability:** Every consent change or export must form a hash-chained ledger. Missing a link invalidates the chain.
-- **Isolation:** Multi-tenant architecture (SaaS) where Tenant A's DPO can never query Tenant B's subjects.
-- **Reliability:** DSAR exports can take hours; the system must handle retries and partial failures without data corruption.
-- **Latency:** Consent checks happen on every page load; they must add < 5ms blocked time.
+## Constraints and design principles
+
+- **Auditability:** Every consent or DSAR state transition appends to a hash chained ledger. A missing or altered link invalidates the chain.
+- **Tenant isolation:** Every read and write is tenant scoped, with domain based tenant resolution and strict query filters.
+- **Async by default for DSAR:** Exports run in a worker via queues with retries and idempotent transitions.
+- **Operational clarity:** Health and readiness signals exist for both the web app and worker, with structured logs that avoid raw personal data.
 
 ## Architecture
 
-I designed the system to decouple the _synchronous_ user path (Consent) from the _asynchronous_ compliance heavy-lifting (DSAR/Audit).
+The system separates the synchronous user path (consent reads and writes) from asynchronous compliance workloads (DSAR exports, later DSAR deletes and retention).
 
 <FigureLightbox
   src="/case-studies/quansentz-architecture.svg"
-  alt="Quansentz System Architecture Diagram"
-  caption="High-level separation: Direct synchronous path for consent (Next.js + DB), Asynchronous path for DSAR (Redis + Worker)."
+  alt="Quansentz Quansentz architecture diagram"
+  caption="Synchronous consent path in the web app, asynchronous DSAR pipeline in the worker via queues and object storage."
 />
 
-#### Key Components:
+### Core components
 
-1.  **Consent Guards (Middleware/Hooks):** APIs check `Purpose` scopes before execution.
-2.  **Audit Ledger:** An append-only log table where `prevHash` links rows, proving sequence.
-3.  **Export Worker:** A BullMQ consumer that generates signed, encrypted archives and streams them to S3.
+1. **Tenant resolution and config:** Resolve `tenantId` from the request host and load a scoped config snapshot (banner copy, DSAR settings, storage settings).
+2. **Consent core:** Store purposes and decisions, expose read and write APIs, and default to privacy safe behavior on unknown or error states.
+3. **Script activation:** Run non essential scripts only after the relevant purposes are granted.
+4. **Purpose guards:** Gate sensitive server side behavior with typed purpose checks.
+5. **DSAR export engine:** Request, verify identity, enqueue, stream export artifacts to object storage, and issue short lived download links.
+6. **Audit ledger:** Append only audit events with `prevHash` and `hash` so evidence can be verified, not trusted.
 
-## Approach
+## Implementation highlights
 
-### 1. Privacy-as-Code Primitives
+### Tenant scoping at the boundary
 
-Instead of "checking a box," developers import typed guards. This ensures that adding a new tracker requires explicit consent mapping at the code level.
+Tenant context is not optional. Every handler resolves tenant from the domain mapping and all database operations include tenant filters. This prevents accidental cross tenant reads when building admin and DSAR tooling.
+
+### Consent as typed primitives
+
+Instead of sprinkling conditionals across routes, the app uses purpose aware guards. This keeps consent enforcement close to behavior and makes missing mappings easier to detect during review.
 
 ```typescript
-// Example: Server Action protected by Purpose Guard
 import { protect, Purpose } from "@/lib/privacy";
 
 export const exportUserData = protect(
-  Purpose.ANALYTICS, // ❌ Fails if user hasn't consented to Analytics
+  Purpose.ANALYTICS,
   async (userId: string) => {
-    // ... Safe to access data
+    // Safe to execute only when Analytics consent is granted
   }
 );
 ```
-
-### 2. The DSAR Pipeline (Async by Default)
-
-User data exports are computationally expensive. I implemented a standard "Job Interface" that any tenant service implements.
-
-1.  **Request:** User clicks "Download My Data".
-2.  **Queue:** Job `dsar-export` pushed to Redis (priority: low).
-3.  **Worker:**
-    - Fetches data chunks (cursor-based to save memory).
-    - Generates JSON/CSV artifact.
-    - Zips and uploads to S3 with a pre-signed URL.
-4.  **Notify:** User gets a time-limited download link.
-
-### 3. Tamper-Evident Evidence
-
-To prove compliance, the system logs `AuditEvent` rows. Each row contains a SHA-256 hash of its content + the previous row's hash.
-
-## Tradeoffs
-
-<Callout variant="warning" title="Write Latency vs Audit Integrity">
-  I chose **synchronous hashing** for critical audit events. **Tradeoff:**
-  Writing an audit log adds ~20ms to the transaction because we must lock the
-  chain tip to calculate the hash. **Why:** Ensuring no "orphan" logs during a
-  race condition was worth the minor latency hit for a compliance tool.
-</Callout>
-
-- **No Real-time Admin Stats:** Dashboard stats are calculated via background aggregations (materialized views) to keep the write path fast for users. Data is ~5 mins stale.
-- **Vendor Lock (S3):** I tightly coupled the export storage to S3 APIs for pre-signed URLs. This limits portability but saved 2 weeks of dev time implementing a generic storage adapter.
-
-## Impact
-
-The pilot launched to 3 internal products, handling the compliance workflow autonomously.
-
-### Metrics Evidence Notes
-
-| Metric              | Value               | Type         | Context                                      |
-| :------------------ | :------------------ | :----------- | :------------------------------------------- |
-| **Build Size**      | 185 KB (First Load) | **Measured** | `next build` report (Main bundle).           |
-| **Lighthouse**      | 98/100 (Perf)       | **Measured** | Local prod build, Mobile preset.             |
-| **Export Time**     | ~4s (P95)           | **Estimate** | Based on 10k mock rows/tenant.               |
-| **Audit Integrity** | 100%                | **Verified** | Hash validation script passed on 50k events. |
-
-<Callout variant="success" title="Outcome">
-  Reduced the "Compliance Tax" for new features from **3 days** (manual
-  review/implementation) to **minutes** (importing the guard). Legal teams can
-  now self-serve evidence bundles without interrupting engineering.
-</Callout>

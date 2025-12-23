@@ -15,14 +15,14 @@ interface NextProjectCardProps {
 export function NextProjectCard({ project }: NextProjectCardProps) {
   return (
     <Link href={project.url} className="group block relative w-full mt-24">
-      <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/20 p-12 backdrop-blur-xl transition-all duration-500 hover:border-brand-primary/30">
+      <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/20 p-12 backdrop-blur-xl transition-all duration-500 hover:border-brand-primary/10">
         {/* Background Glow */}
         <div className="absolute inset-0 -z-10 bg-gradient-to-br from-brand-primary/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
           <div className="space-y-4">
             <span className="font-sans text-xs uppercase tracking-widest text-zinc-500">
-              NEXT_CHASSIS
+              Previous Experience
             </span>
 
             <h3 className="text-4xl font-bold tracking-tighter text-white sm:text-6xl">
@@ -41,7 +41,7 @@ export function NextProjectCard({ project }: NextProjectCardProps) {
                 {project.status}
               </Badge>
               <div className="flex items-center gap-2 text-brand-primary font-sans text-xs font-bold uppercase tracking-tighter transition-all group-hover:gap-4">
-                Execute Dive <ArrowRight className="h-3 w-3" />
+                Read <ArrowRight className="h-3 w-3" />
               </div>
             </div>
           </div>

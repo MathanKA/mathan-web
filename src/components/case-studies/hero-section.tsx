@@ -16,7 +16,7 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ data }: HeroSectionProps) {
-  const accentColor = data.status === "pilot" ? "fuchsia" : "emerald";
+  const accentColor = data.status === "beta" ? "fuchsia" : "emerald";
 
   return (
     <section className="relative w-full overflow-hidden border-b border-white/5 bg-transparent pt-32 pb-20">
@@ -35,7 +35,7 @@ export function HeroSection({ data }: HeroSectionProps) {
           >
             <Link href="/case-studies">
               <ArrowLeft className="mr-2 h-3 w-3" />
-              BACK_TO_ARCHIVES
+              Back to Case Studies
             </Link>
           </Button>
         </motion.div>
@@ -53,7 +53,7 @@ export function HeroSection({ data }: HeroSectionProps) {
                 <Badge
                   variant="outline"
                   className={cn(
-                    "border-white/10 bg-white/5 font-sans text-[10px] uppercase tracking-tighter",
+                    "border-white/10 bg-white/5 font-sans text-[10px] uppercase tracking-wide pt-0.5",
                     accentColor === "fuchsia"
                       ? "text-brand-secondary"
                       : "text-brand-primary"
@@ -61,14 +61,14 @@ export function HeroSection({ data }: HeroSectionProps) {
                 >
                   {data.status}
                 </Badge>
-                {data.featured && (
+                {/* {data.featured && (
                   <Badge className="bg-white/10 text-white font-sans text-[10px] uppercase">
                     FEATURED_SPEC
                   </Badge>
-                )}
+                )} */}
               </div>
 
-              <h1 className="text-5xl font-bold tracking-tighter text-white sm:text-7xl lg:text-8xl">
+              <h1 className="text-3xl font-bold tracking-normal text-white sm:text-5xl lg:text-5xl">
                 <span className="bg-gradient-to-b from-white to-zinc-500 bg-clip-text text-transparent">
                   {data.title}
                 </span>
@@ -119,10 +119,10 @@ export function HeroSection({ data }: HeroSectionProps) {
                     Stack
                   </span>
                   <div className="flex flex-wrap gap-1.5 pt-0.5">
-                    {data.stack.slice(0, 4).map((tech: string) => (
+                    {data.stack.map((tech: string) => (
                       <span
                         key={tech}
-                        className="text-[10px] text-zinc-500 bg-zinc-900/50 px-1.5 py-0.5 rounded border border-white/5"
+                        className="text-[12px] text-zinc-500 bg-zinc-900/50 px-1.5 pt-1 rounded border border-white/5 pb-0.5"
                       >
                         {tech}
                       </span>
@@ -153,7 +153,7 @@ export function HeroSection({ data }: HeroSectionProps) {
                     rel="noopener noreferrer"
                   >
                     <Globe className="mr-2 h-4 w-4" />
-                    Explore Live Project
+                    Explore Live Product
                   </a>
                 </Button>
               )}

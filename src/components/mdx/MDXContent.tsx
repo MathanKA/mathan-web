@@ -67,12 +67,15 @@ const components = {
   ),
   ol: ({ className, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
     <ol
-      className={cn("my-6 ml-6 list-decimal [&>li]:mt-2", className)}
+      className={cn(
+        "text-zinc-400 my-6 ml-6 list-decimal [&>li]:mt-2",
+        className
+      )}
       {...props}
     />
   ),
   li: ({ className, ...props }: React.HTMLAttributes<HTMLLIElement>) => (
-    <li className={cn("mt-2", className)} {...props} />
+    <li className={cn("text-zinc-400 mt-2", className)} {...props} />
   ),
   blockquote: ({
     className,
@@ -132,7 +135,48 @@ const components = {
       caption={props.title}
     />
   ),
-  FigureLightbox
+  FigureLightbox,
+  table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
+    <div className="my-8 w-full overflow-x-auto rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm">
+      <table
+        className={cn("w-full border-collapse text-left text-sm", className)}
+        {...props}
+      />
+    </div>
+  ),
+  thead: ({
+    className,
+    ...props
+  }: React.HTMLAttributes<HTMLTableSectionElement>) => (
+    <thead className={cn("bg-white/5", className)} {...props} />
+  ),
+  tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
+    <tr
+      className={cn(
+        "border-b border-white/5 last:border-0 hover:bg-white/5 transition-colors",
+        className
+      )}
+      {...props}
+    />
+  ),
+  th: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
+    <th
+      className={cn(
+        "px-4 py-3 font-semibold text-white/90 [&[align=center]]:text-center [&[align=right]]:text-right",
+        className
+      )}
+      {...props}
+    />
+  ),
+  td: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
+    <td
+      className={cn(
+        "px-4 py-3 text-zinc-400 [&[align=center]]:text-center [&[align=right]]:text-right",
+        className
+      )}
+      {...props}
+    />
+  )
 };
 
 // Pure function to evaluate MDX code (not a hook)
@@ -149,7 +193,7 @@ export function MDXContent({ code }: MDXProps) {
   // Memoize the component creation to avoid re-evaluation on each render
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
   return (
-    <div className="prose-custom">
+    <div className="col-span-12">
       <Component components={components} />
     </div>
   );

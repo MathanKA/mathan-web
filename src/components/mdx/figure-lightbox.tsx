@@ -33,7 +33,7 @@ export function FigureLightbox({
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
           <div
-            className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 cursor-zoom-in ring-offset-0 transition-all hover:border-brand-primary/30 hover:shadow-[0_0_30px_rgba(16,185,129,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
+            className="relative overflow-hidden rounded-2xl border border-white/10 bg-background/80 cursor-zoom-in ring-offset-0 transition-all hover:border-brand-primary/0 hover:shadow-[0_0_30px_rgba(16,185,129,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
             role="button"
             aria-label={`View fullscreen: ${alt}`}
           >
@@ -73,15 +73,15 @@ export function FigureLightbox({
           </div>
 
           {/* Caption / Close bar */}
-          {caption && (
+          {/* {caption && (
             <div className="absolute bottom-4 left-0 right-0 text-center px-4 pointer-events-none">
               <p className="inline-block bg-black/70 px-4 py-2 rounded-full text-sm font-medium text-white/90 backdrop-blur-sm pointer-events-auto">
                 {caption}
               </p>
             </div>
-          )}
+          )} */}
 
-          <DialogClose asChild>
+          {/* <DialogClose asChild>
             <Button
               variant="ghost"
               size="icon"
@@ -103,12 +103,12 @@ export function FigureLightbox({
                 <path d="m6 6 12 12" />
               </svg>
             </Button>
-          </DialogClose>
+          </DialogClose> */}
         </DialogContent>
       </Dialog>
 
       {caption && (
-        <figcaption className="mt-3 text-center text-sm text-muted-foreground italic">
+        <figcaption className="mt-3 text-center text-sm text-zinc-400 italic">
           {caption}
         </figcaption>
       )}

@@ -230,8 +230,7 @@ const TimelineItem = ({ item, isActive, onInView }: TimelineItemProps) => {
             <div>
               <span className="font-sans text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-1">
                 {"// "}
-                {item.from.replace(" ", "_").toUpperCase()} —{" "}
-                {item.to.replace(" ", "_").toUpperCase()}
+                {item.from.toUpperCase()} — {item.to.toUpperCase()}
               </span>
               <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight  transition-colors duration-300">
                 {item.title}

@@ -32,10 +32,10 @@ export function CodeBlock({ children, ...props }: CodeBlockProps) {
           <div className="h-2.5 w-2.5 rounded-full bg-amber-500/50" />
           <div className="h-2.5 w-2.5 rounded-full bg-emerald-500/50" />
         </div>
-        <div className="font-sans text-[10px] uppercase tracking-widest text-zinc-500">
+        {/* <div className="font-sans text-[10px] uppercase tracking-widest text-zinc-500">
           Source_Code
-        </div>
-        <div className="absolute right-4 top-1.5 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+        </div> */}
+        <div className="absolute right-4 top-0.5 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
           <Button
             variant="ghost"
             size="icon"
@@ -54,7 +54,7 @@ export function CodeBlock({ children, ...props }: CodeBlockProps) {
       <pre
         ref={preRef}
         {...props}
-        className="overflow-x-auto p-6 text-[13px] md:text-sm text-zinc-300 font-mono leading-relaxed scrollbar-thin scrollbar-thumb-white/5 scrollbar-track-transparent"
+        className="overflow-x-auto p-6 text-[13px] md:text-sm text-zinc-300 font-mono leading-relaxed scrollbar-thin scrollbar-thumb-white/5 scrollbar-track-transparent bg-background/50"
       >
         {children}
       </pre>

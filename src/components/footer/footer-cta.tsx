@@ -61,7 +61,7 @@ export function FooterCTA() {
             "flex items-center gap-3 px-6 py-4 rounded-full transition-all duration-300",
             "backdrop-blur-2xl bg-zinc-900/50 border border-white/10",
             "hover:border-white/20 hover:bg-zinc-800/50 focus-visible:ring-2 focus-visible:ring-white/30 outline-none",
-            "group/btn text-lg md:text-xl font-mono text-zinc-300 hover:text-white"
+            "group/btn text-lg md:text-xl font-mono text-zinc-300 hover:text-white tracking-widest"
           )}
           aria-label={`Copy email address: ${email}`}
         >

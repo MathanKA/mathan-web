@@ -33,7 +33,7 @@ export async function generateMetadata(props: PageProps) {
   }
 
   return {
-    title: `${post.title} | Mathan`,
+    title: `${post.title} | Mathan K A`,
     description: post.summary_one_liner
   };
 }
@@ -52,6 +52,10 @@ export default async function CaseStudyPage(props: PageProps) {
 
   return (
     <main className="min-h-screen bg-transparent pb-32">
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Subtle Grid Texture */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:32px_32px]" />
+      </div>
       {/* 1. Full-Screen Hero */}
       <HeroSection data={post} />
 
@@ -65,7 +69,7 @@ export default async function CaseStudyPage(props: PageProps) {
 
           {/* Main Content: MDX Body (Cols 4-11) */}
           <article className="col-span-12 lg:col-span-8 lg:col-start-4">
-            <div className="mdx-content">
+            <div className="mdx-content w-full">
               <MDXContent code={post.code} />
             </div>
 

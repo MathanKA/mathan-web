@@ -22,9 +22,7 @@ export default defineConfig({
           date: s.isodate().optional(),
           company: s.string().max(80).optional(),
           featured: s.boolean().default(false),
-          status: s
-            .enum(["pilot", "beta", "launched", "paused"])
-            .default("pilot"),
+          status: s.enum(["beta", "worked", "paused"]).default("worked"),
           tags: s.array(s.string().max(32)).max(12).default([]),
           modes: s
             .array(s.enum(["recruiter", "manager", "engineer"]))

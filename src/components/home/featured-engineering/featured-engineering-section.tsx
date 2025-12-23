@@ -135,7 +135,7 @@ export const FeaturedEngineeringSection = () => {
                     {activeItem.stack.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2 py-0.5 rounded text-[10px] bg-white/5 text-zinc-400 border border-white/5 transition-colors duration-300 hover:text-white"
+                        className="px-2 py-0.5 rounded text-[10px] bg-white/5 text-zinc-400 border border-white/5 transition-colors duration-300 "
                         style={{
                           borderColor: `rgba(255,255,255,0.1)`
                         }}
