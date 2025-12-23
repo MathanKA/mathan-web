@@ -32,7 +32,15 @@ export default function ResumePage() {
   };
 
   return (
-    <main className="min-h-screen pt-24 pb-20 relative">
+    <section className="min-h-screen pt-20 pb-20 relative">
+      {/* --- BACKGROUND AMBIENCE (Unified Iridescent Theme) --- */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Fixed "Aurora" Gradient at Top Center */}
+        {/* <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[80vw] h-[500px] bg-[conic-gradient(from_90deg_at_50%_50%,var(--color-brand-primary)_0%,var(--color-brand-secondary)_50%,var(--color-brand-primary)_100%)] opacity-10 blur-[120px]" /> */}
+
+        {/* Subtle Grid Texture */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:32px_32px]" />
+      </div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -40,7 +48,7 @@ export default function ResumePage() {
 
       <ResumeControlBar />
 
-      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 print:block">
+      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 print:block mt-10">
         <aside className="md:col-span-4 lg:col-span-3 md:sticky md:top-40 h-fit print:hidden">
           <ResumeSidebar data={resumeData} />
         </aside>
@@ -125,6 +133,6 @@ export default function ResumePage() {
           </section>
         </div>
       </div>
-    </main>
+    </section>
   );
 }

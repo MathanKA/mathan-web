@@ -50,13 +50,13 @@ export function HomeHero({ mode }: { mode: ViewerMode }) {
               id="hero-title"
               className="text-6xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] text-foreground/60"
             >
-              Hi, I&apos;m{" "}
+              Hi, I&apos;m <br className="block md:hidden" />
               <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-white/90 to-white/50 drop-shadow-2xl pr-1">
                 Mathan K A
               </span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-foreground font-medium leading-relaxed">
+            <p className="text-lg md:text-xl text-foreground/80 font-medium leading-relaxed">
               Front-end engineer with 10+ years building scalable high
               performance B2B SaaS, leading, shipping enterprise grade UI, and
               driving measurable outcomes.

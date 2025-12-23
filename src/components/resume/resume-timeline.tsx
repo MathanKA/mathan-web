@@ -21,20 +21,22 @@ export function ResumeTimeline({ data }: ResumeTimelineProps) {
     <div className="space-y-12">
       {/* Summary / Mission */}
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-emerald-400 to-fuchsia-500 bg-clip-text text-transparent">
-          System Overview
+        <h2 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-emerald-400/50 to-fuchsia-500/50 bg-clip-text text-transparent">
+          Summary
         </h2>
-        <div className="space-y-4 text-muted-foreground leading-relaxed">
-          {data.summary.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
+        <div className="space-y-4 text-foreground/60 leading-relaxed">
+          <ul className="list-disc ml-4 text-md mt-1">
+            {data.summary.map((p, i) => (
+              <li key={i}>{p}</li>
+            ))}
+          </ul>
         </div>
       </section>
 
       {/* Professional Experience */}
       <section className="space-y-8 relative">
-        <h2 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-emerald-400 to-fuchsia-500 bg-clip-text text-transparent mb-8">
-          The Changelog (Experience)
+        <h2 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-emerald-400/50 to-fuchsia-500/50 bg-clip-text text-transparent mb-8">
+          Professional Experience
         </h2>
 
         {/* Timeline Circuit Line */}
@@ -55,15 +57,15 @@ export function ResumeTimeline({ data }: ResumeTimelineProps) {
               className="relative md:pl-12 group"
             >
               {/* Timeline Node */}
-              <div className="absolute left-3.5 md:left-3 top-2 -translate-x-1/2 w-3 h-3 rounded-full bg-brand-primary ring-4 ring-brand-primary/20 z-10 hidden md:block" />
+              <div className="absolute left-3.5 md:left-4 top-4 -translate-x-1/2 w-3 h-3 rounded-full bg-brand-primary ring-4 ring-brand-primary/20 z-10 hidden md:block" />
 
-              <div className="bg-black/20 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-brand-primary/30 transition-all group-hover:shadow-[0_0_30px_-10px_rgba(17,221,119,0.15)]">
+              <div className="bg-black/20 backdrop-blur-xl border border-white/5 rounded-2xl p-6 hover:border-brand-primary/5 transition-all group-hover:shadow-[0_0_30px_-10px_rgba(17,221,119,0.05)]">
                 <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
                   <div>
-                    <h3 className="text-xl font-bold text-white group-hover:text-brand-primary transition-colors flex items-center gap-2">
+                    <h3 className="text-xl font-bold text-foreground transition-colors flex items-center gap-2">
                       {exp.company}
                     </h3>
-                    <p className="text-lg font-medium text-emerald-400/90">
+                    <p className="text-lg font-medium text-foreground/60">
                       {exp.role}
                     </p>
                   </div>
@@ -85,7 +87,7 @@ export function ResumeTimeline({ data }: ResumeTimelineProps) {
                       <Badge
                         key={i}
                         variant="outline"
-                        className="text-[10px] uppercase tracking-wider bg-emerald-500/5 border-emerald-500/20 text-emerald-400"
+                        className="text-[10px] tracking-wider bg-white/5 border border-white/10 text-white/70"
                       >
                         {h}
                       </Badge>
@@ -113,7 +115,7 @@ export function ResumeTimeline({ data }: ResumeTimelineProps) {
       {/* Additional Experience (Accordion) */}
       <section className="space-y-6">
         <h2 className="text-xl font-bold tracking-tight text-white/40 uppercase tracking-[0.2em]">
-          Legacy Logs
+          Additional Experience
         </h2>
         <Accordion type="single" collapsible className="w-full">
           {data.additionalExperience.map((exp, idx) => (
@@ -126,7 +128,7 @@ export function ResumeTimeline({ data }: ResumeTimelineProps) {
                 <div className="flex justify-between items-center w-full pr-4 text-left">
                   <div>
                     <p className="font-bold text-white/80">{exp.company}</p>
-                    <p className="text-xs text-brand-primary/60">{exp.role}</p>
+                    <p className="text-xs text-foreground/60">{exp.role}</p>
                   </div>
                   <span className="text-[10px] font-sans text-white/40">
                     {exp.dates}
@@ -149,7 +151,7 @@ export function ResumeTimeline({ data }: ResumeTimelineProps) {
       </section>
 
       {/* Projects */}
-      <section className="space-y-8">
+      {/* <section className="space-y-8">
         <h2 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-emerald-400 to-fuchsia-500 bg-clip-text text-transparent">
           Module Repository (Projects)
         </h2>
@@ -193,12 +195,12 @@ export function ResumeTimeline({ data }: ResumeTimelineProps) {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* Achievements */}
       <section className="space-y-6">
         <h2 className="text-xl font-bold tracking-tight text-white/40 uppercase tracking-[0.2em]">
-          Distinctions
+          Achievements & Rewards
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {data.achievements.map((item, idx) => (
@@ -222,7 +224,7 @@ function highlightMetrics(text: string) {
   return parts.map((part, i) => {
     if (part.match(/(\d+%\+?|\d+x|\d+\s?ms|\d+\s?MB|\d+\s?kB)/)) {
       return (
-        <strong key={i} className="text-brand-primary font-bold">
+        <strong key={i} className="font-semibold">
           {part}
         </strong>
       );

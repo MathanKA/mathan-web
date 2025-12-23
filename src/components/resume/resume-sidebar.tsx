@@ -21,14 +21,14 @@ export function ResumeSidebar({ data }: ResumeSidebarProps) {
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-4xl font-bold tracking-tight">
-            <span className="bg-gradient-to-r from-brand-primary via-white to-brand-secondary bg-clip-text text-transparent">
+            <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-white/90 to-white/50 drop-shadow-2xl">
               {data.header.name}
             </span>
           </h1>
           <p className="text-lg font-medium text-muted-foreground mt-2">
             {data.header.titleLine.split("|")[0].trim()}
           </p>
-          <p className="text-sm text-muted-foreground/80 mt-1 uppercase tracking-widest font-sans">
+          <p className="text-sm text-muted-foreground/80 mt-1 tracking-widest font-sans">
             {data.header.location}
           </p>
         </motion.div>
@@ -46,7 +46,7 @@ export function ResumeSidebar({ data }: ResumeSidebarProps) {
               <span className="text-xs truncate">{data.header.email}</span>
             </a>
           </Button>
-          <Button
+          {/* <Button
             variant="outline"
             size="sm"
             asChild
@@ -56,7 +56,7 @@ export function ResumeSidebar({ data }: ResumeSidebarProps) {
               <Phone className="w-4 h-4 mr-3 text-brand-primary" />
               <span className="text-xs">{data.header.phone}</span>
             </a>
-          </Button>
+          </Button> */}
           {data.header.links.map((link) => (
             <Button
               key={link.label}
@@ -88,14 +88,14 @@ export function ResumeSidebar({ data }: ResumeSidebarProps) {
         <div className="space-y-4">
           {data.skills.map((group) => (
             <div key={group.category} className="space-y-2">
-              <p className="text-[10px] font-bold text-brand-primary uppercase tracking-wider pl-1">
+              <p className="text-[10px] font-bold text-brand-primary/50 uppercase tracking-wider pl-1">
                 {group.category}
               </p>
               <div className="flex flex-wrap gap-1.5">
                 {group.items.map((skill) => (
                   <span
                     key={skill}
-                    className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-[11px] font-medium text-white/70 hover:text-white hover:border-white/20 transition-colors"
+                    className="px-2.5 pt-1 pb-0.5 rounded-md bg-white/5 border border-white/10 text-[11px] font-medium text-white/70 hover:text-white hover:border-white/20 transition-colors"
                   >
                     {skill}
                   </span>
@@ -109,7 +109,7 @@ export function ResumeSidebar({ data }: ResumeSidebarProps) {
       {/* Education */}
       <section className="space-y-4">
         <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-white/40">
-          Training & Certs
+          Education & Certs
         </h2>
         <div className="space-y-3">
           {data.education.map((edu, i) => (

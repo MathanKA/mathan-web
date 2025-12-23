@@ -9,7 +9,7 @@ export interface ResumeHeader {
   tagline: string;
   location: string;
   email: string;
-  phone: string;
+  phone?: string;
   links: RequestLink[];
 }
 
@@ -50,7 +50,6 @@ export interface ResumeData {
   additionalExperience: Experience[];
   projects: Project[];
   education: Education[];
-  certifications: string[];
   achievements: string[];
 }
 
@@ -63,11 +62,10 @@ export const resumeData: ResumeData = {
   header: {
     name: "Mathan K A",
     titleLine:
-      "Senior Full-Stack Engineer | TypeScript • React • Next.js • Vue.js • Nuxt.js • PostgreSQL",
+      "Senior Front-end Engineer | TypeScript • React • Next.js • Vue.js • Nuxt.js • PostgreSQL",
     tagline: "Building privacy-first consent & DSAR platform for GDPR/DPDP",
     location: "Bengaluru, India",
     email: "hello@mathan.pro",
-    phone: "+91-9790196979",
     links: [
       { label: "mathan.pro", href: "https://mathan.pro" },
       {
@@ -78,7 +76,7 @@ export const resumeData: ResumeData = {
     ]
   },
   summary: [
-    "Senior Full-Stack Engineer with over 10 years of experience building scalable web applications and platforms.",
+    "Senior Front-end Engineer with over 10 years of experience building scalable web applications and platforms.",
     "Specialized in frontend architecture with React/Next.js and Vue/Nuxt, and privacy-first backend systems.",
     "Proven track record in leading frontend teams, optimizing performance (Lighthouse 90+), and building complex SaaS products from scratch.",
     "Passionate about clean code, accessibility, and delivering exceptional user experiences."
@@ -213,7 +211,9 @@ export const resumeData: ResumeData = {
       dates: "May 2024 – Jan 2025",
       location: "Remote",
       bullets: [
-        "Mentored students and professionals in Full Stack MERN development."
+        "Delivered instructor led MERN training with a focus on production grade React and Node.js patterns.",
+        "Guided learners through projects, debugging, and code reviews to build strong implementation discipline.",
+        "Created structured learning paths that translated complex concepts into clear weekly milestones."
       ]
     },
     {
@@ -221,9 +221,14 @@ export const resumeData: ResumeData = {
       role: "UI Developer",
       dates: "Oct 2014 – Nov 2016",
       location: "Coimbatore",
-      bullets: ["Web agency work; promoted to lead."]
+      bullets: [
+        "Built and maintained responsive client websites from requirements to deployment and ongoing updates.",
+        "Collaborated with design and stakeholders to deliver consistent UI across browsers and devices.",
+        "Promoted to lead and trained interns for brand promotion and development support."
+      ]
     }
   ],
+
   projects: [
     {
       title: "Quansentz / SealForge (Pilot)",
@@ -239,12 +244,17 @@ export const resumeData: ResumeData = {
       degree: "B.E CSE",
       school: "SVS College of Engineering",
       dates: "2010 – 2014"
+    },
+    {
+      degree: "Nanodegree",
+      school: "Udacity",
+      dates: "2016"
     }
   ],
-  certifications: ["Udacity Frontend Web Developer Nanodegree (2016)"],
   achievements: [
-    "Microsoft Student Partner: organized events; won rewards",
-    "Marmalade contest: top 300 globally; won BlackBerry Z10 dev device",
-    "Intel App Innovation Contest 2013 finalist; won Lenovo AIO (₹1.36L)"
+    "Cyware: Recognized for shipping the initial CERT In release under tight demo deadlines, resulting in bonus reward and 20% annual salary increase.",
+    "Microsoft Student Partner: Started a campus technology club, organized national level events and workshops, and won rewards through app contests backed by Microsoft, Intel, and Nokia.",
+    "Marmalade developer contest: Selected among the first 300 developers globally and received a BlackBerry Z10 developer device.",
+    "Intel App Innovation Contest 2013: Finalist and received a Lenovo All in One system valued at about ₹1.36L."
   ]
 };
