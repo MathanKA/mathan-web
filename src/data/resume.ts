@@ -76,7 +76,7 @@ export const resumeData: ResumeData = {
     ]
   },
   summary: [
-    "Senior Front-end Engineer with over 10 years of experience building scalable web applications and platforms.",
+    "Senior Front-end Engineer with over 9+ years of experience building scalable web applications and platforms.",
     "Specialized in frontend architecture with React/Next.js and Vue/Nuxt, and privacy-first backend systems.",
     "Proven track record in leading frontend teams, optimizing performance (Lighthouse 90+), and building complex SaaS products from scratch.",
     "Passionate about clean code, accessibility, and delivering exceptional user experiences."

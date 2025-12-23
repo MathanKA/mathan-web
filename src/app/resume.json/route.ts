@@ -10,7 +10,6 @@ export async function GET() {
       name: resumeData.header.name,
       label: resumeData.header.titleLine.split("|")[0].trim(),
       email: resumeData.header.email,
-      phone: resumeData.header.phone,
       location: {
         city: resumeData.header.location.split(",")[0].trim(),
         countryCode: "IN",
@@ -42,9 +41,6 @@ export async function GET() {
       studyType: "Bachelor",
       startDate: edu.dates.split("–")[0]?.trim(),
       endDate: edu.dates.split("–")[1]?.trim()
-    })),
-    certificates: resumeData.certifications.map((cert) => ({
-      name: cert
     })),
     awards: resumeData.achievements.map((award) => ({
       title: award

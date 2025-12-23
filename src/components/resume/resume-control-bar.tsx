@@ -1,20 +1,23 @@
 "use client";
 
+import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { Download, Printer, Terminal } from "lucide-react";
+import { Check, Download, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { resumeData } from "@/data/resume";
 import { toast } from "sonner";
 
 export function ResumeControlBar() {
   const shouldReduceMotion = useReducedMotion();
+  const [isCopied, setIsCopied] = useState(false);
+
   const copyJson = () => {
     navigator.clipboard.writeText(JSON.stringify(resumeData, null, 2));
     toast.success("Resume JSON copied to clipboard");
-  };
-
-  const handlePrint = () => {
-    window.print();
+    setIsCopied(true);
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 10000);
   };
 
   return (
@@ -41,10 +44,19 @@ export function ResumeControlBar() {
               variant="outline"
               size="sm"
               onClick={copyJson}
-              className="bg-black/20 backdrop-blur-xl  border-white/10 hover:bg-white/10 text-xs gap-2 h-9 px-4"
+              className="bg-black/20 backdrop-blur-xl border-white/10 hover:bg-white/10 text-xs gap-2 h-9 px-4 min-w-[110px]"
             >
-              <Terminal className="w-3.5 h-3.5" />
-              Copy JSON
+              {isCopied ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  Copied
+                </>
+              ) : (
+                <>
+                  <Terminal className="w-3.5 h-3.5" />
+                  Copy JSON
+                </>
+              )}
             </Button>
 
             {/* <Button
@@ -62,7 +74,7 @@ export function ResumeControlBar() {
               size="sm"
               className="bg-brand-primary/5 backdrop-blur-xl border border-brand-primary/5 hover:bg-brand-primary/20 text-brand-primary/80 hover:text-white transition-all text-xs gap-2 h-9 px-4"
             >
-              <a href="/resume/MathanKA_Resume.pdf" download>
+              <a href="/MATHANKA_resume_.pdf" download>
                 <Download className="w-3.5 h-3.5" />
                 Download PDF
               </a>
