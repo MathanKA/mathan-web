@@ -1,4 +1,8 @@
-import { caseStudies } from "@/velite";
+import { type CaseStudy } from "@/velite";
+import caseStudiesData from "../../../../.velite/caseStudies.json";
+
+const caseStudies = caseStudiesData as CaseStudy[];
+
 import { notFound } from "next/navigation";
 import { MDXContent } from "@/components/mdx/MDXContent";
 import { HeroSection } from "@/components/case-studies/hero-section";

@@ -1,4 +1,8 @@
-import { caseStudies } from "@/velite";
+import { type CaseStudy } from "@/velite";
+import caseStudiesData from "../../../.velite/caseStudies.json";
+
+const caseStudies = caseStudiesData as CaseStudy[];
+
 import Link from "next/link";
 import { ArrowUpRight, Calendar, Sparkles } from "lucide-react";
 

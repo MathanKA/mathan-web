@@ -7,6 +7,9 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ImpactCard } from "./impact-card";
 import { type CaseStudy } from "@/velite";
+import caseStudiesData from "../../../.velite/caseStudies.json";
+
+const caseStudies = caseStudiesData as CaseStudy[];
 
 interface HeroSectionProps {
   data: CaseStudy;
@@ -116,7 +119,7 @@ export function HeroSection({ data }: HeroSectionProps) {
                     Stack
                   </span>
                   <div className="flex flex-wrap gap-1.5 pt-0.5">
-                    {data.stack.slice(0, 4).map((tech) => (
+                    {data.stack.slice(0, 4).map((tech: string) => (
                       <span
                         key={tech}
                         className="text-[10px] text-zinc-500 bg-zinc-900/50 px-1.5 py-0.5 rounded border border-white/5"

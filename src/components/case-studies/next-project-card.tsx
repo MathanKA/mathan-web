@@ -4,6 +4,9 @@ import { ArrowRight, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { type CaseStudy } from "@/velite";
+import caseStudiesData from "../../../.velite/caseStudies.json";
+
+const caseStudies = caseStudiesData as CaseStudy[];
 
 interface NextProjectCardProps {
   project: CaseStudy;
