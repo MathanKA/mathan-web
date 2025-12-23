@@ -28,9 +28,9 @@ export default defineConfig({
             .array(s.enum(["recruiter", "manager", "engineer"]))
             .default(["recruiter", "manager", "engineer"]),
           stack: s.array(s.string().max(40)).max(20).default([]),
-          summary_one_liner: s.string().max(160),
+          summary_one_liner: s.string().max(300),
           timeline: s.string().max(40).optional(),
-          key_stat: s.string().max(60).optional(),
+          key_stat: s.string().max(100).optional(),
           links: s
             .object({
               live: s.string().url().optional(),

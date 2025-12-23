@@ -14,7 +14,7 @@ interface NextProjectCardProps {
 
 export function NextProjectCard({ project }: NextProjectCardProps) {
   return (
-    <Link href={project.url} className="group block relative w-full mt-24">
+    <Link href={project.url} className="group block relative w-full mt-20">
       <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/20 p-12 backdrop-blur-xl transition-all duration-500 hover:border-brand-primary/10">
         {/* Background Glow */}
         <div className="absolute inset-0 -z-10 bg-gradient-to-br from-brand-primary/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />

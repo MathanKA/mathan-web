@@ -70,7 +70,7 @@ export function TableOfContents() {
   return (
     <nav className="sticky top-32 space-y-4 pr-8">
       <h4 className="font-sans text-[10px] uppercase tracking-widest text-zinc-500">
-        TECHNICAL_SPEC_INDEX
+        TECHNICAL INDEX
       </h4>
 
       <div className="relative flex flex-col gap-4 pl-4 border-l border-white/10">

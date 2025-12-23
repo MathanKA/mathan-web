@@ -19,7 +19,7 @@ export function HeroSection({ data }: HeroSectionProps) {
   const accentColor = data.status === "beta" ? "fuchsia" : "emerald";
 
   return (
-    <section className="relative w-full overflow-hidden border-b border-white/5 bg-transparent pt-32 pb-20">
+    <section className="relative w-full overflow-hidden bg-transparent pt-32 pb-10">
       <div className="container mx-auto px-4">
         {/* Breadcrumb */}
         <motion.div

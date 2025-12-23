@@ -15,7 +15,7 @@ const components = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn(
-        "mt-2 scroll-m-20 text-4xl font-bold tracking-tight",
+        "mt-2 scroll-m-20 text-4xl font-bold tracking-tight max-w-full overflow-x-auto",
         className
       )}
       {...props}
@@ -190,10 +190,9 @@ interface MDXProps {
 }
 
 export function MDXContent({ code }: MDXProps) {
-  // Memoize the component creation to avoid re-evaluation on each render
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
   return (
-    <div className="col-span-12">
+    <div className="min-w-0 w-full max-w-full wrap-anywhere overflow-x-hidden">
       <Component components={components} />
     </div>
   );
