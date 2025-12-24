@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { analytics } from "@/lib/analytics/posthog";
 
 interface NavLinksProps {
   className?: string;
@@ -32,7 +33,10 @@ export function NavLinks({
           <li key={link.href} className="w-full">
             <Link
               href={link.href}
-              onClick={onNavClick}
+              onClick={() => {
+                analytics.navClick("navbar");
+                onNavClick?.();
+              }}
               className={cn(
                 "block text-sm font-medium transition-colors duration-200 whitespace-nowrap",
                 linkClassName,

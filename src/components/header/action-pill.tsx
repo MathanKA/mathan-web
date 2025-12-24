@@ -1,6 +1,7 @@
 "use client";
 
 import { Download, Mail } from "lucide-react";
+import { analytics } from "@/lib/analytics/posthog";
 
 interface ActionPillProps {
   onClick?: () => void;
@@ -14,7 +15,10 @@ export function ActionPill({ onClick }: ActionPillProps) {
         href="/MATHANKA_resume_.pdf"
         download
         aria-label="Download Resume"
-        onClick={onClick}
+        onClick={() => {
+          analytics.resumeDownload("nav");
+          onClick?.();
+        }}
         className="relative group flex items-center gap-2 px-4 py-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors duration-200 outline-none"
       >
         <span className="absolute inset-0 bg-white/50 dark:bg-white/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
@@ -29,7 +33,10 @@ export function ActionPill({ onClick }: ActionPillProps) {
       <a
         href="mailto:hello@mathan.pro"
         aria-label="Send Email"
-        onClick={onClick}
+        onClick={() => {
+          analytics.emailClick("nav");
+          onClick?.();
+        }}
         className="relative group flex items-center gap-2 px-4 py-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors duration-200 outline-none"
       >
         <span className="absolute inset-0 bg-white/50 dark:bg-white/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200" />

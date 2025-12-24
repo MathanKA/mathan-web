@@ -25,6 +25,7 @@ export function FooterCTA() {
       }
       setIsCopied(true);
       toast.success("Email copied to clipboard!");
+
       setTimeout(() => setIsCopied(false), 2000);
     } catch (err) {
       console.error("Failed to copy!", err);
@@ -55,6 +56,8 @@ export function FooterCTA() {
 
         <button
           type="button"
+          data-ph-capture-attribute-cta_location="footer_cta"
+          data-ph-capture-attribute-cta_name="mail_copy"
           onClick={copyToClipboard}
           onKeyDown={(e) => e.key === "Enter" && copyToClipboard()}
           className={cn(

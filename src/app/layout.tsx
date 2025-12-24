@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer";
 import { JsonLd } from "@/components/seo/json-ld";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { PostHogProvider } from "./providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -112,23 +113,25 @@ export default async function RootLayout({
         className="antialiased flex flex-col min-h-screen"
         suppressHydrationWarning
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          forcedTheme="dark"
-          disableTransitionOnChange
-        >
-          <HeaderResizable />
+        <PostHogProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            forcedTheme="dark"
+            disableTransitionOnChange
+          >
+            <HeaderResizable />
 
-          {/* Grain overlay */}
-          <div className="fixed inset-0 pointer-events-none z-0 opacity-20 bg-[url('/noise.png')] mix-blend-overlay"></div>
+            {/* Grain overlay */}
+            <div className="fixed inset-0 pointer-events-none z-0 opacity-20 bg-[url('/noise.png')] mix-blend-overlay"></div>
 
-          <main className="grow relative flex flex-col min-h-screen font-sans antialiased">
-            {children}
-          </main>
+            <main className="grow relative flex flex-col min-h-screen font-sans antialiased">
+              {children}
+            </main>
 
-          <Footer />
-        </ThemeProvider>
+            <Footer />
+          </ThemeProvider>
+        </PostHogProvider>
         <JsonLd
           data={[
             {
