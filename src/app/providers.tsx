@@ -15,7 +15,7 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
     if (!process.env.NEXT_PUBLIC_POSTHOG_KEY) return;
 
     posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
-      api_host: "/ph",
+      api_host: "/_mka",
       ui_host: "https://us.posthog.com",
       defaults: "2025-11-30",
       capture_pageview: "history_change",
@@ -26,6 +26,12 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
         }
       }
     });
+    if (
+      location.hostname === "localhost" ||
+      location.hostname === "127.0.0.1"
+    ) {
+      posthog.opt_out_capturing();
+    }
   }, []);
 
   return <PHProvider client={posthog}>{children}</PHProvider>;
