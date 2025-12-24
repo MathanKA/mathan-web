@@ -2,19 +2,19 @@ import type { NextConfig } from "next";
 
 // Basic Next Config
 const nextConfig: NextConfig = {
-  // async rewrites() {
-  //   return [
-  //     {
-  //       source: "/_mka/static/:path*",
-  //       destination: "https://us-assets.i.posthog.com/static/:path*"
-  //     },
-  //     {
-  //       source: "/_mka/:path*",
-  //       destination: "https://us.i.posthog.com/:path*"
-  //     }
-  //   ];
-  // },
-  // skipTrailingSlashRedirect: true,
+  async rewrites() {
+    return [
+      {
+        source: "/_mka/static/:path*",
+        destination: "https://us-assets.i.posthog.com/static/:path*"
+      },
+      {
+        source: "/_mka/:path*",
+        destination: "https://us.i.posthog.com/:path*"
+      }
+    ];
+  },
+  skipTrailingSlashRedirect: true,
   reactCompiler: true
 };
 
