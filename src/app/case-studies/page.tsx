@@ -16,21 +16,25 @@ export const metadata = pageMetadata({
   canonicalPath: "/case-studies"
 });
 
+const url = abs("/case-studies");
+
+const breadcrumbData = getBreadcrumbJsonLd([
+  { name: "Home", item: CANONICAL_SITE_URL },
+  { name: "Case Studies", item: url }
+]);
+
+const breadcrumbId = breadcrumbData ? `${url}#breadcrumb` : undefined;
+
 export default function CaseStudiesPage() {
-  const url = abs("/case-studies");
   const webPageData = getWebPageJsonLd({
     id: `${url}#webpage`,
     url,
     name: "Case Studies | Mathan K A",
     description:
       "Deep dives into product builds, frontend systems, and the engineering trade offs behind real releases.",
-    type: "CollectionPage"
+    type: "CollectionPage",
+    breadcrumbId
   });
-
-  const breadcrumbData = getBreadcrumbJsonLd([
-    { name: "Home", item: CANONICAL_SITE_URL },
-    { name: "Case Studies", item: url }
-  ]);
 
   // Logic: Sort by date, then separate Featured from the rest
   const sortedPosts = caseStudies.sort((a, b) => {
@@ -46,7 +50,9 @@ export default function CaseStudiesPage() {
 
   return (
     <div className="min-h-screen relative w-full overflow-hidden">
-      <JsonLd data={[webPageData, breadcrumbData]} />
+      {webPageData && breadcrumbData && (
+        <JsonLd data={[webPageData, breadcrumbData]} />
+      )}
       {/* --- BACKGROUND AMBIENCE --- */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Subtle Grid Texture */}

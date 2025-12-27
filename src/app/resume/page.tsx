@@ -33,7 +33,7 @@ export default function ResumePage() {
 
   return (
     <section className="min-h-screen pt-20 pb-20 relative">
-      <JsonLd data={[webPageData, breadcrumbData]} />
+      {breadcrumbData && <JsonLd data={[webPageData, breadcrumbData]} />}
 
       <ResumeControlBar />
 
