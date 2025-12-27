@@ -6,15 +6,14 @@ import { ResumeTimeline } from "@/components/resume/resume-timeline";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getWebPageJsonLd, getBreadcrumbJsonLd } from "@/lib/seo/json-ld";
 import { abs, CANONICAL_SITE_URL } from "@/lib/seo/site";
+import { pageMetadata } from "@/lib/seo/metadata";
 
-export const metadata: Metadata = {
-  title: "Resume | Mathan K A",
+export const metadata = pageMetadata({
+  title: "Resume",
   description:
     "Senior Full-Stack Engineer | TypeScript • React • Next.js • Vue.js • Nuxt.js • PostgreSQL. Building privacy-first consent & DSAR platform.",
-  alternates: {
-    canonical: abs("/resume")
-  }
-};
+  canonicalPath: "/resume"
+});
 
 export default function ResumePage() {
   const url = abs("/resume");

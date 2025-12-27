@@ -5,17 +5,16 @@ import { ArrowUpRight, Calendar, BriefcaseBusiness } from "lucide-react";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getWebPageJsonLd, getBreadcrumbJsonLd } from "@/lib/seo/json-ld";
 import { abs, CANONICAL_SITE_URL } from "@/lib/seo/site";
+import { pageMetadata } from "@/lib/seo/metadata";
 
 const caseStudies = caseStudiesData as CaseStudy[];
 
-export const metadata = {
-  title: "Case Studies | Mathan K A",
+export const metadata = pageMetadata({
+  title: "Case Studies",
   description:
     "Deep dives into product builds, frontend systems, and the engineering trade offs behind real releases.",
-  alternates: {
-    canonical: abs("/case-studies")
-  }
-};
+  canonicalPath: "/case-studies"
+});
 
 export default function CaseStudiesPage() {
   const url = abs("/case-studies");
