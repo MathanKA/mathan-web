@@ -14,8 +14,15 @@ type CaseStudyFrontmatter = {
   noindex?: boolean;
 };
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.mathan.pro";
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.mathan.pro")
+  .trim()
+  .replace(/\/+$/, ""); // normalize trailing slashes
+
 const CASE_STUDIES_DIR = path.join(process.cwd(), "content", "case-studies");
+
+function abs(p: string) {
+  return new URL(p, `${SITE_URL}/`).toString();
+}
 
 function safeDate(value?: string): Date | null {
   if (!value) return null;
@@ -23,9 +30,7 @@ function safeDate(value?: string): Date | null {
   return Number.isNaN(d.getTime()) ? null : d;
 }
 
-async function getCaseStudies(): Promise<
-  Array<{ slug: string; lastModified: Date }>
-> {
+async function getCaseStudies(): Promise<Array<{ slug: string; lastModified: Date }>> {
   let files: string[] = [];
   try {
     files = await fs.readdir(CASE_STUDIES_DIR);
@@ -38,14 +43,10 @@ async function getCaseStudies(): Promise<
   const items = await Promise.all(
     mdxFiles.map(async (file) => {
       const fullPath = path.join(CASE_STUDIES_DIR, file);
-      const [raw, stat] = await Promise.all([
-        fs.readFile(fullPath, "utf8"),
-        fs.stat(fullPath)
-      ]);
-
+      const [raw, stat] = await Promise.all([fs.readFile(fullPath, "utf8"), fs.stat(fullPath)]);
       const { data } = matter(raw) as { data: CaseStudyFrontmatter };
 
-      if (data.draft === true || data.noindex === true) return null;
+      if (data.draft || data.noindex) return null;
 
       const slugFromFile = file.replace(/\.mdx$/, "");
       const slug = (data.slug?.trim() || slugFromFile).replace(/^\/+/, "");
@@ -55,69 +56,36 @@ async function getCaseStudies(): Promise<
         safeDate(data.lastModified) ??
         safeDate(data.date);
 
-      const lastModified = fm ?? stat.mtime;
-
-      return { slug, lastModified };
+      return { slug, lastModified: fm ?? stat.mtime };
     })
   );
 
+  // de-dupe slugs defensively
+  const seen = new Set<string>();
   return items
-    .filter(Boolean)
-    .sort((a, b) => a!.slug.localeCompare(b!.slug)) as Array<{
-    slug: string;
-    lastModified: Date;
-  }>;
+    .filter((x): x is { slug: string; lastModified: Date } => Boolean(x))
+    .filter((x) => (seen.has(x.slug) ? false : (seen.add(x.slug), true)))
+    .sort((a, b) => a.slug.localeCompare(b.slug));
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [
-    {
-      url: `${SITE_URL}/`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 1
-    },
-    {
-      url: `${SITE_URL}/case-studies`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.9
-    },
-    {
-      url: `${SITE_URL}/resume`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8
-    },
-    {
-      url: `${SITE_URL}/resume.json`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7
-    },
-    {
-      url: `${SITE_URL}/uses`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.6
-    },
-    {
-      url: `${SITE_URL}/contact`,
-      lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.5
-    }
+    { url: abs("/"), lastModified: now, changeFrequency: "monthly", priority: 1.0 },
+    { url: abs("/case-studies"), lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: abs("/resume"), lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: abs("/uses"), lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: abs("/contact"), lastModified: now, changeFrequency: "yearly", priority: 0.5 },
   ];
 
   const caseStudies = await getCaseStudies();
 
   const caseStudyRoutes: MetadataRoute.Sitemap = caseStudies.map((cs) => ({
-    url: `${SITE_URL}/case-studies/${cs.slug}`,
+    url: abs(`/case-studies/${cs.slug}`),
     lastModified: cs.lastModified,
     changeFrequency: "yearly",
-    priority: 0.75
+    priority: 0.75,
   }));
 
   return [...staticRoutes, ...caseStudyRoutes];

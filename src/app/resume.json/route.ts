@@ -3,8 +3,11 @@ import { NextResponse } from "next/server";
 
 export const dynamic = "force-static";
 
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.mathan.pro")
+  .trim()
+  .replace(/\/+$/, "");
+
 export async function GET() {
-  // Option A: JSON Resume-like structure
   const jsonResume = {
     basics: {
       name: resumeData.header.name,
@@ -42,9 +45,7 @@ export async function GET() {
       startDate: edu.dates.split("–")[0]?.trim(),
       endDate: edu.dates.split("–")[1]?.trim()
     })),
-    awards: resumeData.achievements.map((award) => ({
-      title: award
-    })),
+    awards: resumeData.achievements.map((award) => ({ title: award })),
     projects: resumeData.projects.map((proj) => ({
       name: proj.title,
       description: proj.description,
@@ -54,8 +55,10 @@ export async function GET() {
       keywords: proj.tech
     })),
     meta: {
+      // If this is force-static, this timestamp is basically "build time".
+      // Keep it, or remove it if you want stable content hashes.
       generatedAt: new Date().toISOString(),
-      source: "https://mathan.pro/resume.json",
+      source: `${SITE_URL}/resume.json`,
       version: "1.0.0"
     }
   };
@@ -64,7 +67,9 @@ export async function GET() {
     headers: {
       "Content-Type": "application/json; charset=utf-8",
       "Cache-Control":
-        "public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800"
+        "public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800",
+      // ✅ Prevent this endpoint from showing up in Google results
+      "X-Robots-Tag": "noindex, nosnippet"
     }
   });
 }

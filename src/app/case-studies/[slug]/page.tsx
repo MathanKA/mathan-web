@@ -1,13 +1,19 @@
 import { type CaseStudy } from "@/velite";
 import caseStudiesData from "../../../../.velite/caseStudies.json";
-
-const caseStudies = caseStudiesData as CaseStudy[];
-
 import { notFound } from "next/navigation";
 import { MDXContent } from "@/components/mdx/MDXContent";
 import { HeroSection } from "@/components/case-studies/hero-section";
 import { TableOfContents } from "@/components/case-studies/table-of-contents";
 import { NextProjectCard } from "@/components/case-studies/next-project-card";
+import { JsonLd } from "@/components/seo/json-ld";
+import {
+  getWebPageJsonLd,
+  getBreadcrumbJsonLd,
+  getArticleJsonLd
+} from "@/lib/seo/json-ld";
+import { abs, CANONICAL_SITE_URL } from "@/lib/seo/site";
+
+const caseStudies = caseStudiesData as CaseStudy[];
 
 interface PageProps {
   params: Promise<{
@@ -34,7 +40,10 @@ export async function generateMetadata(props: PageProps) {
 
   return {
     title: `${post.title} | Mathan K A`,
-    description: post.summary_one_liner
+    description: post.summary_one_liner,
+    alternates: {
+      canonical: abs(`/case-studies/${post.slug}`)
+    }
   };
 }
 
@@ -47,11 +56,36 @@ export default async function CaseStudyPage(props: PageProps) {
     notFound();
   }
 
+  const url = abs(`/case-studies/${post.slug}`);
+
+  const webPageData = getWebPageJsonLd({
+    id: `${url}#webpage`,
+    url,
+    name: `${post.title} | Mathan K A`,
+    description: post.summary_one_liner
+  });
+
+  const breadcrumbData = getBreadcrumbJsonLd([
+    { name: "Home", item: CANONICAL_SITE_URL },
+    { name: "Case Studies", item: abs("/case-studies") },
+    { name: post.title, item: url }
+  ]);
+
+  const articleData = getArticleJsonLd({
+    url,
+    headline: post.title,
+    description: post.summary_one_liner,
+    datePublished: post.date || new Date().toISOString(),
+    dateModified: post.date || new Date().toISOString(),
+    keywords: post.tags.join(", ")
+  });
+
   // Calculate next project for navigation (circular)
   const nextProject = caseStudies[(postIndex + 1) % caseStudies.length];
 
   return (
     <div className="min-h-screen relative w-full pb-32">
+      <JsonLd data={[webPageData, breadcrumbData, articleData]} />
       <div className="absolute inset-0 pointer-events-none">
         {/* Subtle Grid Texture */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:32px_32px]" />

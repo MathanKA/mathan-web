@@ -1,50 +1,40 @@
 import { Metadata } from "next";
-
 import { resumeData } from "@/data/resume";
 import { ResumeControlBar } from "@/components/resume/resume-control-bar";
 import { ResumeSidebar } from "@/components/resume/resume-sidebar";
 import { ResumeTimeline } from "@/components/resume/resume-timeline";
+import { JsonLd } from "@/components/seo/json-ld";
+import { getWebPageJsonLd, getBreadcrumbJsonLd } from "@/lib/seo/json-ld";
+import { abs, CANONICAL_SITE_URL } from "@/lib/seo/site";
 
 export const metadata: Metadata = {
   title: "Resume | Mathan K A",
   description:
     "Senior Full-Stack Engineer | TypeScript • React • Next.js • Vue.js • Nuxt.js • PostgreSQL. Building privacy-first consent & DSAR platform.",
   alternates: {
-    canonical: "/resume"
+    canonical: abs("/resume")
   }
 };
 
 export default function ResumePage() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ProfilePage",
-    mainEntity: {
-      "@type": "Person",
-      name: resumeData.header.name,
-      jobTitle: resumeData.header.titleLine.split("|")[0].trim(),
-      description: resumeData.summary.join(" "),
-      email: resumeData.header.email,
-      telephone: resumeData.header.phone,
-      url: "https://mathan.pro/resume",
-      sameAs: resumeData.header.links.map((l) => l.href),
-      knowsAbout: resumeData.skills.flatMap((s) => s.items)
-    }
-  };
+  const url = abs("/resume");
+  const webPageData = getWebPageJsonLd({
+    id: `${url}#webpage`,
+    url,
+    name: "Resume | Mathan K A",
+    description:
+      "Senior Full-Stack Engineer specializing in high-performance Next.js applications, scalable architecture, and user-centric design.",
+    type: "AboutPage"
+  });
+
+  const breadcrumbData = getBreadcrumbJsonLd([
+    { name: "Home", item: CANONICAL_SITE_URL },
+    { name: "Resume", item: url }
+  ]);
 
   return (
     <section className="min-h-screen pt-20 pb-20 relative">
-      {/* --- BACKGROUND AMBIENCE (Unified Iridescent Theme) --- */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Fixed "Aurora" Gradient at Top Center */}
-        {/* <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[80vw] h-[500px] bg-[conic-gradient(from_90deg_at_50%_50%,var(--color-brand-primary)_0%,var(--color-brand-secondary)_50%,var(--color-brand-primary)_100%)] opacity-10 blur-[120px]" /> */}
-
-        {/* Subtle Grid Texture */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:32px_32px]" />
-      </div>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={[webPageData, breadcrumbData]} />
 
       <ResumeControlBar />
 
