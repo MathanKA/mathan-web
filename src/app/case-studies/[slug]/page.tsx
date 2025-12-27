@@ -12,6 +12,7 @@ import {
   getArticleJsonLd
 } from "@/lib/seo/json-ld";
 import { abs, CANONICAL_SITE_URL } from "@/lib/seo/site";
+import { pageMetadata } from "@/lib/seo/metadata";
 
 const caseStudies = caseStudiesData as CaseStudy[];
 
@@ -33,18 +34,17 @@ export async function generateMetadata(props: PageProps) {
   const params = await props.params;
   const post = caseStudies.find((p) => p.slug === params.slug);
   if (!post) {
-    return {
-      title: "Case Study Not Found"
-    };
+    return pageMetadata({
+      title: "Case Study Not Found",
+      noIndex: true
+    });
   }
 
-  return {
-    title: `${post.title} | Mathan K A`,
+  return pageMetadata({
+    title: post.title,
     description: post.summary_one_liner,
-    alternates: {
-      canonical: abs(`/case-studies/${post.slug}`)
-    }
-  };
+    canonicalPath: `/case-studies/${post.slug}`
+  });
 }
 
 export default async function CaseStudyPage(props: PageProps) {

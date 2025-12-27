@@ -6,6 +6,11 @@ import { ExperienceSection } from "@/components/sections/experience";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getWebPageJsonLd } from "@/lib/seo/json-ld";
 import { CANONICAL_SITE_URL } from "@/lib/seo/site";
+import { pageMetadata } from "@/lib/seo/metadata";
+
+export const metadata = pageMetadata({
+  canonicalPath: "/"
+});
 
 export default async function Home() {
   const mode = await getMode();

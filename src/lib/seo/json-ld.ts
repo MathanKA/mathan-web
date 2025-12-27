@@ -19,7 +19,7 @@ export function getPersonJsonLd() {
     name: resumeData.header.name,
     jobTitle: "Senior Front-end Engineer",
     url: CANONICAL_SITE_URL,
-    image: `${CANONICAL_SITE_URL}/og-image.png`, // Fallback or real path
+    image: `${CANONICAL_SITE_URL}/og/og.jpg`, // Fallback or real path
     sameAs: resumeData.header.links.map((link) => link.href),
     email: resumeData.header.email,
     address: {

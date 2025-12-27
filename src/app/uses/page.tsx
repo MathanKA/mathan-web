@@ -3,22 +3,15 @@ import { UsesContent } from "@/components/uses/uses-content";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getWebPageJsonLd, getBreadcrumbJsonLd } from "@/lib/seo/json-ld";
 import { abs, CANONICAL_SITE_URL } from "@/lib/seo/site";
+import { pageMetadata } from "@/lib/seo/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Uses",
   description:
     "A professional manifesto of the hardware, software, and systems used to build high-performance web applications.",
-  alternates: {
-    canonical: abs("/uses")
-  },
-  openGraph: {
-    title: "Mathan K A | Uses",
-    description: "The tools, hardware, and configurations behind the work.",
-    images: [
-      { url: "/og/uses.png", width: 1200, height: 630, alt: "Uses Page" }
-    ]
-  }
-};
+  canonicalPath: "/uses",
+  image: "/og/og.jpg"
+});
 
 export default function UsesPage() {
   const url = abs("/uses");

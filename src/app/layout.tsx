@@ -8,7 +8,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { PostHogProvider } from "./providers";
 import { getPersonJsonLd, getWebSiteJsonLd } from "@/lib/seo/json-ld";
-import { CANONICAL_SITE_URL } from "@/lib/seo/site";
+import { SITE } from "@/lib/seo/site";
+import { buildMetadataBase } from "@/lib/seo/metadata";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,65 +30,28 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(CANONICAL_SITE_URL),
+  metadataBase: buildMetadataBase(),
   title: {
-    default: "Mathan K A | Senior Front-end Engineer",
-    template: "%s | Mathan K A"
+    default: SITE.defaultTitle,
+    template: SITE.titleTemplate
   },
-  description:
-    "Senior Front-end Engineer and Solo Founder specializing in high-performance Next.js applications, scalable architecture, and user-centric design.",
-  keywords: [
-    "Senior Front-end Engineer",
-    "Next.js Developer",
-    "React Developer",
-    "Web Performance",
-    "Tailwind CSS",
-    "Software Architecture",
-    "Optimization Expert",
-    "JavaScript",
-    "TypeScript",
-    "Portfolio",
-    "Mathan K A",
-    "Mathan.pro",
-    "Web Developer",
-    "Vue.js",
-    "Nuxt.js",
-    "SEO Optimization",
-    "Web Core Vitals",
-    "Lighthouse",
-    "Web Acessibility",
-    "Progressive Web Apps",
-    "PWA"
-  ],
-  authors: [{ name: "Mathan K A", url: CANONICAL_SITE_URL }],
-  creator: "Mathan K A",
+  description: SITE.defaultDescription,
+  keywords: SITE.keywords,
+  authors: [{ name: SITE.name, url: SITE.canonicalBase }],
+  creator: SITE.name,
   openGraph: {
     type: "website",
-    locale: "en_US",
-    url: CANONICAL_SITE_URL,
-    title: "Mathan K A | Senior Front-end Engineer",
-    description:
-      "Building high-performance web applications that scale. Expert in React, Next.js, and modern web technologies.",
-    siteName: "Mathan K A Portfolio",
-    images: [
-      {
-        url: "/og/home.png", // TODO: Generate this image via screenshot
-        width: 1200,
-        height: 630,
-        alt: "Mathan K A - Portfolio Hero"
-      }
-    ]
+    locale: SITE.locale,
+    url: "/",
+    title: SITE.defaultTitle,
+    description: SITE.defaultDescription,
+    siteName: SITE.siteName
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mathan K A | Senior Front-end Engineer",
-    description:
-      "Building high-performance web applications that scale. Expert in React, Next.js, and modern web technologies.",
-    images: ["/og/home.png"],
-    creator: "@MathanKA" // Replace with actual handle if different
-  },
-  alternates: {
-    canonical: CANONICAL_SITE_URL
+    title: SITE.defaultTitle,
+    description: SITE.defaultDescription,
+    creator: SITE.social.twitter
   },
   robots: {
     index: true,
