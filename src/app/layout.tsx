@@ -7,6 +7,8 @@ import { JsonLd } from "@/components/seo/json-ld";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { PostHogProvider } from "./providers";
+import { getPersonJsonLd, getWebSiteJsonLd } from "@/lib/seo/json-ld";
+import { CANONICAL_SITE_URL } from "@/lib/seo/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +29,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mathan.pro"),
+  metadataBase: new URL(CANONICAL_SITE_URL),
   title: {
     default: "Mathan K A | Senior Front-end Engineer",
     template: "%s | Mathan K A"
@@ -57,12 +59,12 @@ export const metadata: Metadata = {
     "Progressive Web Apps",
     "PWA"
   ],
-  authors: [{ name: "Mathan K A", url: "https://mathan.pro" }],
+  authors: [{ name: "Mathan K A", url: CANONICAL_SITE_URL }],
   creator: "Mathan K A",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://mathan.pro",
+    url: CANONICAL_SITE_URL,
     title: "Mathan K A | Senior Front-end Engineer",
     description:
       "Building high-performance web applications that scale. Expert in React, Next.js, and modern web technologies.",
@@ -85,7 +87,7 @@ export const metadata: Metadata = {
     creator: "@MathanKA" // Replace with actual handle if different
   },
   alternates: {
-    canonical: "https://mathan.pro"
+    canonical: CANONICAL_SITE_URL
   },
   robots: {
     index: true,
@@ -132,38 +134,7 @@ export default async function RootLayout({
             <Footer />
           </ThemeProvider>
         </PostHogProvider>
-        <JsonLd
-          data={[
-            {
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              name: "Mathan K A | Senior Front-end Engineer",
-              url: "https://mathan.pro",
-              alternateName: ["MathanHA Portfolio", "Mathan.pro"]
-            },
-            {
-              "@context": "https://schema.org",
-              "@type": "ProfilePage",
-              mainEntity: {
-                "@type": "Person",
-                name: "Mathan K A",
-                url: "https://mathan.pro",
-                sameAs: [
-                  "https://github.com/MathanKA",
-                  "https://linkedin.com/in/mathanka"
-                ],
-                jobTitle: "Senior Front-end Engineer",
-                knowsAbout: [
-                  "React",
-                  "Next.js",
-                  "TypeScript",
-                  "Web Performance",
-                  "Software Architecture"
-                ]
-              }
-            }
-          ]}
-        />
+        <JsonLd data={[getWebSiteJsonLd(), getPersonJsonLd()]} />
       </body>
     </html>
   );

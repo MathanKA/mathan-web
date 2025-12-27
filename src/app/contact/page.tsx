@@ -6,6 +6,9 @@ import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { Github, Linkedin, Check, Calendar, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import { JsonLd } from "@/components/seo/json-ld";
+import { getWebPageJsonLd, getBreadcrumbJsonLd } from "@/lib/seo/json-ld";
+import { abs, CANONICAL_SITE_URL } from "@/lib/seo/site";
 
 const CAL_URL = "https://cal.com/mathanka";
 const LI_URL = "https://linkedin.com/in/mathanka";
@@ -15,6 +18,21 @@ const EMAIL = "hello@mathan.pro";
 export default function ContactPage() {
   const [isCopied, setIsCopied] = useState(false);
   const shouldReduceMotion = useReducedMotion();
+
+  const url = abs("/contact");
+  const webPageData = getWebPageJsonLd({
+    id: `${url}#webpage`,
+    url,
+    name: "Contact | Mathan K A",
+    description:
+      "Let's collaborate on building high-performance web applications.",
+    type: "ContactPage"
+  });
+
+  const breadcrumbData = getBreadcrumbJsonLd([
+    { name: "Home", item: CANONICAL_SITE_URL },
+    { name: "Contact", item: url }
+  ]);
 
   const copyToClipboard = useCallback(async () => {
     try {
@@ -26,7 +44,6 @@ export default function ContactPage() {
         document.body.appendChild(textArea);
         textArea.select();
         document.execCommand("copy");
-        document.body.removeChild(textArea);
         document.body.removeChild(textArea);
       }
       setIsCopied(true);
@@ -40,18 +57,15 @@ export default function ContactPage() {
 
   return (
     <div className="relative min-h-screen selection:bg-emerald-500/30 overflow-hidden flex flex-col justify-center py-20 px-4 md:px-0">
-      {/* --- BACKGROUND AMBIENCE (Unified Iridescent Theme) --- */}
+      <JsonLd data={[webPageData, breadcrumbData]} />
+      {/* --- BACKGROUND AMBIENCE --- */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Fixed "Aurora" Gradient at Top Center */}
-        {/* <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[80vw] h-[500px] bg-[conic-gradient(from_90deg_at_50%_50%,var(--color-brand-primary)_0%,var(--color-brand-secondary)_50%,var(--color-brand-primary)_100%)] opacity-10 blur-[120px]" /> */}
-
         {/* Subtle Grid Texture */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:32px_32px]" />
       </div>
       <div className="relative z-10 w-full">
         <section aria-labelledby="contact-title" className="container mx-auto">
           <div className="grid grid-cols-12 gap-4">
-            {/* The Glass Card (Phase 4) */}
             <motion.div
               initial={
                 shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }
@@ -65,7 +79,6 @@ export default function ContactPage() {
               )}
             >
               <div className="flex flex-col space-y-8">
-                {/* Heading (Phase 5.1) */}
                 <div className="space-y-3 flex items-center justify-center">
                   <h1
                     id="contact-title"
@@ -75,7 +88,6 @@ export default function ContactPage() {
                   </h1>
                 </div>
 
-                {/* Primary Action — Massive Email Display (Phase 5.3) */}
                 <div className="relative pt-4 flex items-center justify-center">
                   <button
                     onClick={copyToClipboard}
@@ -97,11 +109,7 @@ export default function ContactPage() {
                     >
                       {EMAIL}
                     </span>
-
-                    {/* Hover indicator */}
                     <div className="h-px w-0 group-hover:w-full bg-gradient-to-r from-emerald-400/50 to-purple-400/50 transition-all duration-500 mt-1" />
-
-                    {/* Tooltip Feedback (Phase 6) */}
                     <AnimatePresence mode="wait">
                       {isCopied && (
                         <motion.div
@@ -122,17 +130,13 @@ export default function ContactPage() {
                         </motion.div>
                       )}
                     </AnimatePresence>
-
-                    {/* Screen Reader Feedback (Phase 7) */}
                     <span className="sr-only" aria-live="polite">
                       {isCopied ? "Email copied to clipboard" : ""}
                     </span>
                   </button>
                 </div>
 
-                {/* Secondary Actions (Phase 5.4) */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-6">
-                  {/* Book a Call */}
                   <Link
                     href={CAL_URL}
                     target="_blank"
@@ -154,7 +158,6 @@ export default function ContactPage() {
                     <ArrowUpRight className="w-4 h-4 text-zinc-600 group-hover:text-indigo-400 transition-colors" />
                   </Link>
 
-                  {/* LinkedIn */}
                   <Link
                     href={LI_URL}
                     target="_blank"
@@ -176,7 +179,6 @@ export default function ContactPage() {
                     <ArrowUpRight className="w-4 h-4 text-zinc-600 group-hover:text-blue-400 transition-colors" />
                   </Link>
 
-                  {/* GitHub */}
                   <Link
                     href={GH_URL}
                     target="_blank"
