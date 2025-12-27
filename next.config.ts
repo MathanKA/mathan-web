@@ -15,7 +15,18 @@ const nextConfig: NextConfig = {
     ];
   },
   skipTrailingSlashRedirect: true,
-  reactCompiler: true
+  reactCompiler: true,
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "mathanpro.vercel.app" }],
+        headers: [
+          { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" }
+        ]
+      }
+    ];
+  }
 };
 
 // VELITE INTEGRATION
