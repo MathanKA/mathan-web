@@ -58,18 +58,21 @@ export default async function CaseStudyPage(props: PageProps) {
 
   const url = abs(`/case-studies/${post.slug}`);
 
-  const webPageData = getWebPageJsonLd({
-    id: `${url}#webpage`,
-    url,
-    name: `${post.title} | Mathan K A`,
-    description: post.summary_one_liner
-  });
-
   const breadcrumbData = getBreadcrumbJsonLd([
     { name: "Home", item: CANONICAL_SITE_URL },
     { name: "Case Studies", item: abs("/case-studies") },
     { name: post.title, item: url }
   ]);
+
+  const breadcrumbId = breadcrumbData ? `${url}#breadcrumb` : undefined;
+
+  const webPageData = getWebPageJsonLd({
+    id: `${url}#webpage`,
+    url,
+    name: `${post.title} | Mathan K A`,
+    description: post.summary_one_liner,
+    breadcrumbId
+  });
 
   const articleData = getArticleJsonLd({
     url,
@@ -85,7 +88,9 @@ export default async function CaseStudyPage(props: PageProps) {
 
   return (
     <div className="min-h-screen relative w-full pb-32">
-      <JsonLd data={[webPageData, breadcrumbData, articleData]} />
+      {breadcrumbData && (
+        <JsonLd data={[webPageData, breadcrumbData, articleData]} />
+      )}
       <div className="absolute inset-0 pointer-events-none">
         {/* Subtle Grid Texture */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:32px_32px]" />

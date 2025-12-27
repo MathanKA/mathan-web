@@ -12,6 +12,13 @@ export function safeJsonLd(objOrArray: unknown): string {
  * Generator for Person JSON-LD.
  */
 export function getPersonJsonLd() {
+  const email = resumeData.header.email?.trim();
+  const emailValue = email?.startsWith("mailto:")
+    ? email
+    : email
+      ? `mailto:${email}`
+      : undefined;
+
   return {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -19,9 +26,9 @@ export function getPersonJsonLd() {
     name: resumeData.header.name,
     jobTitle: "Senior Front-end Engineer",
     url: CANONICAL_SITE_URL,
-    image: `${CANONICAL_SITE_URL}/og/og.jpg`, // Fallback or real path
+    image: abs("/og/og.jpg"),
     sameAs: resumeData.header.links.map((link) => link.href),
-    email: resumeData.header.email,
+    ...(emailValue ? { email: emailValue } : {}),
     address: {
       "@type": "PostalAddress",
       addressLocality: "Bengaluru",
@@ -49,19 +56,25 @@ export function getWebSiteJsonLd() {
 
 /**
  * Generator for WebPage JSON-LD.
+ *
+ * IMPORTANT:
+ * - Only include the `breadcrumb` reference if you are ALSO rendering a valid BreadcrumbList.
+ *   Otherwise Google sees a breadcrumb reference with no list and can flag it.
  */
 export function getWebPageJsonLd({
   id,
   url,
   name,
   description,
-  type = "WebPage"
+  type = "WebPage",
+  breadcrumbId
 }: {
   id: string;
-  url: string;
+  url: string; // absolute canonical URL preferred
   name: string;
   description: string;
   type?: string;
+  breadcrumbId?: string; // e.g. `${url}#breadcrumb`
 }) {
   return {
     "@context": "https://schema.org",
@@ -74,25 +87,39 @@ export function getWebPageJsonLd({
     isPartOf: {
       "@id": `${CANONICAL_SITE_URL}/#website`
     },
-    breadcrumb: {
-      "@id": `${url}#breadcrumb`
-    }
+    ...(breadcrumbId ? { breadcrumb: { "@id": breadcrumbId } } : {})
   };
 }
 
 /**
  * Generator for BreadcrumbList JSON-LD.
+ *
+ * Fix:
+ * - Never emit a BreadcrumbList without itemListElement.
+ * - If items are missing/empty, return null and the caller should NOT render JsonLd script.
  */
-export function getBreadcrumbJsonLd(items: { name: string; item: string }[]) {
+export function getBreadcrumbJsonLd(
+  items: { name: string; item: string }[] | undefined | null
+) {
+  if (!items || items.length === 0) return null;
+
+  // Ensure each "item" is absolute canonical (accepts "/path" or full URL).
+  const normalized = items.map((it) => ({
+    name: it.name,
+    item: it.item.startsWith("http") ? it.item : abs(it.item)
+  }));
+
+  const last = normalized[normalized.length - 1];
+
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "@id": `${items[items.length - 1].item}#breadcrumb`,
-    itemListElement: items.map((item, index) => ({
+    "@id": `${last.item}#breadcrumb`,
+    itemListElement: normalized.map((it, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      name: item.name,
-      item: item.item
+      name: it.name,
+      item: it.item
     }))
   };
 }
@@ -109,14 +136,24 @@ export function getArticleJsonLd({
   keywords,
   image
 }: {
-  url: string;
+  url: string; // absolute canonical
   headline: string;
   description: string;
   datePublished: string;
-  dateModified: string;
-  keywords?: string;
+  dateModified?: string;
+  keywords?: string | string[];
   image?: string;
 }) {
+  const kw = Array.isArray(keywords)
+    ? keywords.filter(Boolean).join(", ")
+    : keywords;
+
+  const img = image
+    ? image.startsWith("http")
+      ? image
+      : abs(image)
+    : undefined;
+
   return {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -128,14 +165,14 @@ export function getArticleJsonLd({
     headline,
     description,
     datePublished,
-    dateModified: dateModified || datePublished,
+    dateModified: (dateModified || datePublished) as string,
     author: {
       "@id": `${CANONICAL_SITE_URL}/#person`
     },
     publisher: {
       "@id": `${CANONICAL_SITE_URL}/#person`
     },
-    image: image ? [image] : undefined,
-    keywords
+    ...(img ? { image: [img] } : {}),
+    ...(kw ? { keywords: kw } : {})
   };
 }
