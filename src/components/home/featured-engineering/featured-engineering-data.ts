@@ -123,7 +123,7 @@ export const FEATURED_ENGINEERING_ITEMS: FeaturedEngineeringItem[] = [
     theme: { name: "Fuchsia", accentHex: "#880088", accentRgb: "136 0 136" },
     visual: {
       kind: "image",
-      imageSrc: "/images/cyware_seo_performance.png",
+      imageSrc: "/images/cyware_seo_performance.jpg",
       imageAlt: "Performance and SEO engineering highlights"
     },
     codeOverlay: {

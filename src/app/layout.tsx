@@ -89,7 +89,7 @@ export default async function RootLayout({
             <HeaderResizable />
 
             {/* Grain overlay */}
-            <div className="fixed inset-0 pointer-events-none z-0 opacity-20 bg-[url('/noise.png')] mix-blend-overlay"></div>
+            <div className="fixed inset-0 pointer-events-none z-0 opacity-20 bg-[url('/noise.jpg')] mix-blend-overlay"></div>
 
             <main className="grow relative flex flex-col min-h-screen font-sans antialiased">
               {children}

@@ -121,12 +121,12 @@ export const HERO_BULLETS: Record<
   },
   delivery: {
     icon: "Rocket",
-    text: "Led cybersecurity products frontend, delivered on schedule in a startup environment",
+    text: "Led cybersecurity product frontend in a high-stakes startup.",
     color: "text-purple-500"
   },
   "proof-metrics": {
     icon: "Lightbulb",
-    text: "Passionate to mentor and explore new tech through workshops",
+    text: "Driven to mentor, learn, and stay hands-on with evolving tech.",
     color: "text-yellow-500"
   },
   impact: {
