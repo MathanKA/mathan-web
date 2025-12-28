@@ -44,7 +44,7 @@ export function ResumeControlBar() {
               variant="outline"
               size="sm"
               onClick={copyJson}
-              className="bg-black/20 backdrop-blur-xl border-white/10 hover:bg-white/10 text-xs gap-2 h-9 px-4 min-w-[110px]"
+              className="bg-black/20 backdrop-blur-sm border-white/10 hover:bg-white/10 text-xs gap-2 h-9 px-4 min-w-[110px]"
             >
               {isCopied ? (
                 <>
@@ -72,7 +72,7 @@ export function ResumeControlBar() {
             <Button
               asChild
               size="sm"
-              className="bg-brand-primary/5 backdrop-blur-xl border border-brand-primary/5 hover:bg-brand-primary/20 text-brand-primary/80 hover:text-white transition-all text-xs gap-2 h-9 px-4"
+              className="bg-brand-primary/5 backdrop-blur-sm border border-brand-primary/5 hover:bg-brand-primary/20 text-brand-primary/80 hover:text-white transition-all text-xs gap-2 h-9 px-4"
             >
               <a href="/MATHANKA_resume_.pdf" download>
                 <Download className="w-3.5 h-3.5" />

@@ -91,7 +91,7 @@ export default function CaseStudiesPage() {
                     className="block group relative"
                   >
                     <div className="relative w-full rounded-[2rem] overflow-hidden transition-all duration-500 border border-white/10 group-hover:border-[var(--color-brand-primary)]/10 group-hover:shadow-[0_0_40px_-10px_rgba(16,185,129,0.1)]">
-                      <div className="absolute inset-0 bg-black/20 backdrop-blur-xl" />
+                      <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
                       <div className="relative p-8 md:p-12 flex flex-col md:flex-row gap-8 md:gap-12 items-start">
                         <div className="flex-1 space-y-6">
                           <div className="flex items-center gap-3">
@@ -139,7 +139,7 @@ export default function CaseStudiesPage() {
                 <div className="col-span-12 md:col-span-6" key={post.slug}>
                   <Link href={post.url} className="block group relative">
                     <div className="relative w-full rounded-[2rem] overflow-hidden transition-all duration-500 border border-white/10 group-hover:border-[var(--color-brand-primary)]/10 group-hover:shadow-[0_0_40px_-10px_rgba(16,185,129,0.1)]">
-                      <div className="absolute inset-0 bg-black/20 backdrop-blur-xl" />
+                      <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
                       <div className="relative p-8 md:p-12 flex flex-col md:flex-row gap-8 md:gap-12 items-start">
                         <div className="flex-1 space-y-6">
                           <div className="flex items-center gap-3">

@@ -53,7 +53,7 @@ export const FeaturedEngineeringCard: React.FC<
       className={cn(
         "relative w-full min-h-[500px] md:min-h-[400px] rounded-3xl overflow-hidden transition-all duration-700",
         // Unified Iridescent Standard: Ghost Glass
-        "bg-black/20 backdrop-blur-xl border border-white/10",
+        "bg-black/20 backdrop-blur-sm border border-white/10",
         "shadow-[0_0_0_1px_rgba(255,255,255,0.06),_0_40px_80px_-20px_rgba(0,0,0,0.8)]",
         // Gradient Top Sheen
         "before:absolute before:inset-0 before:rounded-3xl before:bg-gradient-to-b before:from-white/5 before:to-transparent before:opacity-40 before:pointer-events-none",
