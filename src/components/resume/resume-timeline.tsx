@@ -59,7 +59,7 @@ export function ResumeTimeline({ data }: ResumeTimelineProps) {
               {/* Timeline Node */}
               <div className="absolute left-3.5 md:left-4 top-4 -translate-x-1/2 w-3 h-3 rounded-full bg-brand-primary ring-4 ring-brand-primary/20 z-10 hidden md:block" />
 
-              <div className="bg-black/20 backdrop-blur-xl border border-white/5 rounded-2xl p-6 hover:border-brand-primary/5 transition-all group-hover:shadow-[0_0_30px_-10px_rgba(17,221,119,0.05)]">
+              <div className="bg-black/20 backdrop-blur-sm border border-white/5 rounded-2xl p-6 hover:border-brand-primary/5 transition-all group-hover:shadow-[0_0_30px_-10px_rgba(17,221,119,0.05)]">
                 <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
                   <div>
                     <h3 className="text-xl font-bold text-foreground transition-colors flex items-center gap-2">

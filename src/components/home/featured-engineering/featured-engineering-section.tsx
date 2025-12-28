@@ -23,6 +23,7 @@ export const FeaturedEngineeringSection = () => {
     <section
       id="work"
       className="relative w-full bg-transparent pt-24 md:pt-36"
+      data-cv
       // style={
       //   {
       //     "--accent-rgb": activeItem.theme.accentRgb,

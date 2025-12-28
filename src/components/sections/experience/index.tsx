@@ -217,7 +217,7 @@ const TimelineItem = ({ item, isActive, onInView }: TimelineItemProps) => {
           className={cn(
             "relative group p-6 rounded-2xl border transition-all duration-500",
             // Glass Card Style matching globals.css
-            "bg-black/20 backdrop-blur-xl border-white/10",
+            "bg-black/20 backdrop-blur-sm border-white/10",
             "shadow-2xl",
             isActive && "border-white/20 ring-1 ring-white/5"
           )}
@@ -282,6 +282,7 @@ export const ExperienceSection = () => {
       id="experience"
       ref={sectionRef}
       className="relative w-full bg-transparent pt-24 sm:py-32 md:pt-36 overflow-hidden"
+      data-cv
     >
       {/* Background decoration consistent with other sections */}
       <div className="absolute inset-0 pointer-events-none">

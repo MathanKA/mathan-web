@@ -72,7 +72,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${ibmPlexMono.variable} scroll-smooth dark`}
+      className={`${geistSans.variable} ${ibmPlexMono.variable} scroll-auto motion-safe:scroll-smooth dark`}
       suppressHydrationWarning
     >
       <body
