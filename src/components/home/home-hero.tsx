@@ -99,7 +99,7 @@ export function HomeHero({ mode }: { mode: ViewerMode }) {
               <div className="relative z-10 p-3 rounded-full bg-white/5 backdrop-blur-md border border-white/20 shadow-2xl ring-1 ring-white/10 w-full max-w-[360px] md:max-w-[420px]">
                 <div className="relative rounded-full overflow-hidden w-full aspect-square">
                   <Image
-                    src="/images/mathan-hero.png"
+                    src="/images/mathan-hero.webp"
                     alt="Mathan K A"
                     fill
                     className="object-cover hover:scale-105 transition-transform duration-500 object-[center_23%]"
