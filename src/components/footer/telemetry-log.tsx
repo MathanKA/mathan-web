@@ -2,20 +2,31 @@
 
 import { useEffect, useState } from "react";
 import { GitBranch, Clock, AlertCircle, ExternalLink } from "lucide-react";
-import { type TelemetryData } from "@/lib/telemetry";
+import { type GitHubActivityResponse } from "@/lib/github-activity";
+import { type WakaTimeTelemetry } from "@/lib/wakatime-activity";
 import { cn } from "@/lib/utils";
 
 export function TelemetryLog() {
-  const [data, setData] = useState<TelemetryData | null>(null);
+  const [github, setGithub] = useState<GitHubActivityResponse | null>(null);
+  const [waka, setWaka] = useState<WakaTimeTelemetry | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch("/api/telemetry");
-        const telemetry = await res.json();
-        setData(telemetry);
+        const [ghRes, wakaRes] = await Promise.all([
+          fetch("/api/github"),
+          fetch("/api/wakatime")
+        ]);
+
+        if (!ghRes.ok || !wakaRes.ok) {
+          throw new Error("Telemetry endpoints unavailable");
+        }
+
+        const [gh, wk] = await Promise.all([ghRes.json(), wakaRes.json()]);
+        setGithub(gh);
+        setWaka(wk);
       } catch (err) {
         console.error("Telemetry fetch failed:", err);
         setError(true);
@@ -35,7 +46,7 @@ export function TelemetryLog() {
     );
   }
 
-  if (error || !data) {
+  if (error || !github || !waka) {
     return (
       <div className="font-mono text-xs text-red-400 flex items-center gap-2">
         <AlertCircle size={12} />
@@ -44,49 +55,56 @@ export function TelemetryLog() {
     );
   }
 
-  const latestShip = data.github.items[0];
-  const waka = data.wakatime;
+  const topLanguages =
+    github.topLanguagesText ||
+    github.topLanguages
+      ?.slice(0, 3)
+      .map((lang) => lang.name)
+      .join(", ") ||
+    "";
+  const wakaTopText = waka.topLang
+    ? `${waka.topLang}${waka.topLangPct ? ` (${waka.topLangPct})` : ""}`
+    : "No data";
 
   return (
     <div className="grid grid-rows-2 gap-4 font-mono text-xs">
-      {/* Row 1: Last Ship (GitHub) */}
+      {/* Row 1: GitHub activity */}
       <div className="space-y-1">
         <div className="flex items-center gap-2 text-emerald-400">
           <GitBranch size={12} />
           <span className="uppercase tracking-widest opacity-70">
-            Last Commit
+            Code monitor
           </span>
+          {github.isPartial && (
+            <span className="ml-2 px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[10px]">
+              Limited
+            </span>
+          )}
         </div>
-        <div className="group relative w-fit">
-          {latestShip ? (
-            <a
-              href={latestShip.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 text-zinc-400 hover:text-emerald-400 transition-colors cursor-pointer"
-            >
-              <span className="truncate max-w-[250px]">{latestShip.text}</span>
-              <ExternalLink
-                size={10}
-                className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 shrink-0"
-              />
-              <span className="text-zinc-600 ml-1">
-                ({latestShip.whenRelative})
+        <div className="space-y-1 text-zinc-400">
+          <div className="flex items-center gap-2">
+            <span className="text-white font-semibold">
+              {github.commitsLast7Days}
+            </span>
+            <span className="text-zinc-500">commits (7d)</span>
+            <span className="text-white font-semibold ml-4">
+              {github.commitsLast30Days}
+            </span>
+            <span className="text-zinc-500">commits (30d)</span>
+          </div>
+          <div className="flex items-center gap-2 text-zinc-500">
+            {/* <ExternalLink size={10} /> */}
+            <span className="text-zinc-400">
+              Last commit:{" "}
+              <span className="text-white">
+                {github.lastCommitRelative || "Unknown"}
               </span>
-            </a>
-          ) : (
-            <p className="text-zinc-500">No recent activity</p>
-          )}
-
-          {/* Tooltip */}
-          {latestShip && (
-            <div className="absolute bottom-full left-0 mb-2 p-2 bg-zinc-900 border border-white/10 rounded text-[10px] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20 min-w-[150px]">
-              <div className="text-zinc-500 uppercase mb-1">Repository</div>
-              <div className="text-white mb-2">{latestShip.repoFull}</div>
-              <div className="text-zinc-500 uppercase mb-1">Commit Hash</div>
-              <div className="text-emerald-400">{latestShip.hash}</div>
-            </div>
-          )}
+            </span>
+          </div>
+          {/* <div className="text-zinc-500">
+            Top langs:{" "}
+            <span className="text-white">{topLanguages || "N/A"}</span>
+          </div> */}
         </div>
       </div>
 
@@ -97,6 +115,11 @@ export function TelemetryLog() {
           <span className="uppercase tracking-widest opacity-70">
             Focus Monitor
           </span>
+          {waka.isPartial && (
+            <span className="ml-2 px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[10px]">
+              Limited
+            </span>
+          )}
         </div>
 
         {/* WakaTime Tooltip */}
@@ -156,9 +179,7 @@ export function TelemetryLog() {
             ))}
           </div>
 
-          <div className="text-zinc-500 text-[10px]">
-            Top: {waka.topLang} ({waka.topLangPct})
-          </div>
+          <div className="text-zinc-500 text-[10px]">Top: {wakaTopText}</div>
         </div>
       </div>
     </div>
