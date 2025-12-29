@@ -281,7 +281,7 @@ export const ExperienceSection = () => {
     <section
       id="experience"
       ref={sectionRef}
-      className="relative w-full bg-transparent pt-24 sm:py-32 md:pt-36 overflow-hidden"
+      className="relative w-full bg-transparent pt-24 pb-24 md:pt-36 overflow-hidden"
       data-cv
     >
       {/* Background decoration consistent with other sections */}

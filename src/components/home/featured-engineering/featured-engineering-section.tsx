@@ -9,6 +9,7 @@ import {
 import { FeaturedEngineeringCard } from "./featured-engineering-card";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 export const FeaturedEngineeringSection = () => {
   const [activeId, setActiveId] = useState<FeaturedEngineeringItem["id"]>(
@@ -251,13 +252,20 @@ const ProjectIndexItem = ({
         )}
       </div>
 
-      {isActive && (
+      {isActive && item.link && (
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           className="ml-auto"
         >
-          <ArrowUpRight size={14} style={{ color: item.theme.accentHex }} />
+          <Link
+            href={item.link}
+            aria-label={`Open ${item.title}`}
+            onClick={(e) => e.stopPropagation()}
+            className="inline-flex"
+          >
+            <ArrowUpRight size={14} style={{ color: item.theme.accentHex }} />
+          </Link>
         </motion.div>
       )}
     </button>
