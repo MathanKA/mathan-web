@@ -196,13 +196,14 @@ export const FeaturedEngineeringCard: React.FC<
           {/* Code Overlay */}
           {item.codeOverlay && (
             <motion.div
-              style={{ y }}
-              className="absolute -right-4 -bottom-4 md:-right-5 md:-bottom-6 w-[240px] md:w-[450px] z-20 pointer-events-none md:pointer-events-auto"
+              style={{ y, height: "70%" }}
+              className="absolute -right-4 -bottom-4 md:-right-5 md:-bottom-6 w-[240px] md:w-[450px] z-20 pointer-events-none md:pointer-events-auto overflow-hidden"
             >
               <CodeOverlay
                 title={item.codeOverlay.title}
                 languageLabel={item.codeOverlay.languageLabel}
                 code={item.codeOverlay.code}
+                className="h-full"
               />
             </motion.div>
           )}
