@@ -45,7 +45,7 @@ export function FooterCTA() {
         className="text-3xl md:text-5xl font-sans font-bold tracking-tight text-white"
       >
         <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-white/90 to-white/50 drop-shadow-2xl">
-          Open to roles, collaborations, and shared learning.
+          Open to roles, collabs & mentorship
         </span>
       </motion.h2>
 

@@ -37,7 +37,7 @@ export function UsesContent() {
     <>
       <div className="w-full pt-32 pb-20">
         <section className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-12 gap-8 lg:gap-12">
+          <div className="grid grid-cols-12 gap-0 md:gap-12">
             {/* Left Column: Sticky Header & Index */}
             <div className="col-span-12 lg:col-span-4 h-fit lg:sticky lg:top-32">
               <motion.div
