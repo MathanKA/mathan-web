@@ -95,7 +95,7 @@ export function Footer() {
             </div>
 
             {/* Column B: The Unified Telemetry Stream [Cols 4-7] */}
-            <div className="col-span-12 md:col-span-4 border-l md:border-white/5 md:pl-8 space-y-4">
+            <div className="col-span-12 md:col-span-4 md:border-l md:border-white/5 md:pl-8 space-y-4">
               <div className="font-sans text-[10px] text-zinc-600 uppercase tracking-[0.2em]">
                 {"// Dev ACTIVITY"}
               </div>

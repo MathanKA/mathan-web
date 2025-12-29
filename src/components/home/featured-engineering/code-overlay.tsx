@@ -19,7 +19,7 @@ export const CodeOverlay: React.FC<CodeOverlayProps> = ({
   return (
     <div
       className={cn(
-        "rounded-xl overflow-hidden bg-[#0d1117] border border-white/10 shadow-2xl flex flex-col font-sans text-[10px] md:text-xs",
+        "rounded-xl overflow-hidden bg-[#0d1117] border border-white/10 shadow-2xl flex flex-col min-h-0 font-sans text-[10px] md:text-xs",
         className
       )}
     >
@@ -39,7 +39,7 @@ export const CodeOverlay: React.FC<CodeOverlayProps> = ({
       </div>
 
       {/* Code Content */}
-      <div className="p-4 overflow-auto scrollbar-hide">
+      <div className="p-4 overflow-auto scrollbar-hide flex-1 min-h-0">
         <pre className="text-zinc-300 leading-relaxed font-mono">
           <code>{code}</code>
         </pre>

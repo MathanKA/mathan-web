@@ -74,10 +74,10 @@ export function HomeHero({ mode }: { mode: ViewerMode }) {
                     key={bulletId}
                     className="flex items-start md:items-center gap-2 group w-full"
                   >
-                    <div className="relative flex-shrink-0 w-5 h-5 flex items-center justify-center mt-0.5">
+                    <div className="relative flex-shrink-0 w-5 h-5 flex items-center justify-center mt-1 md:mt-0">
                       <div className="absolute inset-0 bg-white/20 blur-md rounded-full opacity-0 group-hover:opacity-50 transition-opacity" />
                       <Icon
-                        className={`h-5 w-5 relative text-foreground/70 group-hover:text-foreground transition-colors duration-300`}
+                        className={`h-4 w-4 md:h-5 md:w-5 relative text-foreground/70 group-hover:text-foreground transition-colors duration-300`}
                       />
                     </div>
 

@@ -6,6 +6,7 @@ export type FeaturedEngineeringItem = {
   stack: string[]; // tags
   keyStat: string;
   description: string;
+  link?: string;
   theme: {
     name: string;
     accentHex: string; // used for glow + micro-interaction
@@ -41,7 +42,7 @@ export const FEATURED_ENGINEERING_ITEMS: FeaturedEngineeringItem[] = [
     keyStat: "Hash-Chained Audit Trail",
     description:
       "Designed and building a Next.js-native DPDP/GDPR consent + DSAR platform with tenant by domain isolation, purpose-level gating, and streaming export pipelines backed by tamper-evident audit logging for regulator ready evidence.",
-
+    link: "/case-studies/privacy-first-consent-dsar-platform",
     theme: {
       name: "Emerald",
       accentHex: "#11dd77", // Brand Primary
@@ -82,6 +83,7 @@ export const FEATURED_ENGINEERING_ITEMS: FeaturedEngineeringItem[] = [
     keyStat: "Shared UI System Across Products",
     description:
       "Led end to end frontend delivery for multiple cybersecurity products, translating changing requirements into reliable releases with clean UI architecture, reusable components, and strong collaboration across product, design, and backend teams.",
+    link: "/case-studies/cyware-frontend-modernization-program",
     theme: {
       name: "Cobalt",
       accentHex: "#333EEE",
@@ -120,6 +122,7 @@ export const FEATURED_ENGINEERING_ITEMS: FeaturedEngineeringItem[] = [
     keyStat: "40% Smaller initial load, Entry bundle 10MB → 4MB",
     description:
       "Improved production web performance and discoverability by tightening render paths, refining bundle and chunking strategy, and strengthening SEO fundamentals such as metadata, canonical structure, and indexable page delivery for high traffic surfaces.",
+    link: "/case-studies/cyware-frontend-modernization-program",
     theme: { name: "Fuchsia", accentHex: "#880088", accentRgb: "136 0 136" },
     visual: {
       kind: "image",
