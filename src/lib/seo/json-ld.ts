@@ -24,7 +24,7 @@ export function getPersonJsonLd() {
     "@type": "Person",
     "@id": `${CANONICAL_SITE_URL}/#person`,
     name: resumeData.header.name,
-    jobTitle: "Senior Front-end Engineer",
+    jobTitle: "Senior Frontend Engineer",
     url: CANONICAL_SITE_URL,
     image: abs("/og/og.jpg"),
     sameAs: resumeData.header.links.map((link) => link.href),

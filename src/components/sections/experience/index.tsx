@@ -31,9 +31,9 @@ export type ExperienceItem = {
 const EXPERIENCE_DATA: ExperienceItem[] = [
   {
     id: "quansentz",
-    title: "Senior Full-Stack Engineer & Founder",
+    title: "Founder & Product Engineer, TypeScript Full Stack",
     company: "Quansentz",
-    from: "Sep 2025",
+    from: "Oct 2025",
     to: "Present",
     type: "Remote",
     location: "Global",

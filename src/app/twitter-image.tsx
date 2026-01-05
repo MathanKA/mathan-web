@@ -2,7 +2,7 @@ import Image from "./opengraph-image";
 
 export const runtime = "edge";
 
-export const alt = "Mathan K A | Senior Front-end Engineer";
+export const alt = "Mathan K A | Senior Frontend Engineer";
 export const size = {
   width: 1200,
   height: 630
