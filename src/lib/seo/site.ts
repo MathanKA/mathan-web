@@ -1,15 +1,15 @@
 export const SITE = {
   name: "Mathan K A",
-  siteName: "Mathan K A | Senior Front-end Engineer",
+  siteName: "Mathan K A | Senior Frontend Engineer",
   domain: "mathan.pro",
   canonicalBase: "https://www.mathan.pro",
   locale: "en_US",
   titleTemplate: "%s | Mathan K A",
-  defaultTitle: "Mathan K A | Senior Front-end Engineer",
+  defaultTitle: "Mathan K A | Senior Frontend Engineer",
   defaultDescription:
-    "Senior Front-end Engineer and Solo Founder specializing in high-performance Next.js applications, scalable architecture, and user-centric design.",
+    "Senior Frontend Engineer and Solo Founder specializing in high-performance Next.js applications, scalable architecture, and user-centric design.",
   keywords: [
-    "Senior Front-end Engineer",
+    "Senior Frontend Engineer",
     "Next.js Developer",
     "React Developer",
     "Web Performance",

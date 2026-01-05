@@ -18,9 +18,9 @@ export default async function Home() {
   const webPageData = getWebPageJsonLd({
     id: `${CANONICAL_SITE_URL}/#webpage-home`,
     url: `${CANONICAL_SITE_URL}/`,
-    name: "Mathan K A | Senior Front-end Engineer",
+    name: "Mathan K A | Senior Frontend Engineer",
     description:
-      "Senior Front-end Engineer and Solo Founder specializing in high-performance Next.js applications, scalable architecture, and user-centric design."
+      "Senior Frontend Engineer and Solo Founder specializing in high-performance Next.js applications, scalable architecture, and user-centric design."
   });
 
   return (

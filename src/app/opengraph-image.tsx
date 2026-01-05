@@ -3,7 +3,7 @@ import { SITE } from "@/lib/seo/site";
 
 export const runtime = "edge";
 
-export const alt = "Mathan K A | Senior Front-end Engineer";
+export const alt = "Mathan K A | Senior Frontend Engineer";
 export const size = {
   width: 1200,
   height: 630
@@ -60,7 +60,7 @@ export default async function Image() {
             textAlign: "center"
           }}
         >
-          Senior Front-end Engineer
+          Senior Frontend Engineer
         </div>
       </div>
     </div>,

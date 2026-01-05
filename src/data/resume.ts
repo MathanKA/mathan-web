@@ -62,8 +62,9 @@ export const resumeData: ResumeData = {
   header: {
     name: "Mathan K A",
     titleLine:
-      "Senior Front-end Engineer | TypeScript • React • Next.js • Vue.js • Nuxt.js • PostgreSQL",
-    tagline: "Building privacy-first consent & DSAR platform for GDPR/DPDP",
+      "Senior Frontend Engineer | TypeScript • React • Next.js • Vue.js • Nuxt.js • PostgreSQL",
+    tagline:
+      "Building a privacy first consent and DSAR platform for GDPR and DPDP",
     location: "Bengaluru, India",
     email: "hello@mathan.pro",
     links: [
@@ -76,10 +77,9 @@ export const resumeData: ResumeData = {
     ]
   },
   summary: [
-    "Senior Front-end Engineer with over 9+ years of experience building scalable web applications and platforms.",
-    "Specialized in frontend architecture with React/Next.js and Vue/Nuxt, and privacy-first backend systems.",
-    "Proven track record in leading frontend teams, optimizing performance (Lighthouse 90+), and building complex SaaS products from scratch.",
-    "Passionate about clean code, accessibility, and delivering exceptional user experiences."
+    "Frontend engineer lead with 10+ years building and scaling B2B SaaS products in cybersecurity, with a focus on performance, accessibility, and frontend architecture.",
+    "Strong in design systems, multi-tenant architectures, SEO optimization (Core Web Vitals, Lighthouse), web accessibility (WCAG 2.1 AA) and efficient frontend patterns",
+    "Owned frontend delivery across Cyware platforms, shipped cyware.com revamp and led Cyware Social build; now building Quansentz, privacy first consent and DSAR for Next.js"
   ],
   skills: [
     {
@@ -163,18 +163,18 @@ export const resumeData: ResumeData = {
   experience: [
     {
       company: "Quansentz",
-      role: "Senior Full-Stack Engineer & Founder",
-      dates: "Sep 2025 – Present",
+      role: "Founder & Product Engineer, TypeScript Full Stack",
+      dates: "Oct 2025 – Present",
       location: "Remote",
       bullets: [
-        "Building a privacy-first consent + DSAR platform for multi-tenant Next.js teams.",
-        "Implemented domain-based tenant resolution with strict isolation.",
-        "Developed consent capture, preference center, DSAR intake, and hash-chained audit logs.",
-        "Built DSAR export pipeline using Redis-backed workers and S3 streaming for large encrypted exports.",
+        "Building a privacy first consent + DSAR platform for multi-tenant Next.js teams.",
+        "Implemented domain based tenant resolution with strict isolation.",
+        "Developed consent capture, preference center, DSAR intake, and hash chained audit logs.",
+        "Built DSAR export pipeline using Redis backed workers and S3 streaming for large encrypted exports.",
         "Managed CI/CD pipelines, Vercel/Docker deployments, Prisma migrations, and comprehensive documentation (PRD/Architecture/MVP/QA)."
       ],
       highlights: [
-        "Privacy-First Architecture",
+        "Privacy First Architecture",
         "Multi-tenancy",
         "DSAR Pipeline"
       ]

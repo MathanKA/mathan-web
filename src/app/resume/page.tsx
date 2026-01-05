@@ -11,7 +11,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 export const metadata = pageMetadata({
   title: "Resume",
   description:
-    "Senior Full-Stack Engineer | TypeScript • React • Next.js • Vue.js • Nuxt.js • PostgreSQL. Building privacy-first consent & DSAR platform.",
+    "Senior Frontend Engineer | TypeScript • React • Next.js • Vue.js • Nuxt.js • PostgreSQL. Building privacy-first consent & DSAR platform.",
   canonicalPath: "/resume"
 });
 
@@ -22,7 +22,7 @@ export default function ResumePage() {
     url,
     name: "Resume | Mathan K A",
     description:
-      "Senior Full-Stack Engineer specializing in high-performance Next.js applications, scalable architecture, and user-centric design.",
+      "Senior Frontend Engineer specializing in high-performance Next.js applications, scalable architecture, and user-centric design.",
     type: "AboutPage"
   });
 
