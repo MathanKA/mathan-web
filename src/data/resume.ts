@@ -90,6 +90,7 @@ export const resumeData: ResumeData = {
       category: "Frontend",
       items: [
         "React 18",
+        "React Query (TanStack)",
         "Next.js (App Router)",
         "Vue.js 2 & 3",
         "Nuxt.js",
@@ -99,19 +100,22 @@ export const resumeData: ResumeData = {
       ]
     },
     {
+      category: "State & Testing",
+      items: ["Redux", "Pinia", "Vuex", "Vitest", "Cypress", "Jest"]
+    },
+    {
       category: "Backend",
       items: [
         "Node.js",
         "Next.js Route Handlers",
         "Server Actions",
         "REST APIs",
-        "Webhooks",
-        "Prisma"
+        "Webhooks"
       ]
     },
     {
-      category: "Databases & Storage",
-      items: ["PostgreSQL", "MongoDB", "Redis", "S3 object storage"]
+      category: "Data",
+      items: ["PostgreSQL", "MongoDB", "Redis", "Amazon S3", "Prisma"]
     },
     {
       category: "Auth & Security",
@@ -120,8 +124,7 @@ export const resumeData: ResumeData = {
         "JWT",
         "sessions",
         "RBAC",
-        "OWASP-aligned secure coding",
-        "GDPR/DPDP-aware data design"
+        "OWASP-aligned secure coding"
       ]
     },
     {
@@ -145,7 +148,8 @@ export const resumeData: ResumeData = {
         "code splitting",
         "lazy loading",
         "tree-shaking",
-        "Core Web Vitals/Lighthouse"
+        "Core Web Vitals",
+        "Lighthouse optimizations"
       ]
     },
     {
@@ -163,7 +167,7 @@ export const resumeData: ResumeData = {
   experience: [
     {
       company: "Quansentz",
-      role: "Founder & Product Engineer, TypeScript Full Stack",
+      role: "Product Engineer, TypeScript Full Stack (Self-employed)",
       dates: "Oct 2025 – Present",
       location: "Remote",
       bullets: [
