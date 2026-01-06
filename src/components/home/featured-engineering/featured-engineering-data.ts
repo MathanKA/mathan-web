@@ -30,7 +30,7 @@ export const FEATURED_ENGINEERING_ITEMS: FeaturedEngineeringItem[] = [
     title: "Quansentz",
     tagline:
       "Privacy infrastructure for modern SaaS for consent, DSAR, and evidence by default.",
-    role: "Founder & Product Engineer, TypeScript Full Stack",
+    role: "Product Engineer, TypeScript Full Stack (Self-employed)",
     stack: [
       "Next.js App Router",
       "TypeScript",
