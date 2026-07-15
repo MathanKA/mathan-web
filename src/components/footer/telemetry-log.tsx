@@ -122,7 +122,7 @@ export function TelemetryLog() {
         <div className="flex items-center gap-2 text-fuchsia-400">
           <Clock size={12} />
           <span className="uppercase tracking-widest opacity-70 text-[10px]">
-            Focus Monitor
+            Engineering Log
           </span>
         </div>
 

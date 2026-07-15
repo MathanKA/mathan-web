@@ -57,9 +57,10 @@ export function HomeHero({ mode }: { mode: ViewerMode }) {
             </h1>
 
             <p className="text-lg md:text-xl text-foreground/80 font-medium leading-relaxed">
-              Frontend engineer with 10+ years building scalable high
-              performance B2B SaaS, leading, shipping enterprise grade UI, and
-              driving measurable outcomes.
+              Product Engineer with 10+ years building secure, scalable B2B
+              SaaS through end-to-end full-stack ownership, using AI-led
+              workflows to solve complex problems and ship enterprise-grade
+              solutions.
             </p>
 
             {/* Dynamic Mode Bullets */}
