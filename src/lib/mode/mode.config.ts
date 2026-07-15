@@ -126,7 +126,7 @@ export const HERO_BULLETS: Record<
   },
   "proof-metrics": {
     icon: "Lightbulb",
-    text: "Driven to mentor, learn, and stay hands-on with evolving tech.",
+    text: "Driven by systems thinking, continuous learning, and hands-on with AI tech",
     color: "text-yellow-500"
   },
   impact: {
